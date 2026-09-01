@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olympic Mountain Ice Cream — Super-Premium Small-Batch Ice Cream &amp; Sorbet | Shelton, WA</title>
+<meta name="description" content="Family owned since 1984. Olympic Mountain Ice Cream crafts super-premium small-batch ice creams and sorbets in the Skokomish Valley from the freshest Pacific Northwest ingredients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
+<style>
+:root{
+  --midnight:#0a1424;
+  --dusk:#16283f;
+  --horizon:#24405f;
+  --snow:#eef3f9;
+  --glacier:#a9c0d8;
+  --copper:#c08a4d;
+  --copper-bright:#d9a96a;
+  --cream:#f6efe3;
+  --cream-deep:#efe5d2;
+  --ink:#22293a;
+  --ink-soft:#4d5568;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.7;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--copper);color:#fff}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem clamp(1.2rem,4vw,3rem);transition:background .4s ease,box-shadow .4s ease,padding .4s ease}
+.nav.scrolled{background:rgba(10,20,36,.92);backdrop-filter:blur(10px);box-shadow:0 2px 24px rgba(0,0,0,.35);padding:.65rem clamp(1.2rem,4vw,3rem)}
+.nav-brand img{height:44px;width:auto;transition:height .4s ease}
+.nav.scrolled .nav-brand img{height:36px}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{color:var(--snow);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:4px}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--copper-bright);transition:width .3s ease}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
+.nav-toggle span{display:block;width:26px;height:2px;background:var(--snow);border-radius:2px;margin:5px auto;transition:transform .35s ease,opacity .25s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{display:none}
+@media(max-width:760px){
+  .hero-scroll{bottom:5rem;font-size:.72rem;letter-spacing:.24em}
+  .hero-scroll::after{height:30px}
+  .nav-toggle{display:block}
+  .nav-links{display:none}
+  .nav-drawer{display:flex;position:fixed;top:0;right:0;bottom:0;left:auto;width:min(78vw,320px);height:100vh;height:100dvh;flex-direction:column;justify-content:center;gap:2rem;list-style:none;margin:0;background:rgba(10,20,36,.98);backdrop-filter:blur(14px);padding:2rem 2.4rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:110}
+  .nav-drawer.open{transform:translateX(0)}
+  .nav-drawer a{color:var(--snow);text-decoration:none;font-size:1.05rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+  .nav-drawer a:hover{color:var(--copper-bright)}
+  body.nav-open{overflow:hidden}
+  .nav-scrim{position:fixed;inset:0;background:rgba(6,12,24,.5);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;z-index:105}
+  .nav-scrim.show{opacity:1;visibility:visible}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--midnight)}
+.hero-par{position:absolute;inset:0;will-change:transform}
+.hero-bg{position:absolute;inset:-8% 0;background:url("images/hero-mountains.webp") center 65%/cover no-repeat;will-change:transform;animation:heroDrift 34s ease-in-out infinite alternate}
+@keyframes heroDrift{from{transform:scale(1.02) translateY(0)}to{transform:scale(1.1) translateY(-1.5%)}}
+.hero-stars{position:absolute;inset:0;pointer-events:none}
+.hero-stars span{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;animation:twinkle var(--d,4s) ease-in-out var(--dl,0s) infinite}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--o,.9)}}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:0 1.5rem;max-width:820px}
+.hero-logo{width:min(500px,82vw);margin:0 auto 1.6rem;filter:drop-shadow(0 6px 30px rgba(0,0,0,.55));opacity:0;animation:riseIn 1.4s ease .3s forwards}
+.hero-rule{width:120px;height:1px;margin:0 auto 1.4rem;background:linear-gradient(90deg,transparent,var(--copper-bright),transparent);opacity:0;animation:riseIn 1.2s ease .8s forwards}
+.hero-tag{color:var(--glacier);font-size:clamp(1rem,2.2vw,1.25rem);font-weight:400;letter-spacing:.02em;opacity:0;animation:riseIn 1.2s ease 1s forwards}
+.hero-tag em{font-family:var(--display);font-style:italic;color:var(--cream)}
+.hero-since{margin-top:1.5rem;color:var(--copper-bright);font-size:.78rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;opacity:0;animation:riseIn 1.2s ease 1.2s forwards}
+@keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.hero-scroll{position:absolute;bottom:6.5rem;left:0;right:0;margin:0 auto;width:max-content;max-width:90vw;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--cream);text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.7);opacity:0;animation:riseIn 1.2s ease 1.6s forwards}
+.hero-scroll span{background:rgba(10,20,36,.45);border:1px solid rgba(217,169,106,.5);border-radius:999px;padding:.5rem 1.15rem;backdrop-filter:blur(2px)}
+.hero-scroll::after{content:"";display:block;width:2px;height:38px;background:linear-gradient(var(--copper-bright),transparent);margin:.65rem auto 0;border-radius:2px;animation:scrollPulse 2.2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+.hero-fade{position:absolute;left:0;right:0;bottom:0;height:9rem;z-index:1;background:linear-gradient(180deg,transparent,var(--midnight) 90%)}
+
+/* ---------- Marquee gallery ---------- */
+.gallery{background:var(--midnight);padding:0 0 5.5rem;position:relative}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{display:flex;gap:1.1rem;width:max-content;animation:marquee 55s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.marquee-track figure{width:clamp(220px,26vw,330px);aspect-ratio:3/2;overflow:hidden;border-radius:10px;flex-shrink:0;position:relative}
+.marquee-track img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.marquee-track figure:hover img{transform:scale(1.06)}
+.gallery-note{text-align:center;color:var(--glacier);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;padding:2.4rem 1rem 2.6rem}
+
+/* ---------- Shared section bits ---------- */
+.section{padding:clamp(4.5rem,9vw,7.5rem) clamp(1.2rem,5vw,3rem)}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{color:var(--copper);font-size:.76rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1rem}
+.heading{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.12;letter-spacing:-.01em}
+.heading em{font-style:italic;color:var(--copper)}
+.cv-auto{content-visibility:auto;contain-intrinsic-size:1px 1200px}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.19,1,.22,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+.flavor-block.reveal,.loc-groups.reveal{transform:none;transition:opacity .5s ease}
+
+/* ---------- Flavors ---------- */
+.flavors{background:var(--cream);position:relative}
+.flavors-head{text-align:center;max-width:640px;margin:0 auto clamp(3rem,6vw,4.5rem)}
+.flavors-head p{color:var(--ink-soft);margin-top:1.1rem;font-size:1.05rem}
+.flavor-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,3.5vw,3rem)}
+@media(max-width:880px){.flavor-grid{grid-template-columns:1fr}}
+.flavor-panel{background:#fffdf8;border:1px solid rgba(192,138,77,.28);border-radius:14px;overflow:hidden;box-shadow:0 18px 50px -28px rgba(34,41,58,.35)}
+.flavor-collage{display:grid;grid-template-columns:1.7fr 1fr;gap:3px;height:250px}
+.flavor-collage .tall{grid-row:span 2}
+.flavor-collage img{width:100%;height:100%;object-fit:cover}
+.flavor-body{padding:clamp(1.6rem,3vw,2.4rem)}
+.flavor-title{font-family:var(--display);font-size:1.7rem;font-weight:500;display:flex;align-items:baseline;gap:.8rem}
+.flavor-count{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--copper)}
+.flavor-list{list-style:none;margin-top:1.4rem;columns:1}
+.flavor-list li{padding:.62rem .1rem;border-bottom:1px dotted rgba(192,138,77,.45);font-size:1.02rem;font-weight:500;letter-spacing:.01em;display:flex;align-items:center;gap:.65rem}
+.flavor-list li:last-child{border-bottom:none}
+.flavor-list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--copper);flex-shrink:0;opacity:.7}
+.flavors-foot{text-align:center;margin-top:2.8rem;color:var(--ink-soft);font-style:italic;font-family:var(--display);font-size:1.06rem}
+
+/* ---------- Pint band ---------- */
+.pint{background:#000;color:var(--cream);text-align:center;padding:clamp(3.5rem,7vw,5.5rem) 1.5rem;position:relative;overflow:hidden}
+.pint::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(192,138,77,.16),transparent 13%,transparent 87%,rgba(192,138,77,.16))}
+.pint>*{position:relative;z-index:1}
+.pint img{max-width:min(430px,84vw);margin:0 auto}
+.pint p{max-width:520px;margin:1.6rem auto 0;color:var(--glacier);font-size:1rem}
+.pint p strong{color:var(--copper-bright)}
+
+/* ---------- Story ---------- */
+.story{background:linear-gradient(180deg,var(--dusk),var(--midnight) 85%);color:var(--snow)}
+.story .heading{color:var(--snow)}
+.story .eyebrow{color:var(--copper-bright)}
+.story-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:clamp(2.5rem,5vw,4.5rem);align-items:start}
+@media(max-width:880px){.story-grid{grid-template-columns:1fr}}
+.story-text p{margin-bottom:1.25rem;color:#ccd8e6;font-size:1.04rem}
+.story-text strong{color:var(--cream)}
+.story-text p:first-of-type::first-letter{font-family:var(--display);font-size:3.4em;float:left;line-height:.82;padding:.06em .12em 0 0;color:var(--copper-bright)}
+.story-side{position:sticky;top:6rem}
+@media(max-width:880px){.story-side{position:static}}
+.polaroid{background:#fffdf8;padding:12px 12px 1rem;border:1px solid rgba(192,138,77,.3);box-shadow:0 20px 45px -20px rgba(34,41,58,.4);transform:rotate(1.6deg);transition:transform .5s ease}
+.polaroid:hover{transform:rotate(0deg) scale(1.02)}
+.polaroid img{width:100%}
+.polaroid figcaption{text-align:center;font-family:var(--display);font-style:italic;font-size:1.05rem;padding-top:.8rem;color:var(--ink-soft)}
+.pullquote{margin:2.2rem 0;padding:1.4rem 1.6rem;border-left:3px solid var(--copper-bright);font-family:var(--display);font-style:italic;font-size:1.35rem;line-height:1.45;color:var(--cream)}
+.ingredients{margin-top:2.6rem;background:rgba(10,20,36,.5);border:1px solid rgba(169,192,216,.25);border-radius:14px;padding:clamp(1.6rem,3vw,2.3rem);backdrop-filter:blur(4px)}
+.ingredients h3{font-family:var(--display);font-weight:500;font-size:1.45rem;margin-bottom:.7rem;color:var(--snow)}
+.ingredients h3 em{font-style:italic;color:var(--copper-bright)}
+.ingredients p{color:var(--glacier)}
+
+/* ---------- Contact ---------- */
+.contact{background:linear-gradient(180deg,var(--dusk),var(--midnight) 70%);color:var(--snow);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 22%,rgba(255,255,255,.7),transparent),radial-gradient(1px 1px at 34% 10%,rgba(255,255,255,.5),transparent),radial-gradient(1.5px 1.5px at 58% 30%,rgba(255,255,255,.65),transparent),radial-gradient(1px 1px at 76% 14%,rgba(255,255,255,.5),transparent),radial-gradient(1.5px 1.5px at 90% 34%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 22% 44%,rgba(255,255,255,.4),transparent);pointer-events:none}
+.contact .eyebrow{color:var(--copper-bright)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);margin-top:2.8rem;position:relative}
+@media(max-width:720px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{border:1px solid rgba(169,192,216,.25);border-radius:14px;padding:2rem;background:rgba(10,20,36,.45);backdrop-filter:blur(4px)}
+.contact-card h3{font-size:.76rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--glacier);margin-bottom:1rem}
+.contact-card .big{font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.1rem);color:var(--snow);text-decoration:none;transition:color .3s ease}
+a.big:hover{color:var(--copper-bright)}
+.contact-card address{font-style:normal;font-size:1.08rem;line-height:1.8;color:var(--snow)}
+.footer{background:var(--midnight);text-align:center;padding:3.2rem 1.5rem 2.6rem;position:relative}
+.footer img{width:min(280px,66vw);margin:0 auto 1.4rem;opacity:.94}
+.footer p{color:var(--glacier);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
+.footer .fine{margin-top:.9rem;letter-spacing:.04em;text-transform:none;font-size:.78rem;color:#5f7691}
+
+/* ---------- Flavor library ---------- */
+.flavor-search{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;margin:0 0 2.4rem}
+.flavor-search input{flex:1;min-width:240px;max-width:420px;background:#fffdf8;border:1px solid rgba(192,138,77,.4);border-radius:999px;padding:.85rem 1.4rem;color:var(--ink);font-family:var(--body);font-size:1rem;outline:none;transition:border-color .3s ease}
+.flavor-search input:focus{border-color:var(--copper)}
+.flavor-search span{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.flavor-block{background:#fffdf8;border:1px solid rgba(192,138,77,.28);border-radius:14px;overflow:hidden;box-shadow:0 18px 50px -28px rgba(34,41,58,.35);margin-bottom:2.2rem}
+.flavor-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.flavor-strip img{width:100%;height:190px;object-fit:cover;display:block}
+@media(max-width:560px){.flavor-strip img{height:130px}}
+.flavor-block-body{padding:clamp(1.6rem,3vw,2.4rem)}
+.flavor-cols{list-style:none;column-count:4;column-gap:2rem;column-fill:balance;margin-top:1.3rem}
+@media(max-width:1000px){.flavor-cols{column-count:3}}
+@media(max-width:760px){.flavor-cols{column-count:2}}
+@media(max-width:480px){.flavor-cols{column-count:1}}
+.flavor-cols li{break-inside:avoid;-webkit-column-break-inside:avoid;padding:.4rem .1rem;border-bottom:1px dotted rgba(192,138,77,.35);font-size:.95rem;line-height:1.4}
+.ftag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1em .5em;border-radius:999px;white-space:nowrap;line-height:1.4;vertical-align:middle;margin-left:.35em}
+.ftag-seasonal{background:rgba(127,185,66,.16);color:#5c8a2e;border:1px solid rgba(127,185,66,.5)}
+.ftag-cost{background:rgba(192,138,77,.14);color:var(--copper);border:1px solid rgba(192,138,77,.5)}
+.ftag-popular{background:rgba(139,92,190,.15);color:#7d4fb0;border:1px solid rgba(139,92,190,.5)}
+.ftag-popular::before{content:"\2605";margin-right:.28em;font-size:.9em;line-height:1}
+/* Mobile flavor view: show only popular flavors until "Show all" is tapped */
+.flavor-showall{display:none}
+.flavor-legend-popular{display:none}
+@media(max-width:760px){
+  .flavor-cols .is-popular ~ li:not(.is-popular){}
+  .flavor-cols:not(.show-all) li:not(.is-popular){display:none}
+  .flavor-cols:not(.show-all){margin-bottom:.4rem}
+  .flavor-showall{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;background:none;border:1px solid rgba(192,138,77,.55);color:var(--copper);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;transition:background .25s ease,color .25s ease}
+  .flavor-showall:hover{background:var(--copper);color:#fff}
+  .flavor-showall[hidden]{display:none}
+  .flavor-legend-popular{display:block}
+}
+.flavor-legend{color:var(--ink-soft);font-size:.88rem;margin-top:.6rem;text-align:center}
+.flavor-none{display:none;font-family:var(--display);font-style:italic;color:var(--ink-soft);margin-top:.8rem}
+.custom-callout{max-width:760px;margin:2.6rem auto 0;text-align:center;background:#fffdf8;border:1px dashed rgba(192,138,77,.6);border-radius:14px;padding:clamp(1.6rem,3vw,2.2rem)}
+.custom-callout h3{font-family:var(--display);font-weight:500;font-size:1.5rem;margin-bottom:.5rem}
+.custom-callout h3 em{font-style:italic;color:var(--copper)}
+.custom-callout p{color:var(--ink-soft)}
+.custom-callout a{color:var(--copper);font-weight:700;text-decoration:none}
+.custom-callout a:hover{text-decoration:underline}
+/* ---------- Pint gallery ---------- */
+.pint-gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1200px;margin:2.5rem auto 0;background:#000}
+@media(max-width:900px){.pint-gallery{grid-template-columns:repeat(3,1fr)}.pint-gallery figure:nth-child(n+4){display:none}}
+@media(max-width:560px){.pint-gallery{grid-template-columns:1fr 1fr}.pint-gallery figure:nth-child(n+3){display:none}}
+.pint-gallery figure{margin:0}
+.pint-gallery img{width:100%;max-width:none;display:block;transition:transform .5s ease}
+.pint-gallery figure:hover img{transform:translateY(-8px)}
+/* ---------- Retailers ---------- */
+.retail-title{font-family:var(--display);font-weight:500;font-size:1.5rem;margin:2.6rem 0 1.2rem;color:var(--ink)}
+.loc-groups{margin-top:1.4rem;border-top:1px solid rgba(192,138,77,.28)}
+.loc-county{border-bottom:1px solid rgba(192,138,77,.28)}
+.loc-county summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.05rem .4rem;font-family:var(--display);font-weight:500;font-size:1.15rem;color:var(--ink)}
+.loc-county summary::-webkit-details-marker{display:none}
+.loc-county summary .cty-count{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.loc-county summary::after{content:"+";font-family:var(--display);font-size:1.4rem;font-weight:400;color:var(--copper);margin-left:auto;transition:transform .3s ease;line-height:1}
+.loc-county[open] summary::after{transform:rotate(45deg)}
+.loc-county ul{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;padding:.2rem .4rem 1.3rem}
+@media(max-width:900px){.loc-county ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.loc-county ul{grid-template-columns:1fr}}
+.loc-county li{padding:.4rem 0;font-size:.95rem;border-bottom:1px dotted rgba(192,138,77,.3)}
+.loc-county li a{color:var(--ink);text-decoration:none;transition:color .25s ease}
+.loc-county li a:hover{color:var(--copper)}
+.loc-county li a::after{content:"\2197";font-size:.7em;margin-left:.3em;color:var(--copper);opacity:.7}
+.loc-pint{color:var(--copper);font-weight:700}
+.loc-hint{font-size:.85rem;color:var(--ink-soft);margin:.2rem 0 1.2rem}
+.loc-hint b{color:var(--copper)}
+.retail-title em{font-style:italic;color:var(--copper)}
+.retailers{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem}
+.retailers li{border:1px solid rgba(192,138,77,.32);border-radius:10px;padding:.85rem 1.1rem;background:#fffdf8;font-size:.95rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 10px 30px -22px rgba(34,41,58,.4)}
+.retailers li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper);flex-shrink:0}
+/* ---------- Map ---------- */
+.map-wrap{height:480px;border-radius:14px;overflow:hidden;border:1px solid rgba(192,138,77,.4);box-shadow:0 18px 50px -28px rgba(34,41,58,.4);margin:2.4rem 0 .6rem;position:relative;z-index:0}
+.map-legend{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center;margin-bottom:.4rem;font-size:.85rem;color:var(--ink-soft)}
+.map-legend span{display:inline-flex;align-items:center;gap:.45rem}
+.map-legend i{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2)}
+.map-note{font-size:.8rem;color:var(--ink-soft);opacity:.85;margin-bottom:.4rem}
+.leaflet-popup-content{font-family:var(--body);margin:.7rem .9rem}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a{color:var(--copper);font-weight:700;text-decoration:none}
+.leaflet-attribution-flag{display:none!important}
+.leaflet-control-attribution{background:transparent!important;font-size:7.5px!important;line-height:1.2!important;padding:0 3px!important;color:rgba(90,82,70,.45)!important;box-shadow:none!important;opacity:.55;transition:opacity .3s ease}
+.leaflet-control-attribution:hover{opacity:.9}
+.leaflet-control-attribution a{color:rgba(90,82,70,.55)!important;text-decoration:none!important}
+/* ---------- Find a Pint ---------- */
+.pints{background:var(--cream-deep);color:var(--ink)}
+.pints-head{max-width:640px}
+.pints-head p{color:var(--ink-soft);margin-top:1rem}
+.pints-search{margin:2.4rem 0 1.6rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.pints-search input{flex:1;min-width:240px;max-width:440px;background:#fffdf8;border:1px solid rgba(192,138,77,.4);border-radius:999px;padding:.85rem 1.4rem;color:var(--ink);font-family:var(--body);font-size:1rem;outline:none;transition:border-color .3s ease}
+.pints-search input::placeholder{color:#9aa3b5}
+.pints-search input:focus{border-color:var(--copper)}
+.pints-count{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.pints-list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 2rem}
+@media(max-width:1000px){.pints-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.pints-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.pints-list{grid-template-columns:1fr}}
+.pints-list li{break-inside:avoid;padding:.42rem 0;font-size:.95rem;color:var(--ink);border-bottom:1px dotted rgba(192,138,77,.4)}
+.pints-list a,.retailers a{color:inherit;text-decoration:none;transition:color .25s ease}
+.pints-list a:hover,.retailers a:hover{color:var(--copper)}
+.pints-list a::after,.retailers a::after{content:"\2197";font-size:.7em;margin-left:.35em;color:var(--copper);opacity:.75}
+.pints-none{display:none;color:var(--ink-soft);font-style:italic;font-family:var(--display);font-size:1.05rem;margin-top:.5rem}
+.pints-foot{margin-top:2.2rem;color:var(--ink-soft);font-size:.95rem;max-width:640px}
+.pints-foot a{color:var(--copper);text-decoration:none}
+.pints-foot a:hover{text-decoration:underline}
+
+/* ---------- Reviews / Award ---------- */
+.awards{background:radial-gradient(120% 140% at 50% 0%,#1c140e,#0d0906 70%);color:var(--cream);position:relative;overflow:hidden}
+.awards::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(192,138,77,.14),transparent 16%,transparent 84%,rgba(192,138,77,.14));pointer-events:none}
+.awards .wrap{position:relative;z-index:1}
+.award-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:center;margin-top:2.6rem}
+@media(max-width:820px){.award-grid{grid-template-columns:1fr;gap:2rem}}
+.award-badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(192,138,77,.5);color:var(--copper-bright);border-radius:999px;padding:.45rem 1.1rem;font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.award-badge svg{width:15px;height:15px;fill:var(--copper-bright)}
+.award-text h2{font-family:var(--display);font-weight:500;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:1.2rem 0 0}
+.award-text h2 em{font-style:italic;color:var(--copper-bright)}
+.award-source{margin:1.1rem 0 0;color:var(--glacier);font-size:1.02rem;line-height:1.7}
+.award-quote{margin:1.6rem 0 0;padding-left:1.2rem;border-left:3px solid var(--copper);font-family:var(--display);font-style:italic;font-size:1.3rem;line-height:1.4;color:var(--cream)}
+.award-byline{margin:1.3rem 0 0;font-size:.82rem;letter-spacing:.06em;color:var(--ink-soft);color:#9c8f7d}
+.award-byline a{color:var(--copper-bright);text-decoration:none}
+.award-byline a:hover{text-decoration:underline}
+.award-photo{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.8);border:1px solid rgba(192,138,77,.3)}
+.award-photo img{width:100%;display:block}
+.award-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.2rem .8rem;font-size:.76rem;letter-spacing:.04em;color:rgba(255,255,255,.82);background:linear-gradient(transparent,rgba(0,0,0,.7))}
+/* ---------- FAQ ---------- */
+.faq{background:var(--cream)}
+.faq-list{max-width:820px;margin:2.6rem auto 0}
+.faq details{background:#fffdf8;border:1px solid rgba(192,138,77,.28);border-radius:12px;margin-bottom:.9rem;overflow:hidden;transition:box-shadow .3s ease}
+.faq details[open]{box-shadow:0 14px 40px -24px rgba(34,41,58,.4)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.15rem 1.4rem;font-weight:700;font-size:1.02rem;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--display);font-size:1.5rem;font-weight:400;color:var(--copper);flex-shrink:0;line-height:1;transition:transform .3s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .faq-a{padding:0 1.4rem 1.3rem;color:var(--ink-soft)}
+.faq .faq-a a{color:var(--copper)}
+
+/* ---------- Order form ---------- */
+.order-card{grid-column:1/-1;border:1px solid rgba(169,192,216,.25);border-radius:14px;padding:clamp(1.6rem,3.5vw,2.4rem);background:rgba(10,20,36,.45);backdrop-filter:blur(4px)}
+.order-card h3{font-family:var(--display);font-weight:500;font-size:1.6rem;margin-bottom:.4rem}
+.order-card h3 em{font-style:italic;color:var(--copper-bright)}
+.order-card>p{color:var(--glacier);font-size:.95rem;margin-bottom:1.6rem}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:640px){.order-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:.35rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--glacier)}
+.field input,.field select,.field textarea{background:rgba(10,20,36,.6);border:1px solid rgba(169,192,216,.35);border-radius:10px;padding:.8rem 1rem;color:var(--snow);font-family:var(--body);font-size:1rem;outline:none;transition:border-color .3s ease;width:100%}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--copper-bright)}
+.field select option{background:var(--midnight)}
+.order-submit{grid-column:1/-1;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:.4rem}
+.order-submit button{background:var(--copper);border:none;border-radius:999px;color:#fff;font-family:var(--body);font-weight:700;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;padding:.95rem 2.4rem;cursor:pointer;transition:background .3s ease,transform .2s ease}
+.order-submit button:hover{background:var(--copper-bright);transform:translateY(-1px)}
+.order-submit button:disabled{opacity:.55;cursor:default;transform:none}
+.order-note{font-size:.85rem;color:#5f7691}
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none}
+.order-error{display:none;margin-top:.6rem;color:#c0392b;font-size:.9rem}
+.order-success{display:none;padding:1.2rem 1.4rem;border:1px solid rgba(192,138,77,.5);border-radius:10px;background:rgba(192,138,77,.12);color:var(--cream);grid-column:1/-1}
+.order-success a{color:var(--copper-bright)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-bg,.hero-scroll::after,.hero-stars span{animation:none}
+  .hero-logo,.hero-rule,.hero-tag,.hero-since{animation:none;opacity:1;transform:none}
+  .hero-scroll{animation:none;opacity:1}
+  .marquee-track{animation:none;flex-wrap:wrap;width:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#top" aria-label="Olympic Mountain Ice Cream — home">
+    <img src="images/logo-cream.webp" alt="Olympic Mountain Ice Cream">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#flavors">Flavors</a></li>
+    <li><a href="#pints">Where to Find</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<ul class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <li><a href="#flavors">Flavors</a></li>
+  <li><a href="#pints">Where to Find</a></li>
+  <li><a href="#story">Story</a></li>
+  <li><a href="#reviews">Reviews</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+<div class="nav-scrim" id="navScrim"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-par" id="heroPar"><div class="hero-bg"></div></div>
+  <div class="hero-stars" id="heroStars" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <img class="hero-logo" src="images/logo-cream.webp" alt="Olympic Mountain Ice Cream">
+    <div class="hero-rule"></div>
+    <p class="hero-tag">Super-premium, small-batch ice creams &amp; sorbets, <em>crafted in the Skokomish Valley</em> from the Pacific Northwest harvest.</p>
+    <p class="hero-since">Family Owned Since 1984</p>
+  </div>
+  <a class="hero-scroll" href="#gallery"><span>Scoop In</span></a>
+  <div class="hero-fade"></div>
+</header>
+
+<!-- ============ GALLERY MARQUEE ============ -->
+<section class="gallery" id="gallery" aria-label="Ice cream gallery">
+  <p class="gallery-note reveal">Made by hand · Churned in small batches · Worth savoring</p>
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <figure><img src="images/cherry-bordeaux.webp" alt="Amaretto Bordeaux cherry ice cream in a waffle cone" loading="lazy"></figure>
+      <figure><img src="images/four-flavors.webp" alt="Four scoops of ice cream on a tasting plate" loading="lazy"></figure>
+      <figure><img src="images/pistachio.webp" alt="Pistachio ice cream topped with roasted pistachios" loading="lazy"></figure>
+      <figure><img src="images/berry-cheesecake.webp" alt="Berry cheesecake ice cream with blackberry sauce" loading="lazy"></figure>
+      <figure><img src="images/cookies-cream.webp" alt="Cookies and cream ice cream with chocolate sandwich cookies" loading="lazy"></figure>
+      <figure><img src="images/summer-berries.webp" alt="Berry ice creams with fresh summer berries" loading="lazy"></figure>
+      <figure><img src="images/coffee-crunch.webp" alt="Coffee crunch ice cream cone held outdoors" loading="lazy"></figure>
+      <figure><img src="images/spumoni.webp" alt="Spoonful of spumoni ice cream" loading="lazy"></figure>
+      <figure><img src="images/strawberry-rhubarb.webp" alt="Strawberry rhubarb ice cream with fresh strawberries and rhubarb" loading="lazy"></figure>
+      <figure><img src="images/vanilla-pb-cup.webp" alt="Vanilla ice cream loaded with peanut butter cups" loading="lazy"></figure>
+      <figure><img src="images/bittersweet.webp" alt="Bittersweet chocolate ice cream in wooden bowls" loading="lazy"></figure>
+      <figure><img src="images/watermelon-sorbet.webp" alt="Watermelon sorbet with fresh watermelon slices" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLAVORS ============ -->
+<section class="section flavors" id="flavors">
+  <div class="wrap">
+    <div class="flavors-head">
+      <p class="eyebrow">The Flavor Library</p>
+      <h2 class="heading">Flavors that follow <em>the harvest</em></h2>
+      <p>Over two hundred flavors and counting — from year-round classics to seasonal batches built around the Pacific Northwest harvest. Availability rotates, so call for what&rsquo;s in the freezer today.</p>
+    </div>
+    <div class="flavor-search">
+      <input type="search" id="flavorSearch" placeholder="Search flavors&hellip;" aria-label="Search flavors">
+      <span id="flavorCount">238 of 238</span>
+    </div>
+    <article class="flavor-block">
+      <div class="flavor-strip">
+        <img src="images/mint-ball.webp" loading="eager" alt="Mint chocolate ice cream with malt balls" decoding="async">
+        <img src="images/rocky-road.webp" loading="eager" alt="Rocky road ice cream with marshmallow and almonds" decoding="async">
+        <img src="images/honeycomb.webp" loading="eager" alt="Honeycomb ice cream" decoding="async">
+      </div>
+      <div class="flavor-block-body">
+        <h3 class="flavor-title">Ice Creams <span class="flavor-count" id="icCount">161 flavors</span></h3>
+        <ul class="flavor-cols" id="icList"><li>Almond Roca Butter Crunch</li><li>Amaretto</li><li>Amaretto Bordeaux Cherry<span class="ftag ftag-seasonal">seasonal</span></li><li>Amaretto Cherry Swirl</li><li>Amaretto Hazelnut</li><li>Banana Chocolate Chip</li><li>Banana Cream Pie</li><li>Banana Macadamia Nut</li><li>Birthday Cake</li><li>Bittersweet Chocolate</li><li>Black Walnut</li><li>Blueberry–Huckleberry Cream</li><li class="is-popular">Bordeaux Cherry Chocolate Chip<span class="ftag ftag-popular">popular</span></li><li>Bordeaux Cherry Fudge Brownies</li><li>Brown Butter</li><li>Brownie Sundae</li><li>Bubble Gum</li><li>Butter Almond Toffee</li><li>Butter Macadamia Nut</li><li>Butter Pecan</li><li>Butterfingers</li><li>Butterscotch Almond Toffee<span class="ftag ftag-seasonal">seasonal</span></li><li>Butterscotch Brownie</li><li>Butterscotch Sundae</li><li>Caffe Viennese</li><li>Cappuccino Chip</li><li>Caramel Apple</li><li>Caramel Coconut</li><li>Caramel Pecan Chocolate Chip</li><li>Cheesecake (Raspberry / Blackberry / Blueberry)</li><li>Cherry Pie</li><li>Cherry Rum</li><li>Cherry Vanilla</li><li class="is-popular">Chocolate<span class="ftag ftag-popular">popular</span></li><li>Chocolate Banana</li><li>Chocolate Bavarian Mint</li><li>Chocolate Berry Swirl</li><li>Chocolate Caramel Almonds</li><li>Chocolate Cherry Marshmallows</li><li>Chocolate Chip</li><li>Chocolate Chip Cookie Dough</li><li>Chocolate Espresso Flake</li><li>Chocolate Fudge Brownies</li><li>Chocolate Fudge Swirl</li><li>Chocolate Grand Marnier</li><li>Chocolate Hazelnut</li><li>Chocolate Heath Bar Crunch</li><li>Chocolate Malt</li><li>Chocolate Mint Cup<span class="ftag ftag-seasonal">seasonal</span></li><li>Chocolate Orange Habanero</li><li>Chocolate Oreo</li><li>Chocolate Peanut Butter Cup</li><li>Chocolate Praline</li><li>Chocolate Silk Fudge Chunk</li><li>Cinnamon</li><li>Cinnamon Caramel Swirl</li><li>Coconut Almond</li><li>Coconut Almond Fudge Chunk</li><li>Coconut Almond Fudge Swirl</li><li>Coconut Caramel Swirl</li><li>Coffee Caramel Swirl</li><li>Coffee Heath Bar</li><li>Coffee Heath Bar Crunch<span class="ftag ftag-seasonal">seasonal</span></li><li>Coffee Oreo</li><li>Cookies ’n’ Cream</li><li>Cotton Candy</li><li>Crème Fraîche</li><li>Double Chip Mint</li><li>Double Chocolate Almond</li><li>Double Chocolate Brownie Rocky Road</li><li>Double Chocolate Truffle</li><li>Dulce de Leche</li><li>Dulce de Leche Salted Caramel</li><li>Espresso Flake</li><li>Espresso Fudge Pie</li><li>French Apple Pie</li><li>Fresh Banana</li><li>Fudge</li><li>Fudge Walnut</li><li>Ginger</li><li>Green Tea</li><li>Hazelnut</li><li>Heath Bar Crunch</li><li>Honey Lavender</li><li>Honey Vanilla Almond</li><li>Huckleberry Swirl</li><li>Irish Cream Butterscotch Swirl<span class="ftag ftag-seasonal">seasonal</span></li><li>Irish Cream Chocolate Chip<span class="ftag ftag-seasonal">seasonal</span></li><li class="is-popular">Kahlua Chip<span class="ftag ftag-popular">popular</span></li><li class="is-popular">Kentucky Pie<span class="ftag ftag-popular">popular</span></li><li>Key Lime Pie</li><li>Lemon Cheesecake Berry Swirl</li><li>Lemon Cookie</li><li>Lemon Cream Pie</li><li>Lemon Ginger</li><li>Lemon Lavender</li><li>Lemon Raspberry Swirl<span class="ftag ftag-seasonal">seasonal</span></li><li>Lemon White Chocolate Chip</li><li>Licorice</li><li class="is-popular">Madagascar Vanilla<span class="ftag ftag-popular">popular</span></li><li>Mango</li><li>Mango Pistacchio</li><li>Maple Nut</li><li>Mexican Kahlua Chocolate</li><li>Mint Brownies</li><li class="is-popular">Mint Chocolate Chip<span class="ftag ftag-popular">popular</span></li><li>Mint Mud Pie<span class="ftag ftag-seasonal">seasonal</span></li><li>Mint Oreo</li><li>Mocha Almond Fudge</li><li>Mud Pie</li><li>Northwest Berry Magic</li><li>Peaches in Cream (seasonal)</li><li>Peaches Melba (seasonal)</li><li>Peanut Butter Cookie Dough</li><li>Peanut Butter Fudge Swirl</li><li>Peanut Butter Fudge Truffle</li><li class="is-popular">Peanut Butter Oreo<span class="ftag ftag-popular">popular</span></li><li>Peanut Butter Pie</li><li>Peanut Butter Salted Caramel</li><li>Pecan Pie</li><li>Peppermint Candy</li><li>Pineapple Coconut</li><li>Pistacchio</li><li>Pistacchio Cherry Chocolate Chip</li><li>Praline</li><li>Raspberry</li><li>Raspberry Road</li><li>Red Bean</li><li>Rocky Road</li><li>Root Beer Float</li><li>Rum Raisin</li><li class="is-popular">Salted Caramel<span class="ftag ftag-popular">popular</span></li><li>Snickers</li><li>Spiced Banana</li><li>Spiced Custard Almond</li><li>Spiced Pecan</li><li>Strawberry</li><li>Strawberry Cheesecake<span class="ftag ftag-seasonal">seasonal</span></li><li>Strawberry Coconut</li><li>Strawberry Rhubarb Pie<span class="ftag ftag-seasonal">seasonal</span></li><li>Strawberry White Chocolate Chip</li><li>Thai Tea</li><li>Tin Roof Sundae</li><li class="is-popular">Toasted Coconut<span class="ftag ftag-popular">popular</span></li><li>Totally Nuts!</li><li>Turtle Brownie</li><li>Vanilla Habanero</li><li>Vanilla Malt Ball Crunch</li><li>Vanilla Rose</li><li>Vanilla Salted Caramel Swirl</li><li class="is-popular">Whiskey Caramel Praline<span class="ftag ftag-popular">popular</span></li><li>Whiskey Fudge Praline</li><li>White Chocolate</li><li>White Chocolate Almond / Hazelnut</li><li>White Chocolate Caramel Swirl</li><li>White Chocolate Espresso Flake</li><li>White Chocolate Fudge Truffles</li><li>White Chocolate Grasshopper<span class="ftag ftag-seasonal">seasonal</span></li><li>White Chocolate Raspberry Swirl</li><li>Zabaione</li><li>Zesty Orange Candied Ginger</li></ul>
+        <p class="flavor-none" id="icNone">No ice creams match that &mdash; yet. Scroll down and ask us to make it.</p>
+        <button type="button" class="flavor-showall" data-target="icList" aria-expanded="false">Show all 161 ice creams</button>
+        <p class="flavor-legend flavor-legend-popular"><span class="ftag ftag-popular">popular</span> a customer favorite.</p>
+        <p class="flavor-legend"><span class="ftag ftag-seasonal">seasonal</span> available as a limited seasonal batch.</p>
+      </div>
+    </article>
+
+    <article class="flavor-block">
+      <div class="flavor-strip">
+        <img src="images/orange-sherbet.webp" loading="eager" alt="Orange sherbet in a painted bowl" decoding="async">
+        <img src="images/plum-sorbet.webp" loading="eager" alt="Plum sorbet with fresh plums" decoding="async">
+        <img src="images/strawberry-rhubarb-sorbet.webp" loading="eager" alt="Strawberry rhubarb sorbet" decoding="async">
+      </div>
+      <div class="flavor-block-body">
+        <h3 class="flavor-title">Sorbets <span class="flavor-count" id="soCount">77 flavors</span></h3>
+        <ul class="flavor-cols" id="soList"><li>Banana Pineapple</li><li>Berry Magic</li><li>Blackberry</li><li>Blackberry Cabernet<span class="ftag ftag-cost">booze</span></li><li>Blackberry Ginger</li><li class="is-popular">Blackberry Lemon<span class="ftag ftag-popular">popular</span></li><li>Blueberry</li><li>Blueberry Lemon</li><li>Blueberry Orange</li><li class="is-popular">Boysenberry<span class="ftag ftag-popular">popular</span></li><li>Cantaloupe<span class="ftag ftag-seasonal">seasonal</span></li><li>Champagne<span class="ftag ftag-cost">booze</span></li><li>Chocolate</li><li>Chocolate Espresso</li><li>Coconut</li><li>Coconut Almond</li><li>Coconut Lime<span class="ftag ftag-seasonal">seasonal</span></li><li>Cranberry</li><li>Cranberry Cider</li><li>Cranberry Orange</li><li>Cranberry Raspberry</li><li>Fuzzy Navel<span class="ftag ftag-seasonal">seasonal</span></li><li>Guava</li><li>Guava Lime</li><li>Honey Lavender<span class="ftag ftag-seasonal">seasonal</span></li><li>Honeydew<span class="ftag ftag-seasonal">seasonal</span></li><li>Lemon</li><li>Lemon Basil</li><li>Lemon Ginger</li><li>Lemon Lime</li><li>Lemon Mint</li><li>Lemon Rosemary</li><li>Lime</li><li>Mandarin Orange</li><li>Mango</li><li>Mango Guava</li><li>Mango Lemonade</li><li>Mango Margarita<span class="ftag ftag-cost">booze</span></li><li>Mango Passion Fruit</li><li>Mango Strawberry Ribbon<span class="ftag ftag-seasonal">seasonal</span></li><li>Marionberry</li><li>Mint Julep</li><li>Orange</li><li>Passion Fruit</li><li>Passion Fruit Guava</li><li>Passion Fruit Orange</li><li>Passion Fruit Orange Guava</li><li>Peach<span class="ftag ftag-seasonal">seasonal</span></li><li>Pear</li><li>Pear Champagne<span class="ftag ftag-cost">booze</span></li><li>Pear Lemon</li><li>Pear Spiced Cider</li><li>Pear with Raspberry/Blackberry Ribbon</li><li>Pina Colada</li><li>Pineapple</li><li>Pineapple Lime</li><li>Pink Champagne<span class="ftag ftag-cost">booze</span></li><li>Pink Grapefruit</li><li>Plum<span class="ftag ftag-seasonal">seasonal</span></li><li>Raspberry</li><li class="is-popular">Raspberry Lemon<span class="ftag ftag-popular">popular</span></li><li>Raspberry Orange<span class="ftag ftag-seasonal">seasonal</span></li><li>Rhubarb</li><li>Spiced Cider</li><li class="is-popular">Spiced Pear<span class="ftag ftag-popular">popular</span></li><li>Strawberry</li><li>Strawberry Banana</li><li>Strawberry Guava</li><li>Strawberry Lemonade</li><li>Strawberry Margarita<span class="ftag ftag-cost">booze</span></li><li>Strawberry Passion Fruit</li><li class="is-popular">Strawberry Rhubarb<span class="ftag ftag-popular">popular</span><span class="ftag ftag-seasonal">seasonal</span></li><li>Tangerine</li><li>Tangerine Ginger</li><li>Tequila Lime<span class="ftag ftag-cost">booze</span></li><li>Tropical Punch</li><li class="is-popular">Watermelon<span class="ftag ftag-popular">popular</span><span class="ftag ftag-seasonal">seasonal</span></li></ul>
+        <p class="flavor-none" id="soNone">No sorbets match that &mdash; yet. Scroll down and ask us to make it.</p>
+        <button type="button" class="flavor-showall" data-target="soList" aria-expanded="false">Show all 77 sorbets</button>
+        <p class="flavor-legend flavor-legend-popular"><span class="ftag ftag-popular">popular</span> a customer favorite.</p>
+        <p class="flavor-legend"><span class="ftag ftag-seasonal">seasonal</span> limited seasonal batch &nbsp;&middot;&nbsp; <span class="ftag ftag-cost">booze</span> made with wine or spirits, additional cost &nbsp;&middot;&nbsp; all sorbets are dairy &amp; egg free.</p>
+      </div>
+    </article>
+
+    <div class="custom-callout">
+      <h3>Don&rsquo;t see your flavor? <em>Let&rsquo;s make it.</em></h3>
+      <p>We love a challenge and craft custom flavors to order &mdash; we&rsquo;ve even made a Curry Oyster ice cream. Call <a href="tel:+13604260696">360-426-0696</a> with your idea.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PINT BAND ============ -->
+<section class="pint" aria-label="Take a pint home">
+  <img class="reveal" src="images/pint-lid.webp" alt="Olympic Mountain Ice Cream pint lid — Take a Pint Home Today, family owned since 1984" loading="lazy" decoding="async">
+  <div class="pint-gallery" aria-label="Pint flavors">
+    <figure class="reveal"><img src="images/pint-vanilla.webp" alt="Madagascar Vanilla pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d1"><img src="images/pint-double-choc-almond.webp" alt="Double Chocolate Almond pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d2"><img src="images/pint-espresso-flake.webp" alt="Espresso Flake pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d2"><img src="images/pint-lemon-cookie.webp" alt="Lemon Cookie pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d3"><img src="images/pint-toasted-coconut.webp" alt="Toasted Coconut pint with a scoop" loading="lazy"></figure>
+  </div>
+  <p class="reveal d1">Ask for <strong>Olympic Mountain Ice Cream</strong> at your favorite Puget Sound restaurants and markets &mdash; or find a scoop near you below.</p>
+</section>
+
+<!-- ============ FIND A PINT ============ -->
+<section class="section pints cv-auto" id="pints" style="contain-intrinsic-size:1px 2400px">
+  <div class="wrap">
+    <div class="pints-head reveal">
+      <p class="eyebrow">Where to Find</p>
+      <h2 class="heading">Where to find <em>our ice cream</em></h2>
+      <p>Grab a pint at a market or a scoop at a restaurant &mdash; over 200 spots across Puget Sound, by county below.</p>
+    </div>
+
+    <div class="map-legend reveal"><span><i style="background:#c08a4d"></i>Pints to go</span><span><i style="background:#22395c"></i>Scoops &amp; desserts</span><span>Tap a pin for directions.</span></div>
+    <div class="map-wrap reveal" id="omicMap" aria-label="Map of Olympic Mountain Ice Cream locations"></div>
+    <p class="map-note reveal">Pin positions are approximate; use the Google Maps link in each pin for exact directions.</p>
+
+    <h3 class="retail-title reveal">All locations <em>by county</em></h3>
+    <p class="loc-hint reveal">Locations in <b>gold &mdash; pints</b> sell take-home pints; the rest serve scoops &amp; desserts. Expand a county to browse, or search below. Tap any name for directions.</p>
+    <div class="pints-search reveal">
+      <input type="search" id="pintSearch" placeholder="Search all locations&hellip;" aria-label="Search locations">
+      <span class="pints-count" id="pintCount"></span>
+    </div>
+    <div class="loc-groups reveal" id="locGroups">
+<details class="loc-county"><summary>King County <span class="cty-count">96</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=2120%20WA" target="_blank" rel="noopener">2120</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Aerlume%20WA" target="_blank" rel="noopener">Aerlume</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=All%20Thai%20WA" target="_blank" rel="noopener">All Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=All%20Water%20Seafood%20%26%20Oyster%20Bar%20at%20Hotel%201000%20WA" target="_blank" rel="noopener">All Water Seafood &amp; Oyster Bar at Hotel 1000</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=AQUA%20by%20El%20Gaucho%20WA" target="_blank" rel="noopener">AQUA by El Gaucho</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bakes%20Place%20WA" target="_blank" rel="noopener">Bakes Place</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bang%20Bang%20Kitchen%20WA" target="_blank" rel="noopener">Bang Bang Kitchen</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bis%20on%20Main%20WA" target="_blank" rel="noopener">Bis on Main</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bluwater%20Bistro%20WA" target="_blank" rel="noopener">Bluwater Bistro</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bulldog%20News%20WA" target="_blank" rel="noopener">Bulldog News</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Cactus%20Restaurant%20WA" target="_blank" rel="noopener">Cactus Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Carmine%27s%20WA" target="_blank" rel="noopener">Carmine's</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Chinooks%20at%20Salmon%20Bay%20WA" target="_blank" rel="noopener">Chinooks at Salmon Bay</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Coffee%20and%20Cone%20WA" target="_blank" rel="noopener">Coffee and Cone</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Cone%20%26%20Steiner%20WA" target="_blank" rel="noopener">Cone &amp; Steiner</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Cookie%20Crave%20and%20Creamery%20WA" target="_blank" rel="noopener">Cookie Crave and Creamery</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Creamy%20Cone%20Caf%C3%A9%20WA" target="_blank" rel="noopener">Creamy Cone Café</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Daniel%27s%20Broiler%20WA" target="_blank" rel="noopener">Daniel's Broiler</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Delfino%27s%20Chicago%20Style%20Pizza%20WA" target="_blank" rel="noopener">Delfino's Chicago Style Pizza</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=DeLille%20En%20Ville%20WA" target="_blank" rel="noopener">DeLille En Ville</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Dordlofva%20WA" target="_blank" rel="noopener">Dordlofva</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=El%2042%20Cantina%20WA" target="_blank" rel="noopener">El 42 Cantina</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=El%20Gaucho%20WA" target="_blank" rel="noopener">El Gaucho</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Elliott%27s%20Oyster%20House%20WA" target="_blank" rel="noopener">Elliott's Oyster House</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Endolyne%20Joe%27s%20WA" target="_blank" rel="noopener">Endolyne Joe's</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Fairmont%20Hotel%20WA" target="_blank" rel="noopener">Fairmont Hotel</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Flavor%20of%20India%20WA" target="_blank" rel="noopener">Flavor of India</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Flint%20Creek%20Cattle%20Company%20WA" target="_blank" rel="noopener">Flint Creek Cattle Company</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Grappa%20WA" target="_blank" rel="noopener">Grappa</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Grazie%20Ristorante%20WA" target="_blank" rel="noopener">Grazie Ristorante</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Hotel%201000%20WA" target="_blank" rel="noopener">Hotel 1000</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Il%20Terrazzo%20Carmine%20WA" target="_blank" rel="noopener">Il Terrazzo Carmine</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=India%20Gate%20Restaurant%20WA" target="_blank" rel="noopener">India Gate Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Jai%20Thai%20WA" target="_blank" rel="noopener">Jai Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Jak%27s%20Grill%20WA" target="_blank" rel="noopener">Jak's Grill</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=John%20Howie%20Steak%20WA" target="_blank" rel="noopener">John Howie Steak</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ken%27s%20Market%20WA" target="_blank" rel="noopener">Ken's Market</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Kin%20Dee%20WA" target="_blank" rel="noopener">Kin Dee</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Le%20Coin%20WA" target="_blank" rel="noopener">Le Coin</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Leschi%20Market%20WA" target="_blank" rel="noopener">Leschi Market</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lonely%20Siren%20WA" target="_blank" rel="noopener">Lonely Siren</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mali%20Thai%20Cuisine%20WA" target="_blank" rel="noopener">Mali Thai Cuisine</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mama%20Stortini%27s%20WA" target="_blank" rel="noopener">Mama Stortini's</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mamma%20Melina%20Ristorante%20%26%20Pizzeria%20WA" target="_blank" rel="noopener">Mamma Melina Ristorante &amp; Pizzeria</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mango%20Thai%20WA" target="_blank" rel="noopener">Mango Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Marlai%20Thai%20WA" target="_blank" rel="noopener">Marlai Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Masa%20Mexican%20Kitchen%20and%20Cantina%20WA" target="_blank" rel="noopener">Masa Mexican Kitchen and Cantina</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Matt%27s%20Rotisserie%20%26%20Oyster%20Lounge%20WA" target="_blank" rel="noopener">Matt's Rotisserie &amp; Oyster Lounge</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Maximilien%20Restaurant%20WA" target="_blank" rel="noopener">Maximilien Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Metropolitan%20Grill%20WA" target="_blank" rel="noopener">Metropolitan Grill</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Metropolitan%20Market%20WA" target="_blank" rel="noopener">Metropolitan Market</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mioposto%20WA" target="_blank" rel="noopener">Mioposto</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mioposto%20Pizzeria%20WA" target="_blank" rel="noopener">Mioposto Pizzeria</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mirabella%20WA" target="_blank" rel="noopener">Mirabella</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mitten%20Sweets%20%26%20Coffee%20WA" target="_blank" rel="noopener">Mitten Sweets &amp; Coffee</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Miyabi%20WA" target="_blank" rel="noopener">Miyabi</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mooo%21%20Ice%20Cream%20Shop%20WA" target="_blank" rel="noopener">Mooo! Ice Cream Shop</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Nana%27s%20Green%20Tea%20WA" target="_blank" rel="noopener">Nana's Green Tea</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Nibbana%20Thai%20Restaurant%20WA" target="_blank" rel="noopener">Nibbana Thai Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Nishino%20WA" target="_blank" rel="noopener">Nishino</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Nolita%20WA" target="_blank" rel="noopener">Nolita</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ohana%20WA" target="_blank" rel="noopener">Ohana</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Old%20Stove%20Brewing%20WA" target="_blank" rel="noopener">Old Stove Brewing</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Olympia%20Pizza%20%26%20Spaghetti%20House%20III%20WA" target="_blank" rel="noopener">Olympia Pizza &amp; Spaghetti House III</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Paddy%20Coyne%27s%20WA" target="_blank" rel="noopener">Paddy Coyne's</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Paolo%27s%20Italian%20Restaurant%20WA" target="_blank" rel="noopener">Paolo's Italian Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Pub%2070%20WA" target="_blank" rel="noopener">Pub 70</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Queen%20Mary%20Tea%20Room%20WA" target="_blank" rel="noopener">Queen Mary Tea Room</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Racha%20Noodles%20%26%20Thai%20Cuisine%20WA" target="_blank" rel="noopener">Racha Noodles &amp; Thai Cuisine</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ray%27s%20Boathouse%20WA" target="_blank" rel="noopener">Ray's Boathouse</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Reckless%20Noodle%20House%20WA" target="_blank" rel="noopener">Reckless Noodle House</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ruk%20Thai%20WA" target="_blank" rel="noopener">Ruk Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=S/T%20Hooligans%20WA" target="_blank" rel="noopener">S/T Hooligans</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sages%20Redmond%20WA" target="_blank" rel="noopener">Sages Redmond</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Salty%27s%20at%20the%20SEA%20WA" target="_blank" rel="noopener">Salty's at the SEA</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Seastar%20Restaurant%20%26%20Raw%20Bar%20WA" target="_blank" rel="noopener">Seastar Restaurant &amp; Raw Bar</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Shy%20Giant%20WA" target="_blank" rel="noopener">Shy Giant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Similan%20Thai%20WA" target="_blank" rel="noopener">Similan Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sparrow%20WA" target="_blank" rel="noopener">Sparrow</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sunset%20Club%20WA" target="_blank" rel="noopener">Sunset Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sweet%20Moon%20WA" target="_blank" rel="noopener">Sweet Moon</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=SWeL%20WA" target="_blank" rel="noopener">SWeL</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Tavern%20Hall%20WA" target="_blank" rel="noopener">Tavern Hall</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Thai%20Ginger%20WA" target="_blank" rel="noopener">Thai Ginger</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Thai%20Kitchen%20Bird%20Pepper%20WA" target="_blank" rel="noopener">Thai Kitchen Bird Pepper</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Flat%20Iron%20Grill%20WA" target="_blank" rel="noopener">The Flat Iron Grill</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Heathman%20Hotel%20Kirkland%20WA" target="_blank" rel="noopener">The Heathman Hotel Kirkland</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Westin%20Seattle%20WA" target="_blank" rel="noopener">The Westin Seattle</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Toulouse%20Petit%20WA" target="_blank" rel="noopener">Toulouse Petit</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=University%20Club%20WA" target="_blank" rel="noopener">University Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Voila%21%20Bistro%20WA" target="_blank" rel="noopener">Voila! Bistro</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Von%27s%201000%20Spirits%20WA" target="_blank" rel="noopener">Von's 1000 Spirits</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Warwick%20Hotel%20WA" target="_blank" rel="noopener">Warwick Hotel</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Washington%20Athletic%20Club%20WA" target="_blank" rel="noopener">Washington Athletic Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Women%27s%20University%20Club%20WA" target="_blank" rel="noopener">Women's University Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Woodblock%20WA" target="_blank" rel="noopener">Woodblock</a></li></ul></details>
+<details class="loc-county"><summary>Mason County <span class="cty-count">29</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Agate%20Store%20WA" target="_blank" rel="noopener">Agate Store</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Alderbrook%20Golf%20Course%20WA" target="_blank" rel="noopener">Alderbrook Golf Course</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Alderbrook%20Resort%20WA" target="_blank" rel="noopener">Alderbrook Resort</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Blue%20Heron%20Bakery%20WA" target="_blank" rel="noopener">Blue Heron Bakery</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=County%20Line%20Fire%20WA" target="_blank" rel="noopener">County Line Fire</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Gordon%27s%20Select%20Market%20WA" target="_blank" rel="noopener">Gordon's Select Market</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Hama%20Hama%20Oyster%20Co.%20WA" target="_blank" rel="noopener">Hama Hama Oyster Co.</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=High%20Steel%20Beer%20Co.%20WA" target="_blank" rel="noopener">High Steel Beer Co.</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=HMS%20Off%20the%20Hook%20WA" target="_blank" rel="noopener">HMS Off the Hook</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Home%20Meat%20Service%20WA" target="_blank" rel="noopener">Home Meat Service</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Hood%20Canal%20Grocery%20WA" target="_blank" rel="noopener">Hood Canal Grocery</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Hoodsport%20Coffee%20Co.%20WA" target="_blank" rel="noopener">Hoodsport Coffee Co.</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Hunter%20Farms%20WA" target="_blank" rel="noopener">Hunter Farms</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Island%20Market%20WA" target="_blank" rel="noopener">Island Market</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Joe%27s%20Market%20WA" target="_blank" rel="noopener">Joe's Market</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Jolee%20Bean%20Espresso%20WA" target="_blank" rel="noopener">Jolee Bean Espresso</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lake%20Limerick%20Country%20Club%20WA" target="_blank" rel="noopener">Lake Limerick Country Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lilliwaup%20Store%20and%20Motel%20WA" target="_blank" rel="noopener">Lilliwaup Store and Motel</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Little%20Creek%20Casino%20WA" target="_blank" rel="noopener">Little Creek Casino</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Olympic%20Bakery%20WA" target="_blank" rel="noopener">Olympic Bakery</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Shelton%20Candy%20Shoppe%20WA" target="_blank" rel="noopener">Shelton Candy Shoppe</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Shelton%20Farm%20Stand%20WA" target="_blank" rel="noopener">Shelton Farm Stand</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=St.%20Andrew%27s%20House%20WA" target="_blank" rel="noopener">St. Andrew's House</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sugar%20and%20Bean%20WA" target="_blank" rel="noopener">Sugar and Bean</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Tides%20Family%20Restaurant%20WA" target="_blank" rel="noopener">The Tides Family Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Union%20City%20Market%20WA" target="_blank" rel="noopener">Union City Market</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Union%20Country%20Store%20WA" target="_blank" rel="noopener">Union Country Store</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Union%20Square%20Deli%20WA" target="_blank" rel="noopener">Union Square Deli</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Urraco%20Coffee%20Co.%20WA" target="_blank" rel="noopener">Urraco Coffee Co.</a></li></ul></details>
+<details class="loc-county"><summary>Thurston County <span class="cty-count">27</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Anthony%27s%20Homeport%20WA" target="_blank" rel="noopener">Anthony's Homeport</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bayview%20Thriftway%20WA" target="_blank" rel="noopener">Bayview Thriftway</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Bubble%20Island%20WA" target="_blank" rel="noopener">Bubble Island</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Curry%20Corner%20WA" target="_blank" rel="noopener">Curry Corner</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Curry%20House%20WA" target="_blank" rel="noopener">Curry House</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Gardner%27s%20Restaurant%20WA" target="_blank" rel="noopener">Gardner's Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Indian%20Summer%20Golf%20%26%20Country%20Club%20WA" target="_blank" rel="noopener">Indian Summer Golf &amp; Country Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Jean-Pierre%27s%20Three16%20WA" target="_blank" rel="noopener">Jean-Pierre's Three16</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Kraken%20Boardshop%20WA" target="_blank" rel="noopener">Kraken Boardshop</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lemon%20Grass%20WA" target="_blank" rel="noopener">Lemon Grass</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lime%20Leaf%20Asian%20Fusion%20WA" target="_blank" rel="noopener">Lime Leaf Asian Fusion</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Mercato%20Ristorante%20WA" target="_blank" rel="noopener">Mercato Ristorante</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Nou%20Thai%20WA" target="_blank" rel="noopener">Nou Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Olympia%20Country%20%26%20Golf%20Club%20WA" target="_blank" rel="noopener">Olympia Country &amp; Golf Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Olympia%20Food%20Co-op%20%28Eastside%29%20WA" target="_blank" rel="noopener">Olympia Food Co-op (Eastside)</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Painted%20Plate%20WA" target="_blank" rel="noopener">Painted Plate</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Pellegrino%27s%20Italian%20Kitchen%20WA" target="_blank" rel="noopener">Pellegrino's Italian Kitchen</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ralph%27s%20Thriftway%20WA" target="_blank" rel="noopener">Ralph's Thriftway</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Row%20WA" target="_blank" rel="noopener">Row</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sidewalk%20Cafe%20WA" target="_blank" rel="noopener">Sidewalk Cafe</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Spuds%20Produce%20Market%20WA" target="_blank" rel="noopener">Spuds Produce Market</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Spuds%20Produce%20Market%20II%20WA" target="_blank" rel="noopener">Spuds Produce Market II</a><span class="loc-pint"> &mdash; pints</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sweet%20Magnolia%20Co%20%26%20Coffee%20House%20WA" target="_blank" rel="noopener">Sweet Magnolia Co &amp; Coffee House</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Swing%20Wine%20Bar%20WA" target="_blank" rel="noopener">Swing Wine Bar</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Vic%27s%20Pizzeria%20WA" target="_blank" rel="noopener">Vic's Pizzeria</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Vic%27s%20Pizzeria%20Eastside%20WA" target="_blank" rel="noopener">Vic's Pizzeria Eastside</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Vic%27s%20Pizzeria%20Wildwood%20WA" target="_blank" rel="noopener">Vic's Pizzeria Wildwood</a></li></ul></details>
+<details class="loc-county"><summary>Pierce County <span class="cty-count">20</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Asado%20Restaurant%20WA" target="_blank" rel="noopener">Asado Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Boathouse%2019%20WA" target="_blank" rel="noopener">Boathouse 19</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Chili%20Thai%20WA" target="_blank" rel="noopener">Chili Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Cooks%20Tavern%20WA" target="_blank" rel="noopener">Cooks Tavern</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Elbe%20Junction%20WA" target="_blank" rel="noopener">Elbe Junction</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Fondi%20Pizzeria%20WA" target="_blank" rel="noopener">Fondi Pizzeria</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Fondi%20Pizzeria%20Proctor%20WA" target="_blank" rel="noopener">Fondi Pizzeria Proctor</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Gateway%20to%20India%20WA" target="_blank" rel="noopener">Gateway to India</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Green%20House%20Restaurant%20WA" target="_blank" rel="noopener">Green House Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Harbor%20Lights%20WA" target="_blank" rel="noopener">Harbor Lights</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Hungry%20Goose%20Bistro%20WA" target="_blank" rel="noopener">Hungry Goose Bistro</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ice%20Cream%20Airstream%20WA" target="_blank" rel="noopener">Ice Cream Airstream</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Jack%27s%20BBQ%20%26%20Steakhouse%20WA" target="_blank" rel="noopener">Jack's BBQ &amp; Steakhouse</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Outer%20Orbit%20Arcade%20WA" target="_blank" rel="noopener">Outer Orbit Arcade</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Primo%20Grill%20WA" target="_blank" rel="noopener">Primo Grill</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Silk%20Thai%20WA" target="_blank" rel="noopener">Silk Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Tacoma%20Country%20%26%20Golf%20Club%20WA" target="_blank" rel="noopener">Tacoma Country &amp; Golf Club</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Taqueria%20La%20Tentacion%20WA" target="_blank" rel="noopener">Taqueria La Tentacion</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Adriatic%20at%20Oakbrook%20WA" target="_blank" rel="noopener">The Adriatic at Oakbrook</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Lobster%20Shop%20WA" target="_blank" rel="noopener">The Lobster Shop</a></li></ul></details>
+<details class="loc-county"><summary>Snohomish County <span class="cty-count">19</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Always%20Summer%20Ice%20Cream%20Cafe%20WA" target="_blank" rel="noopener">Always Summer Ice Cream Cafe</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Anthony%27s%20Woodfire%20Grill%20WA" target="_blank" rel="noopener">Anthony's Woodfire Grill</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Arnie%27s%20WA" target="_blank" rel="noopener">Arnie's</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Around%20the%20Table%20Game%20Pub%20WA" target="_blank" rel="noopener">Around the Table Game Pub</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Beardslee%20Public%20House%20WA" target="_blank" rel="noopener">Beardslee Public House</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Big%20Fish%20Grill%20WA" target="_blank" rel="noopener">Big Fish Grill</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Blackbird%20Caf%C3%A9%20%26%20Bar%20WA" target="_blank" rel="noopener">Blackbird Café &amp; Bar</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=EC%20Wilson%20Meat%20WA" target="_blank" rel="noopener">EC Wilson Meat</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Emory%27s%20on%20Silver%20Lake%20WA" target="_blank" rel="noopener">Emory's on Silver Lake</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Fire%20%26%20the%20Feast%20WA" target="_blank" rel="noopener">Fire &amp; the Feast</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Kin%20Dee%20Thai%20Bothell%20WA" target="_blank" rel="noopener">Kin Dee Thai Bothell</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Larb%20Thai%20WA" target="_blank" rel="noopener">Larb Thai</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Oreo%27s%20Ice%20Cream%20and%20Burgers%20WA" target="_blank" rel="noopener">Oreo's Ice Cream and Burgers</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Salt%20and%20Iron%20WA" target="_blank" rel="noopener">Salt and Iron</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Saltoro%20WA" target="_blank" rel="noopener">Saltoro</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Thai%20Rhapsody%20WA" target="_blank" rel="noopener">Thai Rhapsody</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Bine%20Beer%20%26%20Food%20WA" target="_blank" rel="noopener">The Bine Beer &amp; Food</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Guest%20House%20Restaurant%20WA" target="_blank" rel="noopener">The Guest House Restaurant</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Pizza%20Coop%20and%20Ale%20House%20WA" target="_blank" rel="noopener">The Pizza Coop and Ale House</a></li></ul></details>
+<details class="loc-county"><summary>Kitsap County <span class="cty-count">6</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Bear%20Creek%20Country%20Store%20WA" target="_blank" rel="noopener">Bear Creek Country Store</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Cremello%20WA" target="_blank" rel="noopener">Cremello</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Good%20Stuff%20Grocery%20WA" target="_blank" rel="noopener">Good Stuff Grocery</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=New%202%20You%20WA" target="_blank" rel="noopener">New 2 You</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Peace%2C%20Love%20and%20Donuts%20WA" target="_blank" rel="noopener">Peace, Love and Donuts</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Valley%20Feed%20WA" target="_blank" rel="noopener">Valley Feed</a></li></ul></details>
+<details class="loc-county"><summary>Grays Harbor County <span class="cty-count">4</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Boondocks%20Market%20Place%20WA" target="_blank" rel="noopener">Boondocks Market Place</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Elma%20Farm%20Stand%20WA" target="_blank" rel="noopener">Elma Farm Stand</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Ocean%20Crest%20Resort%20WA" target="_blank" rel="noopener">Ocean Crest Resort</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Sweet%20Life%20WA" target="_blank" rel="noopener">Sweet Life</a></li></ul></details>
+<details class="loc-county"><summary>Lewis County <span class="cty-count">2</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Dick%27s%20Brewery%20WA" target="_blank" rel="noopener">Dick's Brewery</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=The%20Tin%20Snug%20WA" target="_blank" rel="noopener">The Tin Snug</a></li></ul></details>
+<details class="loc-county"><summary>Jefferson County <span class="cty-count">1</span></summary>
+<ul><li><a href="https://www.google.com/maps/search/?api=1&query=Discovery%20Bay%20Village%20Store%20WA" target="_blank" rel="noopener">Discovery Bay Village Store</a><span class="loc-pint"> &mdash; pints</span></li></ul></details>
+    </div>
+    <p class="pints-none" id="pintNone">No matches &mdash; but give us a call and we&rsquo;ll point you to the nearest scoop.</p>
+    <p class="pints-foot reveal">Tap any location to open it in Google Maps. Don&rsquo;t see anywhere nearby? Call us at <a href="tel:+13604260696">360-426-0696</a> and we&rsquo;ll help you track down your favorite flavor.</p>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="section story cv-auto" id="story" style="contain-intrinsic-size:1px 1400px">
+  <div class="wrap">
+    <p class="eyebrow reveal">Our Story</p>
+    <h2 class="heading reveal" style="margin-bottom:2.4rem">A love story, <em>churned slowly</em></h2>
+    <div class="story-grid">
+      <div class="story-text">
+        <p class="reveal">Lifelong Washingtonians Karl and Bev Black have built a legacy that reflects their shared love of the environment, sweet desserts, dedication to family — and each other.</p>
+        <p class="reveal">They met more than 45 years ago, in the hippie heyday, at a friendly potluck. Knowing glances over Bev&rsquo;s chocolate-chip cookies turned into love at first sight; Karl was hooked at first bite. The two set to homesteading in the Skokomish Valley, hand-building their rustic dream cabin on fifteen acres of raw mountain-valley bliss while running a small local greenhouse business.</p>
+        <p class="reveal">The valley became the birthplace and home of their three children — Trail, Alana, and Joel — and Karl and Bev marked their land with fields of ornamental Japanese maples and vibrant seasonal blooms.</p>
+        <p class="reveal">Then, on a 1984 road trip to Seattle, a scoop of refreshing cantaloupe sorbet sparked an exciting new vision. With three young children at home, trading horticulture for food production was an intimidating leap that demanded plenty of soul-searching. Karl and Bev knew achieving their dream would be no simple task.</p>
+        <p class="reveal">&ldquo;Heavenly Gelato&rdquo; soon opened in Lacey, WA, and the family immersed themselves in learning everything they could about making the best possible product. After two years, they realized their small mall storefront couldn&rsquo;t support a dream of dozens of gourmet flavors. Still believing strongly in the product, they began selling wholesale to restaurants around Puget Sound — and found a foodie niche hungry for custom-crafted gourmet sorbets and ice cream. They renamed the business <strong>Olympic Mountain Ice Cream</strong>, applied their small-batch gelato craft, and launched their original line of super-premium ice creams.</p>
+        <blockquote class="pullquote reveal">More than thirty years later, Karl and Bev hold the same incredibly high standards — forever convinced that ice cream should be an indulgence worth savoring.</blockquote>
+        <p class="reveal">Today the children are all grown, and grandchildren play in the yard of the forested family home and ice cream factory where it all continues, one small batch at a time.</p>
+      </div>
+      <aside class="story-side">
+        <figure class="polaroid reveal d1">
+          <img src="images/karl-bev.webp" alt="Karl and Bev Black, founders of Olympic Mountain Ice Cream, in a summer meadow" loading="lazy" decoding="async">
+          <figcaption>Karl &amp; Bev Black — founders</figcaption>
+        </figure>
+        <div class="ingredients reveal d2">
+          <h3>From the <em>harvest</em>, to the churn</h3>
+          <p>Only the freshest ingredients go into our ice creams and sorbets. We buy our berries and stone fruit at their peak from Pacific Northwest growers, and nearly all of the herbs we use are grown on our own farm. We never settle for anything less than the finest — we love our ice cream, and we wish the same to you.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AWARDS / REVIEWS ============ -->
+<section class="section awards cv-auto" id="reviews" style="contain-intrinsic-size:1px 900px">
+  <div class="wrap">
+    <div class="award-grid">
+      <div class="award-text reveal">
+        <span class="award-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.8 5.8 21.5l1.6-7L2 9.8l7.1-.6z"/></svg> Best in Washington</span>
+        <h2>Named Washington&rsquo;s <em>best ice cream parlor</em> by Foodie</h2>
+        <p class="award-source">In its December 2025 roundup of <strong>The Best Ice Cream Parlors in Every US State</strong>, Foodie chose Olympic Mountain Ice Cream to represent Washington &mdash; praising the family shop run by Karl and Bev near the Olympic National Forest, and its &ldquo;bewildering number of flavors.&rdquo;</p>
+        <blockquote class="award-quote">&ldquo;Most people who taste it say it&rsquo;s the best they&rsquo;ve ever had, while one reviewer doubted it could ever be bettered.&rdquo;</blockquote>
+        <p class="award-byline">Scheenagh Harrington &middot; <a href="https://www.foodie.com/2059672/best-ice-cream-parlors-every-state-list/" target="_blank" rel="noopener">Foodie.com &mdash; The Best Ice Cream Parlors in Every US State &#8599;</a></p>
+      </div>
+      <figure class="award-photo reveal d1">
+        <img src="https://www.foodie.com/img/gallery/the-best-ice-cream-parlors-in-every-us-state/olympic-mountain-ice-cream-in-shelton-washington-1766191493.webp" alt="Olympic Mountain Ice Cream, featured by Foodie as the best in Washington" loading="lazy" onerror="this.onerror=null;this.src='images/foodie-award.webp'">
+        <figcaption>olympicmountainicecream / Instagram, via Foodie.com</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq cv-auto" id="faq" style="contain-intrinsic-size:1px 1100px">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center">Good Questions</p>
+    <h2 class="heading reveal" style="text-align:center">Frequently asked <em>questions</em></h2>
+    <div class="faq-list reveal d1">
+      <details>
+        <summary>Is your ice cream available in stores?</summary>
+        <p class="faq-a">Yes! We currently offer select flavors in stores around the Puget Sound area. Check the <a href="#pints">Where to Find</a> section for specifics.</p>
+      </details>
+      <details>
+        <summary>Can I buy tubs of ice cream directly from you?</summary>
+        <p class="faq-a">Yes! Our tub sizes are 1.5 gallon and 3 gallons. Our batches are run in 3-gallon amounts, requiring a 3-gallon minimum per flavor order &mdash; or give us a call to see if we have your flavor choice in stock in a smaller quantity.</p>
+      </details>
+      <details>
+        <summary>Do you sell to the public?</summary>
+        <p class="faq-a">We don&rsquo;t have a storefront, but you&rsquo;re welcome to give us a call to see if we have your favorite flavor on hand.</p>
+      </details>
+      <details>
+        <summary>Does your ice cream contain gluten, eggs, or soy?</summary>
+        <p class="faq-a">While our basic ice cream does not contain gluten, eggs, or soy, some of the inclusions we use do contain these ingredients. Please email or call to inquire about specific flavors.</p>
+      </details>
+      <details>
+        <summary>Are your sorbets dairy and egg free?</summary>
+        <p class="faq-a">Yes! Our sorbets are both egg and dairy free.</p>
+      </details>
+      <details>
+        <summary>Do you give tours?</summary>
+        <p class="faq-a">Unfortunately, at this time we are unable to offer tours of our facility.</p>
+      </details>
+      <details>
+        <summary>What areas do you distribute to?</summary>
+        <p class="faq-a">We deliver all around the Hood Canal area and Highway 101 north to Lilliwaup, all around Olympia, as far north on I-5 as Edmonds, and east to Redmond and Issaquah. We also work with the distributors US Foods, Food Services of America, Liberty Dairy, Medosweet, and Dairy Fresh Farms to reach outlying areas.</p>
+      </details>
+      <details>
+        <summary>I own a business and would like to carry your products. How do I set up an account?</summary>
+        <p class="faq-a">Give us a call at <a href="tel:+13604260696">360-426-0696</a> and we can help answer any questions you have about ordering and getting deliveries.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact cv-auto" id="contact" style="contain-intrinsic-size:1px 1200px">
+  <div class="wrap">
+    <p class="eyebrow reveal">Get in Touch</p>
+    <h2 class="heading reveal">Say hello from <em>the valley</em></h2>
+    <div class="contact-grid">
+      <div class="contact-card reveal d1">
+        <h3>Phone</h3>
+        <a class="big" href="tel:+13604260696">360-426-0696</a>
+      </div>
+      <div class="contact-card reveal d2">
+        <h3>Mailing Address</h3>
+        <address>
+          301 E Wallace Kneeland Blvd<br>
+          Suite 224-330<br>
+          Shelton, WA 98584
+        </address>
+      </div>
+      <div class="order-card reveal d3" id="order">
+        <h3>Place an <em>order</em></h3>
+        <p>Tubs come in 1.5- and 3-gallon sizes (3-gallon minimum per flavor for new batches). Send us the details and we&rsquo;ll get back to you &mdash; or just call.</p>
+        <form id="orderForm" class="order-grid" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="23aff677-d78f-4997-9eb7-50157f79d02d">
+          <input type="hidden" name="subject" value="New order/inquiry from olympicmountainicecream.com">
+          <input type="hidden" name="from_name" value="Olympic Mountain Ice Cream website">
+          <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field">
+            <label for="of-name">Name</label>
+            <input id="of-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="of-business">Business (optional)</label>
+            <input id="of-business" name="business" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="of-email">Email</label>
+            <input id="of-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="of-phone">Phone</label>
+            <input id="of-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="of-size">Order type</label>
+            <select id="of-size" name="order_type">
+              <option>3-gallon tub (full batch)</option>
+              <option>1.5-gallon tub</option>
+              <option>Pints</option>
+              <option>Wholesale account inquiry</option>
+              <option>Other / not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="of-flavor">Flavor(s)</label>
+            <input id="of-flavor" name="flavors" type="text" placeholder="e.g. Strawberry Rhubarb Pie">
+          </div>
+          <div class="field full">
+            <label for="of-msg">Message</label>
+            <textarea id="of-msg" name="message" placeholder="Quantities, timing, delivery area&hellip;"></textarea>
+          </div>
+          <div class="order-success" id="orderSuccess">Thanks! Your request has been sent &mdash; we&rsquo;ll be in touch soon. Prefer to talk now? Call <a href="tel:+13604260696">360-426-0696</a>.</div>
+          <div class="order-error" id="orderError">Something went wrong sending your request. Please try again, or call us at <a href="tel:+13604260696">360-426-0696</a>.</div>
+          <div class="order-submit">
+            <button type="submit">Send request</button>
+            <span class="order-note">Prefer to talk? Call 360-426-0696.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="images/logo-cream.webp" alt="Olympic Mountain Ice Cream">
+  <p>Family Owned Since 1984 · Shelton, Washington</p>
+  <p class="fine">© <span id="year"></span> Olympic Mountain Ice Cream. All rights reserved.</p>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Nav state */
+  var nav = document.getElementById("nav");
+  function onNav(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onNav, {passive:true});
+
+  /* Mobile hamburger menu */
+  var navToggle = document.getElementById("navToggle"),
+      navDrawer = document.getElementById("navDrawer"),
+      navScrim  = document.getElementById("navScrim");
+  function setMenu(open){
+    navDrawer.classList.toggle("open", open);
+    navScrim.classList.toggle("show", open);
+    document.body.classList.toggle("nav-open", open);
+    navDrawer.setAttribute("aria-hidden", open ? "false" : "true");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  navToggle.addEventListener("click", function(){
+    setMenu(!navDrawer.classList.contains("open"));
+  });
+  navScrim.addEventListener("click", function(){ setMenu(false); });
+  navDrawer.addEventListener("click", function(e){
+    if (e.target.tagName === "A") setMenu(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") setMenu(false);
+  });
+  onNav();
+
+  /* Scroll reveals */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:.14, rootMargin:"0px 0px -40px 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  /* Twinkling stars over the hero sky */
+  if(!reduced){
+    var stars = document.getElementById("heroStars");
+    for(var i=0;i<48;i++){
+      var s = document.createElement("span");
+      s.style.left = (Math.random()*100).toFixed(2)+"%";
+      s.style.top  = (Math.random()*52).toFixed(2)+"%";
+      s.style.setProperty("--d", (2.6+Math.random()*4).toFixed(2)+"s");
+      s.style.setProperty("--dl",(Math.random()*6).toFixed(2)+"s");
+      s.style.setProperty("--o", (0.35+Math.random()*0.6).toFixed(2));
+      var size = Math.random()<.25 ? 3 : 2;
+      s.style.width = s.style.height = size+"px";
+      stars.appendChild(s);
+    }
+  }
+
+  /* Gentle hero parallax */
+  if(!reduced){
+    var bg = document.getElementById("heroPar"), ticking = false;
+    window.addEventListener("scroll", function(){
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        var y = Math.min(window.scrollY, window.innerHeight);
+        bg.style.transform = "translateY(" + (y*0.18) + "px)";
+        ticking = false;
+      });
+    }, {passive:true});
+  }
+
+  /* Duplicate marquee track for a seamless loop */
+  var track = document.getElementById("marqueeTrack");
+  var clones = track.cloneNode(true);
+  clones.querySelectorAll("img").forEach(function(im){ im.setAttribute("alt",""); im.setAttribute("aria-hidden","true"); });
+  while(clones.firstChild){ track.appendChild(clones.firstChild); }
+
+  /* Flavor library */
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  // Flavor lists are STATIC in the DOM (rendered at page parse — no JS build cost).
+  // JS only filters by toggling visibility of existing <li> nodes (cheap, like the county list).
+  var icListEl = document.getElementById("icList"),
+      soListEl = document.getElementById("soList"),
+      icCountEl = document.getElementById("icCount"),
+      soCountEl = document.getElementById("soCount"),
+      icNoneEl = document.getElementById("icNone"),
+      soNoneEl = document.getElementById("soNone"),
+      flavorCountEl = document.getElementById("flavorCount"),
+      icItems = Array.prototype.slice.call(icListEl.children),
+      soItems = Array.prototype.slice.call(soListEl.children),
+      TOTAL = icItems.length + soItems.length;
+  // Cache each item's lowercase text once.
+  icItems.forEach(function(li){ li._key = li.textContent.toLowerCase(); });
+  soItems.forEach(function(li){ li._key = li.textContent.toLowerCase(); });
+  function filterList(items, q){
+    var shown = 0;
+    for(var i=0;i<items.length;i++){
+      var vis = !q || items[i]._key.indexOf(q) !== -1;
+      // When there is no query, clear inline display so the CSS (mobile popular-only
+      // view) governs visibility. With a query, set inline display to filter.
+      if(!q){
+        if(items[i].style.display) items[i].style.display = "";
+      } else {
+        var want = vis ? "" : "none";
+        if(items[i].style.display !== want) items[i].style.display = want;
+      }
+      if(vis) shown++;
+    }
+    return shown;
+  }
+  var icBlock = icListEl, soBlock = soListEl;
+  function renderFlavors(q){
+    q = (q||"").trim().toLowerCase();
+    // While searching, force full lists visible so matches aren't hidden by the
+    // mobile popular-only filter; restore that filter when the query is cleared.
+    if(q){ icBlock.classList.add("show-all"); soBlock.classList.add("show-all"); }
+    else { icBlock.classList.remove("show-all"); soBlock.classList.remove("show-all");
+           syncShowAllButtons(); }
+    var icN = filterList(icItems, q);
+    var soN = filterList(soItems, q);
+    icCountEl.textContent = icN + " flavors";
+    soCountEl.textContent = soN + " flavors";
+    icNoneEl.style.display = icN ? "none" : "block";
+    soNoneEl.style.display = soN ? "none" : "block";
+    flavorCountEl.textContent = (icN+soN) + " of " + TOTAL;
+  }
+  // "Show all" buttons (mobile only) toggle the full list for their section.
+  var showAllBtns = Array.prototype.slice.call(document.querySelectorAll(".flavor-showall"));
+  function syncShowAllButtons(){
+    showAllBtns.forEach(function(b){
+      var list = document.getElementById(b.getAttribute("data-target"));
+      var open = list.classList.contains("show-all");
+      b.setAttribute("aria-expanded", open ? "true" : "false");
+      b.textContent = open
+        ? "Show fewer"
+        : (b.getAttribute("data-target")==="icList" ? "Show all 161 ice creams" : "Show all 77 sorbets");
+    });
+  }
+  showAllBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      var list = document.getElementById(b.getAttribute("data-target"));
+      list.classList.toggle("show-all");
+      syncShowAllButtons();
+    });
+  });
+  var flavorTimer;
+  document.getElementById("flavorSearch").addEventListener("input",function(){
+    var v=this.value; clearTimeout(flavorTimer);
+    flavorTimer=setTimeout(function(){renderFlavors(v);},110);
+  });
+
+  /* Leaflet map */
+  // CARTO basemap API key. Get a free one (5M tiles/mo) at https://carto.com/basemaps/apikey
+  // — paste the emailed key between the quotes below. Without it, tiles show an "API KEY REQUIRED" watermark.
+  var CARTO_KEY="cb1_2oxw_1_72ce3738f9de4dab6268c8ed";
+  var RETAIL_PTS=[["Union City Market", 47.35883, -123.08909], ["Spuds Produce Market II", 46.97041, -122.89133], ["Spuds Produce Market", 47.03035, -122.89133], ["Ralph's Thriftway", 47.04533, -122.86936], ["Metropolitan Market", 47.62607, -122.36399], ["Ken's Market", 47.68527, -122.36399], ["Island Market", 47.09023, -123.02317], ["Hood Canal Grocery", 47.40346, -123.13303], ["Gordon's Select Market", 47.0603, -123.26487], ["Discovery Bay Village Store", 47.99498, -122.89133], ["Bayview Thriftway", 47.04533, -122.91331], ["Shelton Farm Stand", 47.2247, -123.11106]];
+  var SCOOP_PTS=[["Hunter Farms", 47.31946, -123.13366], ["Hoodsport Coffee Co.", 47.40597, -123.14053], ["Alderbrook Resort", 47.33994, -123.08422], ["Anthony's Homeport", 47.05066, -122.90432], ["Hama Hama Oyster Co.", 47.53964, -123.04028], ["Cactus Restaurant", 47.57856, -122.41268], ["Lilliwaup Store and Motel", 47.4617, -123.11581], ["Union Square Deli", 47.34645, -123.07324], ["AQUA by El Gaucho", 47.61468, -122.35501], ["Asado Restaurant", 47.25518, -122.47311], ["Bakes Place", 47.6119, -122.19708], ["Bear Creek Country Store", 47.49605, -122.80407], ["Daniel's Broiler", 47.61838, -122.19982], ["Bis on Main", 47.61005, -122.20394], ["Bluwater Bistro", 47.60171, -122.28497], ["Chili Thai", 47.22255, -122.4786], ["Chinooks at Salmon Bay", 47.65539, -122.3811], ["Curry House", 47.05908, -122.75326], ["Curry Corner", 47.06282, -122.7409], ["El Gaucho", 47.61468, -122.34951], ["Elliott's Oyster House", 47.60542, -122.34127], ["The Flat Iron Grill", 47.54056, -122.0419], ["Fondi Pizzeria", 47.30084, -122.57748], ["Grazie Ristorante", 47.44963, -122.263], ["Green House Restaurant", 47.30177, -122.57748], ["Harbor Lights", 47.27941, -122.47448], ["Hungry Goose Bistro", 47.19176, -122.27261], ["Il Terrazzo Carmine", 47.60171, -122.33441], ["India Gate Restaurant", 47.58134, -122.1394], ["John Howie Steak", 47.61653, -122.19296], ["Lemon Grass", 46.99636, -122.90844], ["Mali Thai Cuisine", 47.4487, -122.26162], ["Mama Stortini's", 47.38552, -122.23553], ["Mango Thai", 47.43663, -122.29733], ["Marlai Thai", 47.66094, -122.28771], ["Matt's Rotisserie & Oyster Lounge", 47.67019, -122.1188], ["Maximilien Restaurant", 47.6082, -122.34127], ["Mercato Ristorante", 47.05066, -122.90158], ["Metropolitan Grill", 47.60449, -122.33441], ["Mioposto", 47.58412, -122.38659], ["Miyabi", 47.45242, -122.263], ["New 2 You", 47.53407, -122.6228], ["Nibbana Thai Restaurant", 47.6156, -122.19708], ["Nishino", 47.62671, -122.29183], ["Ocean Crest Resort", 47.22348, -124.20895], ["Ohana", 47.61283, -122.34677], ["Olympic Bakery", 47.27662, -122.96337], ["Paddy Coyne's", 47.61653, -122.2012], ["Painted Plate", 47.04504, -122.9002], ["Pellegrino's Italian Kitchen", 47.01603, -122.89883], ["Primo Grill", 47.25611, -122.47174], ["Queen Mary Tea Room", 47.66927, -122.29595], ["Ralph's Thriftway", 47.04692, -122.87548], ["Ray's Boathouse", 47.67389, -122.40719], ["Sages Redmond", 47.67667, -122.12841], ["Saltoro", 47.73212, -122.35638], ["Seastar Restaurant & Raw Bar", 47.61283, -122.19708], ["Sidewalk Cafe", 47.04972, -122.90295], ["Swing Wine Bar", 47.04037, -122.90295], ["Tavern Hall", 47.61468, -122.20257], ["Thai Ginger", 47.57671, -122.16961], ["The Tides Family Restaurant", 47.4422, -123.11718], ["Toulouse Petit", 47.62486, -122.35775], ["Union Country Store", 47.35668, -123.09796], ["Vic's Pizzeria", 47.04692, -122.9263], ["Vic's Pizzeria Wildwood", 47.02352, -122.89608], ["Voila! Bistro", 47.62393, -122.29595], ["Warwick Hotel", 47.61375, -122.34127], ["Washington Athletic Club", 47.61005, -122.33441], ["Women's University Club", 47.6082, -122.33166], ["Anthony's Woodfire Grill", 47.99562, -122.2218], ["Woodblock", 47.67389, -122.12429], ["Beardslee Public House", 47.76628, -122.19158], ["Big Fish Grill", 47.7552, -122.15725], ["Grappa", 47.63874, -122.35638], ["Carmine's", 47.61097, -122.20394], ["Elbe Junction", 46.76451, -122.19296], ["Elma Farm Stand", 47.00573, -123.39047], ["Flint Creek Cattle Company", 47.69053, -122.35638], ["Masa Mexican Kitchen and Cantina", 47.53964, -122.0419], ["Little Creek Casino", 47.12827, -123.10208], ["Paolo's Italian Restaurant", 47.38923, -122.2012], ["Sweet Life", 47.19456, -124.19796], ["Aerlume", 47.61097, -122.34539], ["Olympia Pizza & Spaghetti House III", 47.62393, -122.31243], ["Jean-Pierre's Three16", 47.01696, -122.90295], ["2120", 47.6156, -122.3399], ["Jai Thai", 47.65077, -122.35089], ["Nana's Green Tea", 47.61653, -122.33303], ["Tacoma Country & Golf Club", 47.13481, -122.53491], ["Alderbrook Golf Course", 47.33901, -123.07049], ["The Bine Beer & Food", 47.75982, -122.20394], ["Sunset Club", 47.61097, -122.32754], ["Indian Summer Golf & Country Club", 46.99449, -122.83978], ["The Guest House Restaurant", 47.73858, -122.25064], ["University Club", 47.61005, -122.32479], ["Delfino's Chicago Style Pizza", 47.66279, -122.2987], ["Old Stove Brewing", 47.60912, -122.34265], ["Le Coin", 47.65817, -122.35089], ["Olympia Country & Golf Club", 47.08527, -122.93454], ["Gateway to India", 47.25611, -122.47036], ["St. Andrew's House", 47.34924, -123.06088], ["The Westin Seattle", 47.61375, -122.33853], ["All Water Seafood & Oyster Bar at Hotel 1000", 47.60542, -122.33578], ["Spuds Produce Market", 47.02352, -122.89608], ["Spuds Produce Market II", 46.97294, -122.89196], ["Hood Canal Grocery", 47.40504, -123.1419], ["Shelton Farm Stand", 47.22068, -123.11856], ["Dick's Brewery", 46.73534, -123.00183], ["Agate Store", 47.21415, -123.01281], ["Home Meat Service", 47.12266, -123.08972], ["Blue Heron Bakery", 47.04692, -122.95788], ["Olympia Food Co-op (Eastside)", 47.04224, -122.85626], ["The Pizza Coop and Ale House", 47.75336, -122.16137], ["The Tin Snug", 46.57132, -123.29846], ["Nou Thai", 47.04411, -122.90432], ["Peace, Love and Donuts", 47.38273, -122.83016], ["Bang Bang Kitchen", 47.53686, -122.28085], ["Blackbird Caf\u00e9 & Bar", 47.76997, -122.38247], ["Boathouse 19", 47.244, -122.55688], ["Bubble Island", 47.0413, -122.83154], ["Cone & Steiner", 47.62393, -122.30694], ["Cooks Tavern", 47.27103, -122.4786], ["Creamy Cone Caf\u00e9", 47.52016, -122.26437], ["EC Wilson Meat", 47.79858, -122.26025], ["El 42 Cantina", 47.53037, -122.0364], ["Emory's on Silver Lake", 47.88982, -122.20806], ["Endolyne Joe's", 47.52109, -122.39071], ["Fairmont Hotel", 47.6082, -122.33441], ["Fire & the Feast", 47.81057, -122.37698], ["Flavor of India", 47.54335, -122.01718], ["HMS Off the Hook", 47.07872, -123.01968], ["Ice Cream Airstream", 46.60718, -121.67111], ["Jack's BBQ & Steakhouse", 47.28034, -122.26025], ["Jak's Grill", 47.53037, -122.0364], ["Kin Dee Thai Bothell", 47.81057, -122.20669], ["Kin Dee", 47.61931, -122.30282], ["Kraken Boardshop", 46.72498, -122.97161], ["Lake Limerick Country Club", 47.285, -123.05126], ["Leschi Market", 47.60171, -122.28634], ["Lime Leaf Asian Fusion", 46.99636, -122.80682], ["Mamma Melina Ristorante & Pizzeria", 47.66742, -122.30145], ["Mirabella", 47.61931, -122.33441], ["Mitten Sweets & Coffee", 47.60634, -122.31655], ["Nolita", 47.67204, -122.37698], ["Racha Noodles & Thai Cuisine", 47.68221, -122.12429], ["Pub 70", 47.61468, -122.35638], ["Reckless Noodle House", 47.59894, -122.2987], ["S/T Hooligans", 47.66002, -122.36599], ["Salt and Iron", 47.81149, -122.37835], ["Salty's at the SEA", 47.44406, -122.30419], ["Silk Thai", 47.25611, -122.48135], ["Similan Thai", 47.55076, -122.0419], ["Sparrow", 47.70809, -122.21218], ["SWeL", 47.65077, -122.35226], ["Taqueria La Tentacion", 47.32132, -122.31243], ["Thai Kitchen Bird Pepper", 47.61745, -122.20257], ["The Lobster Shop", 47.2878, -122.48959], ["Urraco Coffee Co.", 47.21322, -123.10757], ["Valley Feed", 47.46078, -122.82879], ["Von's 1000 Spirits", 47.60634, -122.33853], ["Gardner's Restaurant", 47.04785, -122.90295], ["The Adriatic at Oakbrook", 47.19456, -122.54452], ["Around the Table Game Pub", 47.82163, -122.33715], ["Shelton Candy Shoppe", 47.21322, -123.10482], ["All Thai", 47.62486, -122.15451], ["County Line Fire", 47.21322, -123.10208], ["The Heathman Hotel Kirkland", 47.67574, -122.20394], ["High Steel Beer Co.", 47.21136, -123.1007], ["Joe's Market", 47.21322, -123.09933], ["Hotel 1000", 47.60542, -122.33578], ["Lonely Siren", 47.60912, -122.34127], ["Sweet Magnolia Co & Coffee House", 46.98418, -122.90432], ["Thai Rhapsody", 47.86219, -122.22042], ["Vic's Pizzeria Eastside", 47.04692, -122.87136], ["Always Summer Ice Cream Cafe", 47.75428, -122.27948], ["Boondocks Market Place", 46.66659, -123.79422], ["Bulldog News", 47.65909, -122.31243], ["Coffee and Cone", 47.67574, -122.20806], ["Cookie Crave and Creamery", 47.66094, -122.33715], ["Cremello", 47.53315, -122.62417], ["DeLille En Ville", 47.66187, -122.30007], ["Dordlofva", 47.65077, -122.34951], ["Arnie's", 47.81057, -122.38797], ["Mooo! Ice Cream Shop", 47.56652, -121.88809], ["Fondi Pizzeria Proctor", 47.27103, -122.48822], ["Good Stuff Grocery", 47.54242, -122.63653], ["Jolee Bean Espresso", 47.27382, -123.05401], ["Larb Thai", 47.73581, -122.29321], ["Ruk Thai", 47.66464, -122.16549], ["Mioposto Pizzeria", 47.64244, -122.32617], ["Oreo's Ice Cream and Burgers", 47.9202, -122.70245], ["Outer Orbit Arcade", 47.20949, -122.4841], ["Row", 47.04598, -122.90432], ["Shy Giant", 47.60912, -122.34127], ["Sugar and Bean", 47.24679, -123.14328], ["Sweet Moon", 47.6119, -122.33715]];
+  var scoopMarkers=[];
+  function buildMap(){
+    if(!window.L || !document.getElementById("omicMap") || window._omap) return;
+    var omap=L.map("omicMap",{scrollWheelZoom:false,preferCanvas:true});
+    omap.attributionControl.setPrefix(false); // remove Leaflet link + Ukraine flag
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key="+CARTO_KEY,{maxZoom:19,subdomains:"abcd",attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(omap);
+    function pop(n){var q=encodeURIComponent(n+" WA");return "<b>"+n.replace(/&/g,"&amp;").replace(/</g,"&lt;")+"</b><br><a href='https://www.google.com/maps/search/?api=1&query="+q+"' target='_blank' rel='noopener'>Open in Google Maps \u2197</a>";}
+    var bounds=[];
+    SCOOP_PTS.forEach(function(p){var m=L.circleMarker([p[1],p[2]],{radius:6,color:"#fff",weight:1.5,fillColor:"#22395c",fillOpacity:.9}).addTo(omap);m.bindPopup(pop(p[0]));m.bindTooltip(p[0]);m._n=p[0].toLowerCase();scoopMarkers.push(m);bounds.push([p[1],p[2]]);});
+    RETAIL_PTS.forEach(function(p){var m=L.circleMarker([p[1],p[2]],{radius:8,color:"#fff",weight:2,fillColor:"#c08a4d",fillOpacity:1}).addTo(omap);m.bindPopup(pop(p[0]));m.bindTooltip(p[0]);bounds.push([p[1],p[2]]);});
+    omap.fitBounds(bounds,{padding:[30,30],maxZoom:10});
+    omap.on("click",function(){omap.scrollWheelZoom.enable();});
+    window._omap=omap;
+  }
+  // Lazily load Leaflet (CSS + JS) only when the map is about to enter view.
+  var leafletRequested=false;
+  function loadLeaflet(){
+    if(leafletRequested) return; leafletRequested=true;
+    var css=document.createElement("link");
+    css.rel="stylesheet"; css.href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    document.head.appendChild(css);
+    var s=document.createElement("script");
+    s.src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    s.async=true; s.onload=buildMap;
+    document.head.appendChild(s);
+  }
+  var mapEl=document.getElementById("omicMap");
+  if(mapEl){
+    if("IntersectionObserver" in window){
+      var mio=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ loadLeaflet(); mio.disconnect(); } });
+      },{rootMargin:"500px 0px"});
+      mio.observe(mapEl);
+    } else { loadLeaflet(); }
+  }
+
+  /* Find a Pint: render + live filter */
+  var pintCount = document.getElementById("pintCount"),
+      pintNone = document.getElementById("pintNone"),
+      pintSearch = document.getElementById("pintSearch"),
+      locGroups = document.getElementById("locGroups");
+  var countyBlocks = Array.prototype.slice.call(locGroups.querySelectorAll(".loc-county"));
+  function renderPints(filter){
+    var q = (filter || "").trim().toLowerCase();
+    var total = 0;
+    countyBlocks.forEach(function(block){
+      var items = Array.prototype.slice.call(block.querySelectorAll("li"));
+      var shown = 0;
+      items.forEach(function(li){
+        var match = li.textContent.toLowerCase().indexOf(q) !== -1;
+        li.style.display = match ? "" : "none";
+        if(match) shown++;
+      });
+      total += shown;
+      // hide empty counties; auto-open matching ones while searching
+      block.style.display = shown ? "" : "none";
+      if(q){ block.open = shown > 0; } else { block.open = false; }
+    });
+    pintCount.textContent = total + " location" + (total === 1 ? "" : "s");
+    pintNone.style.display = total ? "none" : "block";
+    if(window._omap){scoopMarkers.forEach(function(m){var show=m._n.indexOf(q)!==-1;if(show&&!window._omap.hasLayer(m))m.addTo(window._omap);else if(!show&&window._omap.hasLayer(m))window._omap.removeLayer(m);});}
+  }
+  renderPints("");
+  var pintTimer;
+  pintSearch.addEventListener("input", function(){
+    var v=this.value; clearTimeout(pintTimer);
+    pintTimer=setTimeout(function(){ renderPints(v); },120);
+  });
+
+  /* Order form -> Web3Forms (async, stays on page) */
+  var orderForm = document.getElementById("orderForm");
+  orderForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(!orderForm.checkValidity()){ orderForm.reportValidity(); return; }
+    var btn = orderForm.querySelector("button[type=submit]");
+    var okEl = document.getElementById("orderSuccess");
+    var errEl = document.getElementById("orderError");
+    errEl.style.display = "none";
+    btn.disabled = true; var label = btn.textContent; btn.textContent = "Sending\u2026";
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: new FormData(orderForm)
+    }).then(function(r){ return r.json(); }).then(function(data){
+      if(data.success){
+        orderForm.reset();
+        okEl.style.display = "block";
+        btn.style.display = "none";
+      } else {
+        errEl.style.display = "block";
+        btn.disabled = false; btn.textContent = label;
+      }
+    }).catch(function(){
+      errEl.style.display = "block";
+      btn.disabled = false; btn.textContent = label;
+    });
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
