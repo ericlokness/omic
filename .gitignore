@@ -1,0 +1,3 @@
+# Unused original photos (the site serves the .webp versions)
+images/*.jpg
+images/*.png

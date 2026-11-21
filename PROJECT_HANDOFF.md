@@ -2,6 +2,31 @@
 
 _Handoff notes to resume work in a new Claude session. Give this file (and the site zip) to the next session for full context._
 
+## Update — November 2026 (read this first; the sections below are the original September notes)
+
+**Live site:** https://olympicmountainicecream.pages.dev (Cloudflare Pages, deployed by uploading a zip of this folder). `olympicmountainicecream.com` still points to the old Apache host, so `robots.txt`, `sitemap.xml`, `llms.txt`, `.well-known/ard.json` and the JSON-LD in `index.html` use the pages.dev address — switch them when the domain moves to Cloudflare.
+
+**Repository:** this folder is the repo root (`github.com/ericlokness/omic`). When building the Cloudflare upload zip, leave out `.git/`, `.gitignore` and this file. Unused original `.jpg`/`.png` photos in `images/` are git-ignored.
+
+**Current structure**
+```
+index.html          home page (adds a "Visit" section, social links, inquiry form)
+wholesale.html      wholesale ordering page (B2B), optional Shopify checkout
+404.html            not-found page (stops Cloudflare serving index.html for unknown paths)
+robots.txt, sitemap.xml
+llms.txt            plain-language guide for AI agents (Lighthouse "Agentic Browsing")
+.well-known/ard.json  Agentic Resource Discovery manifest (validated against the ARD schema)
+_headers            Cloudflare headers: HSTS, XFO, COOP, nosniff; images cached 7 days
+images/             WebP; phone-sized variants are named <name>-440/-480/-540/-640/-660/-800.webp
+```
+
+**What changed since September**
+- **New creamery (Nov 2026):** moved from the Skokomish Valley to 130 W Corporate Rd, Shelton, WA 98584 (Port of Shelton); scoop shop open 10am–6pm, 7 days; 16 flavors in store. "Visit" section with three snapshot photos, creamery pin on the map (47.24773, -123.15019), updated story/FAQ/contact/footer. The old mailing address was removed.
+- **Wholesale page:** sizes Pint $6.75, Quart $13.25, 1.5 gal $49.50, 3 gal $95.80, Gelato pan $39.00 (owner's "Retail" price list). Order builder with flavor search; orders are emailed via Web3Forms. Shopify checkout (cart permalinks) is wired to a **dev store** (`olympic-mountain-ice-cream.myshopify.com`, `devStore: true`) and only appears at `wholesale.html?shopify-test`. Going live needs a paid Shopify store, new variant IDs and `devStore: false` (see `SHOPIFY-SETUP.md` in the parent folder).
+- **Open decision:** how the owner's "Standard" (delivery) price list applies to orders is undecided; a TODO sits above `prices` in `wholesale.html`.
+- **Contact form** is now for flavor ideas, business opportunities and events (topic select; event date field), not orders. Facebook and Instagram links in the contact card and footers.
+- **PageSpeed (Nov 20, mobile; Performance / Accessibility / Best Practices / SEO):** home 96 / 97 / 100 / 100, wholesale 94 / 100 / 100 / 100, Agentic Browsing 4/4 on both. A map-note contrast fix (home Accessibility → 100 expected) was made after that test. Done: responsive `srcset` images, sized images, hero logo prioritized and visible from the first frame, flavor-strip images now `loading="lazy"` (they are below the fold on phones; LCP improved), text-safe copper tokens (`--accent-text #8a5a28`, `--accent-display #a8733a`, `--btn #9e6a32`) for AA contrast on light sections, `<main>` landmarks, hidden mobile drawer uses `visibility:hidden`.
+
 ## What this is
 A single-page marketing website for **Olympic Mountain Ice Cream** (OMIC), a family-owned Washington State ice cream & sorbet maker (Shelton, WA; founders Karl & Bev Black; family owned since 1984; phone 360-426-0696; olympicmountainicecream.com). Built as a **single static `index.html`** for deployment on **Cloudflare Pages**. The owner's stack preference is static single-file HTML + Cloudflare (Pages/KV/Zero Trust/Email Routing).
 

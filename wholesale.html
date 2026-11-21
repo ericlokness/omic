@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wholesale Ice Cream &amp; Sorbet — Olympic Mountain Ice Cream | Shelton, WA</title>
+<meta name="description" content="Order Olympic Mountain Ice Cream wholesale for your restaurant, café or market. Super-premium small-batch ice cream and sorbet in pints, quarts, 1.5 and 3 gallon tubs and gelato pans, delivered around Puget Sound.">
+<link rel="preload" as="image" href="images/hero-mountains.webp" fetchpriority="high">
+<link rel="ard" type="application/json" href="/.well-known/ard.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
+<style>
+:root{
+  /* Text-safe copper shades for light backgrounds (WCAG AA): small text 4.5:1+, large display 3:1+ */
+  --accent-text:#8a5a28;
+  --accent-display:#a8733a;
+  --btn:#9e6a32;
+  --btn-hover:#8a5a28;
+  --midnight:#0a1424;
+  --dusk:#16283f;
+  --horizon:#24405f;
+  --snow:#eef3f9;
+  --glacier:#a9c0d8;
+  --copper:#c08a4d;
+  --copper-bright:#d9a96a;
+  --cream:#f6efe3;
+  --cream-deep:#efe5d2;
+  --paper:#fffdf8;
+  --ink:#22293a;
+  --ink-soft:#4d5568;
+  --line:rgba(192,138,77,.28);
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+::selection{background:var(--copper);color:#fff}
+:focus-visible{outline:2px solid var(--copper-bright);outline-offset:3px}
+
+/* ---------- Nav (matches home page) ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem clamp(1.2rem,4vw,3rem);transition:background .4s ease,box-shadow .4s ease,padding .4s ease}
+.nav.scrolled{background:rgba(10,20,36,.92);backdrop-filter:blur(10px);box-shadow:0 2px 24px rgba(0,0,0,.35);padding:.65rem clamp(1.2rem,4vw,3rem)}
+.nav-brand img{height:44px;width:auto;transition:height .4s ease}
+.nav.scrolled .nav-brand img{height:36px}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;position:relative}
+.nav-links a{color:var(--snow);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color .25s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--copper-bright)}
+/* Same sliding marker as the home page; here it rests on "Wholesale" */
+.nav-links::after,.subnav ul::after{content:"";position:absolute;left:0;height:2px;border-radius:2px;width:var(--mk-w,0px);transform:translateX(var(--mk-x,0px));opacity:var(--mk-o,0);transition:transform .45s cubic-bezier(.4,0,.2,1),width .45s cubic-bezier(.4,0,.2,1),opacity .3s ease;pointer-events:none}
+.nav-links::after{bottom:-3px;background:var(--copper-bright)}
+
+/* ---------- Page sections bar (second nav level, appears after the hero) ---------- */
+.subnav{position:fixed;left:0;right:0;top:var(--nav-h,57px);z-index:95;display:flex;align-items:center;gap:1.5rem;padding:0 clamp(1.2rem,4vw,3rem);background:rgba(246,239,227,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 12px 30px -24px rgba(10,20,36,.55);transform:translateY(-110%);visibility:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility .4s}
+.subnav.show{transform:none;visibility:visible}
+.subnav ul{list-style:none;display:flex;gap:clamp(1.2rem,2.6vw,2.2rem);position:relative;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.subnav ul::-webkit-scrollbar{display:none}
+.subnav ul::after{bottom:0;background:var(--copper)}
+.subnav ul a{display:block;padding:.85rem 0;font-family:var(--display);font-size:1.02rem;color:var(--ink-soft);text-decoration:none;white-space:nowrap;transition:color .25s ease}
+.subnav ul a:hover,.subnav ul a.is-current{color:var(--ink)}
+.subnav-order{flex-shrink:0;font-size:.9rem;color:var(--ink-soft);text-decoration:none;border:1px solid rgba(192,138,77,.55);border-radius:999px;padding:.35rem .95rem;transition:background .25s ease,border-color .25s ease}
+.subnav-order b{color:var(--ink)}
+.subnav-order:hover{background:rgba(192,138,77,.12);border-color:var(--copper)}
+@media(max-width:960px){.subnav-order{display:none}}
+@media(prefers-reduced-motion:reduce){.nav-links::after,.subnav ul::after,.subnav{transition:opacity .3s ease}}
+/* Land section headings below the two fixed bars */
+section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw,7rem))}
+#builder,#summary{scroll-margin-top:7.5rem}
+@media(min-width:761px) and (max-width:1100px){.nav-links{gap:1.3rem}.nav-links a{font-size:.74rem;letter-spacing:.1em}}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
+.nav-toggle span{display:block;width:26px;height:2px;background:var(--snow);border-radius:2px;margin:5px auto;transition:transform .35s ease,opacity .25s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{display:none}
+@media(max-width:760px){
+  .nav-toggle{display:block}
+  .nav-links{display:none}
+  .nav-drawer{display:flex;position:fixed;top:0;right:0;bottom:0;width:min(78vw,320px);height:100dvh;flex-direction:column;justify-content:center;gap:2rem;list-style:none;background:rgba(10,20,36,.98);backdrop-filter:blur(14px);padding:2rem 2.4rem;transform:translateX(100%);visibility:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s linear .4s;box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:110}
+  .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s}
+  .nav-drawer a{color:var(--snow);text-decoration:none;font-size:1.05rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+  .nav-drawer a:hover,.nav-drawer a[aria-current="page"]{color:var(--copper-bright)}
+  body.nav-open{overflow:hidden}
+  .nav-scrim{position:fixed;inset:0;background:rgba(6,12,24,.5);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;z-index:105}
+  .nav-scrim.show{opacity:1;visibility:visible}
+}
+
+/* ---------- Shared ---------- */
+.section{padding:clamp(4.5rem,9vw,7rem) clamp(1.2rem,5vw,3rem)}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{color:var(--accent-text);font-size:.76rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1rem}
+.heading{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.12;letter-spacing:-.01em}
+.heading em{font-style:italic;color:var(--accent-display)}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:1rem;max-width:620px}
+.center{text-align:center}.center .lede{margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--btn);border:1px solid var(--btn);border-radius:999px;color:#fff;font-family:var(--body);font-weight:700;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;padding:.95rem 2rem;cursor:pointer;text-decoration:none;transition:background .3s ease,border-color .3s ease,transform .2s ease,color .3s ease}
+.btn:hover{background:var(--btn-hover);border-color:var(--btn-hover);transform:translateY(-1px)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.btn-ghost{background:transparent;color:var(--cream);border-color:rgba(217,169,106,.6)}
+.btn-ghost:hover{background:rgba(217,169,106,.14);border-color:var(--copper-bright);color:#fff}
+.btn-line{background:transparent;color:var(--accent-text);border-color:rgba(192,138,77,.55)}
+.btn-line:hover{background:var(--btn-hover);border-color:var(--btn-hover);color:#fff}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.19,1,.22,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Hero ---------- */
+.w-hero{position:relative;min-height:58svh;display:flex;align-items:flex-end;padding:9rem clamp(1.2rem,5vw,3rem) clamp(3.2rem,7vw,5rem);background:var(--midnight);color:var(--snow);overflow:hidden}
+.w-hero-bg{position:absolute;inset:-4% 0;background:url("images/hero-mountains.webp") center 68%/cover no-repeat;animation:heroDrift 34s ease-in-out infinite alternate}
+@keyframes heroDrift{from{transform:scale(1.02)}to{transform:scale(1.08) translateY(-1%)}}
+.w-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,36,.1) 0%,rgba(10,20,36,.18) 45%,rgba(10,20,36,.85) 88%,var(--midnight))}
+.w-hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;width:100%;display:block}
+.w-hero .eyebrow{color:var(--copper-bright)}
+.w-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.04;letter-spacing:-.015em;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.w-hero h1 em{font-style:italic;color:var(--copper-bright)}
+.w-hero p.sub{color:#d3deea;font-size:clamp(1.02rem,1.8vw,1.18rem);max-width:560px;margin-top:1.3rem}
+.w-hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2rem}
+
+/* ---------- Steps band ---------- */
+
+/* ---------- Sizes ---------- */
+.sizes{background:var(--cream)}
+.size-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.5vw,1.8rem);margin-top:clamp(2.6rem,5vw,3.6rem)}
+@media(max-width:820px){.size-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.size-grid{grid-template-columns:1fr}}
+.size-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:2rem 1.8rem 1.8rem;display:flex;flex-direction:column;box-shadow:0 18px 50px -30px rgba(34,41,58,.35);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;position:relative}
+.size-card:hover{transform:translateY(-4px);box-shadow:0 26px 60px -30px rgba(34,41,58,.45);border-color:rgba(192,138,77,.55)}
+.size-card.feature{border-color:var(--copper)}
+.size-flag{position:absolute;top:1.1rem;right:1.1rem;font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);border:1px solid rgba(192,138,77,.5);border-radius:999px;padding:.2em .7em}
+.tub{height:120px;display:flex;align-items:flex-end;margin-bottom:1.4rem}
+.tub svg{display:block}
+.size-num{font-family:var(--display);font-size:3.2rem;line-height:1;font-weight:400}
+.size-num small{font-family:var(--body);font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-text);margin-left:.4rem}
+.size-card h3{font-family:var(--display);font-weight:500;font-size:1.25rem;margin-top:.7rem}
+.size-card p{color:var(--ink-soft);font-size:.95rem;margin-top:.35rem;flex:1}
+.size-meta{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dotted rgba(192,138,77,.5);margin-top:1.3rem;padding-top:1rem;font-size:.86rem;color:var(--ink-soft)}
+.size-meta strong{font-family:var(--display);font-size:1.3rem;font-weight:500;color:var(--ink)}
+.size-card .btn{margin-top:1.3rem;width:100%}
+.sizes-note{text-align:center;color:var(--ink-soft);font-style:italic;font-family:var(--display);margin-top:2.2rem}
+
+/* ---------- Order builder ---------- */
+.order{background:var(--cream-deep)}
+.order-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(1.4rem,3vw,2.4rem);margin-top:clamp(2.4rem,5vw,3.4rem);align-items:start}
+@media(max-width:960px){.order-layout{grid-template-columns:1fr}}
+.builder{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.4rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
+.bstep{padding:1.4rem 0;border-bottom:1px dotted rgba(192,138,77,.45)}
+.bstep:first-child{padding-top:0}
+.bstep:last-of-type{border-bottom:none}
+.bstep-h{display:flex;align-items:center;gap:.75rem;margin-bottom:.95rem}
+.bstep-h b{width:28px;height:28px;border-radius:50%;background:var(--btn);color:#fff;font-size:.8rem;display:grid;place-items:center;flex-shrink:0}
+.bstep-h span{font-size:.76rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+.seg{display:flex;flex-wrap:wrap;gap:.6rem;border:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{cursor:pointer;border:1px solid rgba(192,138,77,.45);border-radius:999px;padding:.6rem 1.2rem;font-weight:600;font-size:.95rem;color:var(--ink);background:#fff;transition:background .2s ease,color .2s ease,border-color .2s ease;user-select:none}
+.seg label small{font-weight:400;color:var(--ink-soft);margin-left:.3rem;font-size:.82rem}
+.seg input:checked+label{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.seg input:checked+label small{color:var(--glacier)}
+.seg input:focus-visible+label{outline:2px solid var(--copper);outline-offset:2px}
+.seg.sizes-seg label{min-width:5.6rem;text-align:center}
+.combo{position:relative}
+.combo input{width:100%;background:#fff;border:1px solid rgba(192,138,77,.45);border-radius:12px;padding:.85rem 2.6rem .85rem 1.1rem;color:var(--ink);font-size:1rem;outline:none;transition:border-color .25s ease,box-shadow .25s ease}
+.combo input:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(192,138,77,.18)}
+.combo input::placeholder{color:#9aa3b5}
+.combo-clear{position:absolute;right:.55rem;top:50%;transform:translateY(-50%);background:none;border:0;width:32px;height:32px;border-radius:50%;color:var(--ink-soft);cursor:pointer;font-size:1.2rem;line-height:1;display:none}
+.combo-clear:hover{background:rgba(192,138,77,.14)}
+.combo.has-value .combo-clear{display:block}
+.combo-list{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;max-height:290px;overflow:auto;list-style:none;background:#fff;border:1px solid rgba(192,138,77,.45);border-radius:12px;box-shadow:0 24px 50px -20px rgba(34,41,58,.45);padding:.35rem}
+.combo-list li{padding:.55rem .8rem;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:.5rem;font-size:.97rem}
+.combo-list li[aria-selected="true"],.combo-list li:hover{background:rgba(192,138,77,.14)}
+.combo-list li mark{background:none;color:var(--accent-text);font-weight:700}
+.combo-list .custom{color:var(--accent-text);font-weight:600;border-top:1px dotted rgba(192,138,77,.45);margin-top:.25rem;border-radius:0 0 8px 8px}
+.ftag{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1em .5em;border-radius:999px;white-space:nowrap;line-height:1.4;margin-left:auto}
+.ftag+.ftag{margin-left:.25rem}
+.ftag-p{background:rgba(139,92,190,.12);color:#7d4fb0;border:1px solid rgba(139,92,190,.45)}
+.ftag-s{background:rgba(127,185,66,.14);color:#456b21;border:1px solid rgba(127,185,66,.5)}
+.ftag-c{background:rgba(192,138,77,.14);color:var(--accent-text);border:1px solid rgba(192,138,77,.5)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem}
+.chips-label{width:100%;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.chip{background:transparent;border:1px dashed rgba(192,138,77,.6);color:var(--ink);border-radius:999px;padding:.32rem .85rem;font-size:.86rem;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.chip:hover{background:rgba(192,138,77,.12);border-style:solid}
+.chip.on{background:var(--btn);border-color:var(--btn);border-style:solid;color:#fff}
+.flavor-hint{font-size:.86rem;color:var(--ink-soft);margin-top:.6rem;min-height:1.3em}
+.flavor-hint.warn{color:#a4562b}
+.qty-row{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.stepper{display:inline-flex;align-items:center;border:1px solid rgba(192,138,77,.45);border-radius:999px;background:#fff;overflow:hidden}
+.stepper button{background:none;border:0;width:44px;height:44px;font-size:1.25rem;color:var(--accent-text);cursor:pointer;transition:background .2s ease}
+.stepper button:hover{background:rgba(192,138,77,.12)}
+.stepper input{width:3.4rem;border:0;text-align:center;font-size:1.05rem;font-weight:700;color:var(--ink);background:transparent;-moz-appearance:textfield;appearance:textfield}
+.stepper input::-webkit-inner-spin-button,.stepper input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.qty-calc{color:var(--ink-soft);font-size:.95rem}
+.qty-calc strong{color:var(--ink)}
+.add-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.5rem}
+.add-row .btn{flex:1;min-width:220px}
+.add-msg{font-size:.9rem;color:#4f7a2a;min-height:1.4em;width:100%}
+
+/* ---------- Summary (dark, echoes the home-page order card) ---------- */
+.summary{position:sticky;top:5.5rem;background:linear-gradient(180deg,var(--dusk),var(--midnight));color:var(--snow);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.2rem);box-shadow:0 30px 70px -35px rgba(10,20,36,.8);border:1px solid rgba(169,192,216,.18)}
+@media(max-width:960px){.summary{position:static}}
+.summary h3{font-family:var(--display);font-weight:500;font-size:1.6rem;display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.summary h3 em{font-style:italic;color:var(--copper-bright)}
+.summary h3 small{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--glacier)}
+.lines{list-style:none;margin:1.1rem 0 0}
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:.8rem;align-items:center;padding:.85rem 0;border-bottom:1px solid rgba(169,192,216,.16)}
+.line-name{font-weight:600;line-height:1.3}
+.line-meta{display:block;font-size:.8rem;color:var(--glacier);font-weight:400;margin-top:.15rem}
+.line .stepper{background:rgba(10,20,36,.5);border-color:rgba(169,192,216,.3)}
+.line .stepper button{width:32px;height:32px;font-size:1rem;color:var(--copper-bright)}
+.line .stepper button:hover{background:rgba(217,169,106,.14)}
+.line .stepper input{width:2.2rem;font-size:.95rem;color:var(--snow)}
+.line-rm{background:none;border:0;color:var(--glacier);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.15rem;line-height:1}
+.line-rm:hover{background:rgba(192,57,43,.2);color:#ffb4a8}
+.empty{border:1px dashed rgba(169,192,216,.3);border-radius:12px;padding:1.4rem;text-align:center;color:var(--glacier);font-size:.95rem;margin-top:1.1rem}
+.empty em{font-family:var(--display);color:var(--cream);font-size:1.1rem;display:block;margin-bottom:.2rem}
+.totals{display:flex;flex-direction:column;gap:.35rem;margin:1.1rem 0 0;padding:1rem 0 0;border-top:1px solid rgba(217,169,106,.35)}
+.totals div{display:flex;justify-content:space-between;align-items:baseline;color:var(--glacier);font-size:.94rem}
+.totals strong{font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--snow)}
+.totals .est{font-size:.78rem;color:#7d93ad}
+.details{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+@media(max-width:520px){.details{grid-template-columns:1fr}}
+.details legend{grid-column:1/-1;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--copper-bright);margin-bottom:.2rem}
+.field{display:flex;flex-direction:column;gap:.3rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--glacier)}
+.field input,.field textarea{background:rgba(10,20,36,.6);border:1px solid rgba(169,192,216,.35);border-radius:10px;padding:.75rem .95rem;color:var(--snow);font-size:.98rem;outline:none;transition:border-color .3s ease;width:100%}
+.field input:focus,.field textarea:focus{border-color:var(--copper-bright)}
+.field input[type=date]{color-scheme:dark}
+.field textarea{resize:vertical;min-height:84px}
+.field input:user-invalid{border-color:#e07a68}
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none}
+.checkout{margin-top:1.4rem}
+.checkout .btn{width:100%;padding:1.05rem 1.4rem}
+.checkout .btn svg{width:16px;height:16px;fill:currentColor}
+.checkout-note{display:flex;gap:.55rem;align-items:flex-start;font-size:.84rem;color:#8da3bd;margin-top:.8rem;line-height:1.5}
+.checkout-note svg{width:15px;height:15px;flex-shrink:0;margin-top:.15rem;fill:var(--copper-bright)}
+.form-msg{display:none;margin-top:1rem;padding:1rem 1.1rem;border-radius:10px;font-size:.94rem}
+.form-msg.err{display:block;background:rgba(192,57,43,.16);border:1px solid rgba(224,122,104,.5);color:#ffd2c9}
+.form-msg.ok{display:block;background:rgba(192,138,77,.14);border:1px solid rgba(217,169,106,.5);color:var(--cream)}
+.form-msg a{color:var(--copper-bright)}
+.mode-badge{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#a6d18a;border:1px solid rgba(127,185,66,.45);border-radius:999px;padding:.25rem .75rem;margin-top:.9rem}
+.mode-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#7fb942}
+.mode-badge.test{color:#f0c27a;border-color:rgba(217,169,106,.55)}
+.mode-badge.test::before{background:var(--copper-bright)}
+
+/* ---------- Delivery + FAQ ---------- */
+.serve{background:var(--cream)}
+.serve-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(max-width:880px){.serve-grid{grid-template-columns:1fr}}
+.route{margin-top:1.8rem;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.route img{width:100%;height:auto;aspect-ratio:16/8;object-fit:cover}
+.route-body{padding:1.4rem 1.5rem}
+.route-body h3{font-family:var(--display);font-weight:500;font-size:1.25rem;margin-bottom:.4rem}
+.route-body p{color:var(--ink-soft);font-size:.96rem}
+.route-body ul{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+.route-body li{font-size:.8rem;border:1px solid rgba(192,138,77,.45);border-radius:999px;padding:.18rem .7rem;color:var(--ink)}
+.faq-list details{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:.8rem;overflow:hidden;transition:box-shadow .3s ease}
+.faq-list details[open]{box-shadow:0 14px 40px -24px rgba(34,41,58,.4)}
+.faq-list summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 1.35rem;font-weight:700;font-size:1rem}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-family:var(--display);font-size:1.5rem;font-weight:400;color:var(--copper);flex-shrink:0;line-height:1;transition:transform .3s ease}
+.faq-list details[open] summary::after{transform:rotate(45deg)}
+.faq-list .faq-a{padding:0 1.35rem 1.25rem;color:var(--ink-soft)}
+.faq-list a{color:var(--accent-text)}
+
+/* ---------- Call band + footer ---------- */
+.w-hero,.summary,.footer,.obar{--accent-text:var(--copper);--accent-display:var(--copper)}
+.footer{background:var(--midnight);text-align:center;padding:3.2rem 1.5rem 2.6rem}
+.footer img{width:min(280px,66vw);margin:0 auto 1.4rem;opacity:.94}
+.footer p{color:var(--glacier);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
+.social{list-style:none;display:flex;justify-content:center;gap:1.6rem;margin:0 0 1.5rem}
+.social a{display:inline-flex;align-items:center;gap:.5rem;color:var(--glacier);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;transition:color .25s ease}
+.social a:hover,.social a:focus-visible{color:var(--copper-bright)}
+.social svg{width:22px;height:22px}
+
+.footer .fine{margin-top:.9rem;letter-spacing:.04em;text-transform:none;font-size:.78rem;color:#8299b3}
+
+/* ---------- Mobile order bar ---------- */
+.obar{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(10,20,36,.96);backdrop-filter:blur(10px);color:var(--snow);border:1px solid rgba(217,169,106,.45);border-radius:999px;padding:.55rem .6rem .55rem 1.3rem;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);transform:translateY(140%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.obar.show{transform:none}
+.obar span{font-size:.9rem}
+.obar strong{color:var(--copper-bright)}
+.obar .btn{padding:.6rem 1.2rem;font-size:.74rem}
+@media(min-width:961px){.obar{display:none}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .w-hero-bg{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .size-card{transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="index.html" aria-label="Olympic Mountain Ice Cream — home">
+    <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#flavors">Flavors</a></li>
+    <li><a href="index.html#visit">Visit</a></li>
+    <li><a href="index.html#pints">Where to Find</a></li>
+    <li><a href="index.html#story">Story</a></li>
+    <li><a href="index.html#reviews">Reviews</a></li>
+    <li><a href="#top" aria-current="page">Wholesale</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+<ul class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <li><a href="index.html#flavors">Flavors</a></li>
+  <li><a href="index.html#visit">Visit</a></li>
+  <li><a href="index.html#pints">Where to Find</a></li>
+  <li><a href="index.html#story">Story</a></li>
+  <li><a href="index.html#reviews">Reviews</a></li>
+  <li><a href="#top" aria-current="page">Wholesale</a></li>
+  <li><a href="index.html#faq">FAQ</a></li>
+  <li><a href="index.html#contact">Contact</a></li>
+</ul>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main id="main">
+
+<nav class="subnav" id="subnav" aria-label="Sections of the wholesale page">
+  <ul id="subnavLinks">
+    <li><a href="#sizes">Sizes</a></li>
+    <li><a href="#order">Build your order</a></li>
+    <li><a href="#delivery">Delivery &amp; questions</a></li>
+  </ul>
+  <a class="subnav-order" id="subnavOrder" href="#summary" hidden></a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="w-hero" id="top">
+  <div class="w-hero-bg" aria-hidden="true"></div>
+  <div class="w-hero-inner">
+    <div>
+      <p class="eyebrow">Wholesale &amp; Food Service</p>
+      <h1>Bring the mountain <em>to your menu</em></h1>
+      <p class="sub">Small-batch ice cream and sorbet for restaurants, caf&eacute;s and markets around Puget Sound. Pick your flavors and sizes, and we&rsquo;ll churn and deliver.</p>
+      <div class="w-hero-cta">
+        <a class="btn" href="#order">Build an order</a>
+        <a class="btn btn-ghost" href="tel:+13604260696">Call 360-426-0696</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SIZES ============ -->
+<section class="section sizes" id="sizes">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Sizes</p>
+      <h2 class="heading">Five sizes, <em>one standard</em></h2>
+      <p class="lede">The same small-batch recipes we&rsquo;ve churned since 1984, packed for the retail shelf, the dipping cabinet or the gelato case.</p>
+    </div>
+    <div class="size-grid">
+      <article class="size-card reveal" data-size="pint">
+        <div class="tub" aria-hidden="true"><svg width="44" height="54" viewBox="0 0 44 54"><path d="M6 11h32l-2 38a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#f6efe3" stroke="#c08a4d" stroke-width="2"/><rect x="3" y="4" width="38" height="9" rx="2.5" fill="#c08a4d"/></svg></div>
+        <div class="size-num">Pint<small>16 fl oz</small></div>
+        <h3>Retail freezer case</h3>
+        <p>Our signature pint, for markets and delis to stock and sell.</p>
+        <div class="size-meta"><span>&asymp; 4 scoops (4&nbsp;oz)</span><strong data-price="pint" hidden></strong></div>
+        <button class="btn btn-line" type="button" data-pick-size="pint">Order pints</button>
+      </article>
+      <article class="size-card reveal d1" data-size="quart">
+        <div class="tub" aria-hidden="true"><svg width="54" height="68" viewBox="0 0 54 68"><path d="M7 13h40l-2.5 49a3.5 3.5 0 0 1-3.5 3.5H13a3.5 3.5 0 0 1-3.5-3.5z" fill="#f6efe3" stroke="#c08a4d" stroke-width="2"/><rect x="3" y="5" width="48" height="10" rx="3" fill="#c08a4d"/></svg></div>
+        <div class="size-num">Quart<small>32 fl oz</small></div>
+        <h3>Take-home size</h3>
+        <p>A larger container for grocery and market freezers.</p>
+        <div class="size-meta"><span>&asymp; 8 scoops (4&nbsp;oz)</span><strong data-price="quart" hidden></strong></div>
+        <button class="btn btn-line" type="button" data-pick-size="quart">Order quarts</button>
+      </article>
+      <article class="size-card reveal d2" data-size="1.5">
+        <div class="tub" aria-hidden="true"><svg width="86" height="83" viewBox="0 0 86 83"><path d="M9 16h68l-7 61a4.5 4.5 0 0 1-4.5 4.5h-45A4.5 4.5 0 0 1 16 77z" fill="#f6efe3" stroke="#c08a4d" stroke-width="2"/><rect x="3" y="7" width="80" height="11" rx="3.5" fill="#c08a4d"/></svg></div>
+        <div class="size-num">1.5<small>Gallon</small></div>
+        <h3>Everyday dessert menus</h3>
+        <p>For restaurants and caf&eacute;s scooping a steady house flavor, or trying a seasonal special.</p>
+        <div class="size-meta"><span>&asymp; 45 scoops (4&nbsp;oz)</span><strong data-price="1.5" hidden></strong></div>
+        <button class="btn btn-line" type="button" data-pick-size="1.5">Order 1.5 gal tubs</button>
+      </article>
+      <article class="size-card reveal" data-size="3">
+        <div class="tub" aria-hidden="true"><svg width="100" height="96" viewBox="0 0 100 96"><path d="M10 18h80l-8 72a5 5 0 0 1-5 5H23a5 5 0 0 1-5-5z" fill="#f6efe3" stroke="#c08a4d" stroke-width="2"/><rect x="4" y="8" width="92" height="13" rx="4" fill="#c08a4d"/></svg></div>
+        <div class="size-num">3<small>Gallon</small></div>
+        <h3>High-volume service</h3>
+        <p>One full batch, for scoop shops, catering and events that move serious volume.</p>
+        <div class="size-meta"><span>&asymp; 90 scoops (4&nbsp;oz)</span><strong data-price="3" hidden></strong></div>
+        <button class="btn btn-line" type="button" data-pick-size="3">Order 3 gal tubs</button>
+      </article>
+      <article class="size-card reveal d1" data-size="pan">
+        <div class="tub" aria-hidden="true"><svg width="124" height="58" viewBox="0 0 124 58"><path d="M15 24c6-12 20-16 30-12 8-8 26-8 36 0 12-6 26-2 30 12z" fill="#fffdf8" stroke="#c08a4d" stroke-width="2"/><path d="M9 25h106l-5 27a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3z" fill="#f6efe3" stroke="#c08a4d" stroke-width="2"/><rect x="4" y="21" width="116" height="7" rx="2.5" fill="#c08a4d"/></svg></div>
+        <div class="size-num">Gelato<small>Pan</small></div>
+        <h3>Gelato display case</h3>
+        <p>A display pan for scooping in front of your customers.</p>
+        <div class="size-meta"><span>Display pan</span><strong data-price="pan" hidden></strong></div>
+        <button class="btn btn-line" type="button" data-pick-size="pan">Order gelato pans</button>
+      </article>
+    </div>
+    <p class="sizes-note reveal">Choose from all 238 flavors, plus custom flavors made to order. We&rsquo;ll confirm availability for each size with you.</p>
+  </div>
+</section>
+
+<!-- ============ ORDER BUILDER ============ -->
+<section class="section order" id="order">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Wholesale Order</p>
+      <h2 class="heading">Build your <em>order</em></h2>
+      <p class="lede">Add as many flavors and sizes as you need. Your order is saved on this device, so you can come back to it.</p>
+    </div>
+
+    <div class="order-layout">
+      <!-- Builder -->
+      <div class="builder" id="builder">
+        <div class="bstep">
+          <div class="bstep-h"><b>1</b><span>Base</span></div>
+          <fieldset class="seg" id="baseSeg">
+            <legend class="sr-only">Choose ice cream or sorbet</legend>
+            <input type="radio" name="base" id="base-ic" value="icecream" checked><label for="base-ic">Ice Cream <small>161</small></label>
+            <input type="radio" name="base" id="base-so" value="sorbet"><label for="base-so">Sorbet <small>77 &middot; dairy-free</small></label>
+          </fieldset>
+        </div>
+
+        <div class="bstep">
+          <div class="bstep-h"><b>2</b><span><label for="flavorInput">Flavor</label></span></div>
+          <div class="combo" id="combo">
+            <input id="flavorInput" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="flavorList" autocomplete="off" spellcheck="false" placeholder="Search 161 ice creams&hellip;">
+            <button class="combo-clear" id="flavorClear" type="button" aria-label="Clear flavor">&times;</button>
+            <ul class="combo-list" id="flavorList" role="listbox" aria-label="Flavors" hidden></ul>
+          </div>
+          <p class="flavor-hint" id="flavorHint" aria-live="polite"></p>
+          <div class="chips" id="chips"></div>
+        </div>
+
+        <div class="bstep">
+          <div class="bstep-h"><b>3</b><span>Size</span></div>
+          <fieldset class="seg sizes-seg" id="sizeSeg">
+            <legend class="sr-only">Choose a size</legend>
+            <input type="radio" name="size" id="size-pint" value="pint"><label for="size-pint">Pint</label>
+            <input type="radio" name="size" id="size-quart" value="quart"><label for="size-quart">Quart</label>
+            <input type="radio" name="size" id="size-1.5" value="1.5" checked><label for="size-1.5">1.5 gal</label>
+            <input type="radio" name="size" id="size-3" value="3"><label for="size-3">3 gal</label>
+            <input type="radio" name="size" id="size-pan" value="pan"><label for="size-pan">Gelato pan</label>
+          </fieldset>
+        </div>
+
+        <div class="bstep">
+          <div class="bstep-h"><b>4</b><span><label for="qtyInput">Quantity</label></span></div>
+          <div class="qty-row">
+            <div class="stepper">
+              <button type="button" id="qtyDown" aria-label="Decrease quantity">&minus;</button>
+              <input id="qtyInput" type="number" inputmode="numeric" min="1" max="99" value="1">
+              <button type="button" id="qtyUp" aria-label="Increase quantity">+</button>
+            </div>
+            <span class="qty-calc" id="qtyCalc"></span>
+          </div>
+        </div>
+
+        <div class="add-row">
+          <button class="btn" type="button" id="addBtn">Add to order</button>
+          <p class="add-msg" id="addMsg" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <!-- Summary / checkout -->
+      <form class="summary" id="summary" novalidate>
+        <h3><span>Your <em>order</em></span><small id="sumCount">0 items</small></h3>
+        <ul class="lines" id="lines"></ul>
+        <div class="empty" id="empty"><em>Nothing in the freezer yet.</em>Add a flavor on the left to get started.</div>
+        <div class="totals" id="totals" hidden>
+          <div><span>Total volume</span><strong id="totGal">0 gal</strong></div>
+          <div id="subRow" hidden><span>Estimated subtotal</span><strong id="totPrice"></strong></div>
+          <div id="estRow" hidden><span class="est">Shipping, delivery and tax are calculated at checkout.</span></div>
+        </div>
+
+        <fieldset class="details" style="border:0">
+          <legend>Business details</legend>
+          <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field full"><label for="d-biz">Business name</label><input id="d-biz" name="business" autocomplete="organization" required></div>
+          <div class="field"><label for="d-name">Contact name</label><input id="d-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="d-phone">Phone</label><input id="d-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="d-email">Email</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="d-date">Preferred delivery</label><input id="d-date" name="delivery_date" type="date"></div>
+          <div class="field full" id="addrField"><label for="d-addr">Delivery address</label><input id="d-addr" name="address" autocomplete="street-address" required></div>
+          <div class="field full"><label for="d-notes">Notes</label><textarea id="d-notes" name="notes" placeholder="Receiving hours, dock access, standing order&hellip;"></textarea></div>
+        </fieldset>
+
+        <div class="checkout">
+          <button class="btn" type="submit" id="checkoutBtn">Send wholesale order</button>
+          <p class="checkout-note" id="checkoutNote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.4 15.6L6.2 12.2l1.4-1.4 3 3 6.8-6.8 1.4 1.4-8.2 8.2z"/></svg><span>No payment now. We&rsquo;ll confirm availability, pricing and your delivery day with you directly.</span></p>
+          <div class="form-msg" id="formMsg" role="alert"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DELIVERY + FAQ ============ -->
+<section class="section serve" id="delivery">
+  <div class="wrap serve-grid">
+    <div class="reveal">
+      <p class="eyebrow">Delivery</p>
+      <h2 class="heading">Where we <em>deliver</em></h2>
+      <p class="lede">We deliver directly from our creamery at the Port of Shelton on regular routes. Further out, we reach you through our distribution partners.</p>
+      <div class="route">
+        <img src="images/four-flavors.webp" srcset="images/four-flavors-660.webp 660w, images/four-flavors.webp 1200w" sizes="(max-width: 900px) 92vw, 520px" alt="Four scoops of Olympic Mountain ice cream on a tasting plate" width="1200" height="548" loading="lazy" decoding="async">
+        <div class="route-body">
+          <h3>Direct delivery</h3>
+          <p>All around Hood Canal and Highway 101 north to Lilliwaup, all around Olympia, north on I-5 as far as Edmonds, and east to Redmond and Issaquah.</p>
+          <h3 style="margin-top:1.1rem">Through distributors</h3>
+          <ul><li>US Foods</li><li>Food Services of America</li><li>Liberty Dairy</li><li>Medosweet</li><li>Dairy Fresh Farms</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="reveal d1">
+      <p class="eyebrow">Wholesale FAQ</p>
+      <h2 class="heading" style="font-size:clamp(1.8rem,3.6vw,2.4rem)">Before you <em>order</em></h2>
+      <div class="faq-list" style="margin-top:1.8rem">
+        <details>
+          <summary>Can I mix flavors and sizes in one order?</summary>
+          <p class="faq-a">Yes. Add each flavor and size as its own line. You can combine ice creams and sorbets in any mix of pints, quarts, 1.5 and 3 gallon tubs and gelato pans.</p>
+        </details>
+        <details>
+          <summary>What if the flavor I want isn&rsquo;t listed?</summary>
+          <p class="faq-a">Type it into the flavor search and choose &ldquo;Request as a custom flavor.&rdquo; We love a challenge (we&rsquo;ve even made a Curry Oyster ice cream) and we&rsquo;ll confirm the details with you before churning.</p>
+        </details>
+        <details>
+          <summary>Are some flavors seasonal?</summary>
+          <p class="faq-a">Yes. Flavors tagged <span class="ftag ftag-s" style="margin:0">seasonal</span> are made in limited batches around the Pacific Northwest harvest. If one is out of season we&rsquo;ll call you about a substitute. Sorbets tagged <span class="ftag ftag-c" style="margin:0">booze</span> are made with wine or spirits and cost extra.</p>
+        </details>
+        <details>
+          <summary>Do your products contain allergens?</summary>
+          <p class="faq-a">Our base ice cream doesn&rsquo;t contain gluten, eggs or soy, but some inclusions do. All of our sorbets are dairy and egg free. Call <a href="tel:+13604260696">360-426-0696</a> about any specific flavor.</p>
+        </details>
+        <details>
+          <summary>Do I need an existing account to order?</summary>
+          <p class="faq-a">No. New businesses can order here directly. If you&rsquo;d like to set up standing deliveries or talk through your menu, call us at <a href="tel:+13604260696">360-426-0696</a>.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
+  <ul class="social" aria-label="Olympic Mountain Ice Cream on social media"><li><a href="https://www.facebook.com/OlympicMountainIceCream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.3h-3.2V8.4c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.3h2.8V22z"/></svg><span>Facebook</span></a></li><li><a href="https://www.instagram.com/olympicmountainicecream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></li></ul>
+  <p>Family Owned Since 1984 · 130 W Corporate Rd, Shelton, WA 98584</p>
+  <p class="fine">© <span id="year"></span> Olympic Mountain Ice Cream. All rights reserved.</p>
+</footer>
+
+<div class="obar" id="obar" aria-hidden="true">
+  <span>Your order &middot; <strong id="obarText">0 gal</strong></span>
+  <a class="btn" href="#summary" tabindex="-1">Review</a>
+</div>
+
+<script>
+/* =====================================================================
+   SHOPIFY SETUP: fill this in to turn on Shopify checkout
+   ---------------------------------------------------------------------
+   A Shopify developer/Partner account is NOT needed. This uses Shopify
+   "cart permalinks", which work on any regular Shopify store plan.
+
+   1. In Shopify admin, create a product, e.g. "Wholesale Ice Cream",
+      with a "Size" option and five variants: Pint, Quart,
+      1.5 Gallon, 3 Gallon, Gelato Pan. Set your wholesale price on each
+      variant. Optionally create a second product, "Wholesale Sorbet",
+      with the same five sizes.
+      The product must be available on the "Online Store" sales channel.
+   2. Find each variant ID: open the product in admin, click a variant, and
+      copy the number at the end of the URL (…/variants/44123456789012).
+   3. Paste your store domain and the variant IDs below and save the file.
+
+   When "domain" and the ice cream variants are filled in, the page sends
+   customers straight to Shopify's secure checkout with their containers in
+   the cart. Flavor choices, business name, phone and delivery date go into the
+   order note and attributes, so you'll see them on the order in Shopify admin.
+   While they're blank, orders are emailed to you as requests instead.
+
+   FREE DEV STORE (devStore: true)
+   A free dev store is always password protected and only takes TEST payments,
+   so real customers can't buy from it. With devStore: true, Shopify checkout
+   is used only when YOU open the page as wholesale.html?shopify-test (or on
+   localhost). Everyone else keeps the email-order flow. When you move to a
+   paid Shopify plan, put the new store's domain and variant IDs here and set
+   devStore: false to switch every visitor to Shopify checkout.
+   (Full steps: SHOPIFY-SETUP.md, next to the files folder.)
+   ===================================================================== */
+var SHOPIFY = {
+  devStore: true,             // true while the store is password-protected / in test mode (checkout only via ?shopify-test)
+  domain: "olympic-mountain-ice-cream.myshopify.com",
+  variants: {
+    // Shopify checkout turns on once every size below has a variant ID.
+    icecream: { pint: "67987947651317", quart: "67987947618549", "1.5": "67987947520245", "3": "67987947553013", pan: "67987947585781" },
+    sorbet:   { pint: "", quart: "", "1.5": "", "3": "", pan: "" }   // leave blank to use the ice cream variants
+  },
+  // Display prices only (Shopify charges the price set in admin). Use numbers, e.g. 48.
+  // Leave a size null to hide its price; the estimated subtotal shows only when every size in the order has a price.
+  // Retail price list. TODO (owner to revisit): delivery pricing. The "Standard" list
+  // (pint 4.65, quart 9.99, 1.5 gal 45.70, 3 gal 88.40, gelato pan 33.50) is the
+  // delivery price, but how it applies to orders isn't decided yet, so it isn't used.
+  prices: { pint: 6.75, quart: 13.25, "1.5": 49.50, "3": 95.80, pan: 39.00 },
+  currency: "USD"
+};
+
+/* Request-mode email delivery (same Web3Forms key as the home-page order form) */
+var WEB3FORMS_KEY = "23aff677-d78f-4997-9eb7-50157f79d02d";
+
+/* Flavor library, generated from the home page lists. Tags: p=popular, s=seasonal, c=booze */
+var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordeaux Cherry|s","Amaretto Cherry Swirl","Amaretto Hazelnut","Banana Chocolate Chip","Banana Cream Pie","Banana Macadamia Nut","Birthday Cake","Bittersweet Chocolate","Black Walnut","Blueberry–Huckleberry Cream","Bordeaux Cherry Chocolate Chip|p","Bordeaux Cherry Fudge Brownies","Brown Butter","Brownie Sundae","Bubble Gum","Butter Almond Toffee","Butter Macadamia Nut","Butter Pecan","Butterfingers","Butterscotch Almond Toffee|s","Butterscotch Brownie","Butterscotch Sundae","Caffe Viennese","Cappuccino Chip","Caramel Apple","Caramel Coconut","Caramel Pecan Chocolate Chip","Cheesecake (Raspberry / Blackberry / Blueberry)","Cherry Pie","Cherry Rum","Cherry Vanilla","Chocolate|p","Chocolate Banana","Chocolate Bavarian Mint","Chocolate Berry Swirl","Chocolate Caramel Almonds","Chocolate Cherry Marshmallows","Chocolate Chip","Chocolate Chip Cookie Dough","Chocolate Espresso Flake","Chocolate Fudge Brownies","Chocolate Fudge Swirl","Chocolate Grand Marnier","Chocolate Hazelnut","Chocolate Heath Bar Crunch","Chocolate Malt","Chocolate Mint Cup|s","Chocolate Orange Habanero","Chocolate Oreo","Chocolate Peanut Butter Cup","Chocolate Praline","Chocolate Silk Fudge Chunk","Cinnamon","Cinnamon Caramel Swirl","Coconut Almond","Coconut Almond Fudge Chunk","Coconut Almond Fudge Swirl","Coconut Caramel Swirl","Coffee Caramel Swirl","Coffee Heath Bar","Coffee Heath Bar Crunch|s","Coffee Oreo","Cookies ’n’ Cream","Cotton Candy","Crème Fraîche","Double Chip Mint","Double Chocolate Almond","Double Chocolate Brownie Rocky Road","Double Chocolate Truffle","Dulce de Leche","Dulce de Leche Salted Caramel","Espresso Flake","Espresso Fudge Pie","French Apple Pie","Fresh Banana","Fudge","Fudge Walnut","Ginger","Green Tea","Hazelnut","Heath Bar Crunch","Honey Lavender","Honey Vanilla Almond","Huckleberry Swirl","Irish Cream Butterscotch Swirl|s","Irish Cream Chocolate Chip|s","Kahlua Chip|p","Kentucky Pie|p","Key Lime Pie","Lemon Cheesecake Berry Swirl","Lemon Cookie","Lemon Cream Pie","Lemon Ginger","Lemon Lavender","Lemon Raspberry Swirl|s","Lemon White Chocolate Chip","Licorice","Madagascar Vanilla|p","Mango","Mango Pistacchio","Maple Nut","Mexican Kahlua Chocolate","Mint Brownies","Mint Chocolate Chip|p","Mint Mud Pie|s","Mint Oreo","Mocha Almond Fudge","Mud Pie","Northwest Berry Magic","Peaches in Cream (seasonal)","Peaches Melba (seasonal)","Peanut Butter Cookie Dough","Peanut Butter Fudge Swirl","Peanut Butter Fudge Truffle","Peanut Butter Oreo|p","Peanut Butter Pie","Peanut Butter Salted Caramel","Pecan Pie","Peppermint Candy","Pineapple Coconut","Pistacchio","Pistacchio Cherry Chocolate Chip","Praline","Raspberry","Raspberry Road","Red Bean","Rocky Road","Root Beer Float","Rum Raisin","Salted Caramel|p","Snickers","Spiced Banana","Spiced Custard Almond","Spiced Pecan","Strawberry","Strawberry Cheesecake|s","Strawberry Coconut","Strawberry Rhubarb Pie|s","Strawberry White Chocolate Chip","Thai Tea","Tin Roof Sundae","Toasted Coconut|p","Totally Nuts!","Turtle Brownie","Vanilla Habanero","Vanilla Malt Ball Crunch","Vanilla Rose","Vanilla Salted Caramel Swirl","Whiskey Caramel Praline|p","Whiskey Fudge Praline","White Chocolate","White Chocolate Almond / Hazelnut","White Chocolate Caramel Swirl","White Chocolate Espresso Flake","White Chocolate Fudge Truffles","White Chocolate Grasshopper|s","White Chocolate Raspberry Swirl","Zabaione","Zesty Orange Candied Ginger"],"soList":["Banana Pineapple","Berry Magic","Blackberry","Blackberry Cabernet|c","Blackberry Ginger","Blackberry Lemon|p","Blueberry","Blueberry Lemon","Blueberry Orange","Boysenberry|p","Cantaloupe|s","Champagne|c","Chocolate","Chocolate Espresso","Coconut","Coconut Almond","Coconut Lime|s","Cranberry","Cranberry Cider","Cranberry Orange","Cranberry Raspberry","Fuzzy Navel|s","Guava","Guava Lime","Honey Lavender|s","Honeydew|s","Lemon","Lemon Basil","Lemon Ginger","Lemon Lime","Lemon Mint","Lemon Rosemary","Lime","Mandarin Orange","Mango","Mango Guava","Mango Lemonade","Mango Margarita|c","Mango Passion Fruit","Mango Strawberry Ribbon|s","Marionberry","Mint Julep","Orange","Passion Fruit","Passion Fruit Guava","Passion Fruit Orange","Passion Fruit Orange Guava","Peach|s","Pear","Pear Champagne|c","Pear Lemon","Pear Spiced Cider","Pear with Raspberry/Blackberry Ribbon","Pina Colada","Pineapple","Pineapple Lime","Pink Champagne|c","Pink Grapefruit","Plum|s","Raspberry","Raspberry Lemon|p","Raspberry Orange|s","Rhubarb","Spiced Cider","Spiced Pear|p","Strawberry","Strawberry Banana","Strawberry Guava","Strawberry Lemonade","Strawberry Margarita|c","Strawberry Passion Fruit","Strawberry Rhubarb|ps","Tangerine","Tangerine Ginger","Tequila Lime|c","Tropical Punch","Watermelon|ps"]};
+
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- Nav ---------- */
+  var nav = $("nav");
+  function onNav(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onNav, {passive:true}); onNav();
+  var navToggle = $("navToggle"), navDrawer = $("navDrawer"), navScrim = $("navScrim");
+  function setMenu(open){
+    navDrawer.classList.toggle("open", open);
+    navScrim.classList.toggle("show", open);
+    document.body.classList.toggle("nav-open", open);
+    navDrawer.setAttribute("aria-hidden", open ? "false" : "true");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  navToggle.addEventListener("click", function(){ setMenu(!navDrawer.classList.contains("open")); });
+  navScrim.addEventListener("click", function(){ setMenu(false); });
+  navDrawer.addEventListener("click", function(e){ if(e.target.tagName === "A") setMenu(false); });
+
+  /* ---------- Nav markers + page sections bar ---------- */
+  function placeMarker(list, a){
+    if(!a || !a.offsetWidth){ list.style.setProperty("--mk-o", "0"); return; }
+    list.style.setProperty("--mk-x", a.offsetLeft + "px");
+    list.style.setProperty("--mk-w", a.offsetWidth + "px");
+    list.style.setProperty("--mk-o", "1");
+  }
+  var mainList = $("navLinks"), subnav = $("subnav"), subList = $("subnavLinks");
+  var subLinks = Array.prototype.slice.call(subList.querySelectorAll("a"));
+  var subSecs = subLinks.map(function(a){ return document.getElementById(a.getAttribute("href").slice(1)); });
+  var subCurrent;
+  function placeMain(){ placeMarker(mainList, mainList.querySelector('a[aria-current="page"]')); }
+  var lastNavH = -1, lastBarsH = -1;
+  function setNavHeight(){
+    var navH = nav.offsetHeight, barsH = navH + subnav.offsetHeight;   // read first...
+    if(navH !== lastNavH || barsH !== lastBarsH){                      // ...write only on change
+      var r = document.documentElement.style;
+      r.setProperty("--nav-h", navH + "px");
+      r.setProperty("--bars-h", barsH + "px");
+      lastNavH = navH; lastBarsH = barsH;
+    }
+    return navH;
+  }
+  function onSub(){
+    var navH = setNavHeight();
+    subnav.classList.toggle("show", $("top").getBoundingClientRect().bottom < navH + 8);
+    var line = window.innerHeight * 0.35, idx = -1;
+    subSecs.forEach(function(s, i){ if(s && s.getBoundingClientRect().top <= line) idx = i; });
+    if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = subSecs.length - 1;
+    if(idx === subCurrent) return;
+    subCurrent = idx;
+    subLinks.forEach(function(a, i){
+      a.classList.toggle("is-current", i === idx);
+      if(i === idx) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+    });
+    var cur = subLinks[idx];
+    placeMarker(subList, cur);
+    if(cur && subList.scrollWidth > subList.clientWidth){        // keep the current item visible on narrow screens
+      subList.scrollTo({left: Math.max(0, cur.offsetLeft - 16), behavior: reduced ? "auto" : "smooth"});
+    }
+  }
+  var subTick = false;
+  window.addEventListener("scroll", function(){
+    if(subTick) return; subTick = true;
+    requestAnimationFrame(function(){ onSub(); subTick = false; });
+  }, {passive:true});
+  window.addEventListener("resize", function(){ setNavHeight(); placeMain(); placeMarker(subList, subLinks[subCurrent]); });
+  nav.addEventListener("transitionend", setNavHeight);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ placeMain(); placeMarker(subList, subLinks[subCurrent]); });
+  setNavHeight(); placeMain(); onSub();
+
+  /* ---------- Reveals ---------- */
+  if("IntersectionObserver" in window && !reduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+  }
+  $("year").textContent = new Date().getFullYear();
+
+  /* ---------- Config ---------- */
+  var SIZES = ["pint","quart","1.5","3","pan"];
+  /* gal = volume in US gallons (null for gelato pans, which are counted, not measured) */
+  var SIZE_INFO = {
+    pint:  { label:"Pint",       one:"pint",       many:"pints",       gal:0.125 },
+    quart: { label:"Quart",      one:"quart",      many:"quarts",      gal:0.25 },
+    "1.5": { label:"1.5 gal",    gal:1.5 },
+    "3":   { label:"3 gal",      gal:3 },
+    pan:   { label:"Gelato pan", one:"gelato pan", many:"gelato pans", gal:null }
+  };
+  var fmtNum = function(n){ return String(Math.round(n * 1000) / 1000); };
+  /* "6 pints", "2 × 1.5 gal", "1 gelato pan" */
+  function countText(size, n){
+    var s = SIZE_INFO[size];
+    return s.one ? n + " " + (n === 1 ? s.one : s.many) : n + " × " + s.label;
+  }
+  /* "4.5 gal", "4.5 gal + 2 gelato pans" */
+  function volumeText(lines){
+    var gal = 0, pans = 0;
+    lines.forEach(function(l){
+      var g = SIZE_INFO[l.size].gal;
+      if(g === null) pans += l.qty; else gal += l.qty * g;
+    });
+    var parts = [];
+    if(gal > 0 || !pans) parts.push(fmtNum(gal) + " gal");
+    if(pans) parts.push(countText("pan", pans));
+    return parts.join(" + ");
+  }
+  function priceOf(size){ var p = SHOPIFY.prices[size]; return typeof p === "number" ? p : null; }
+  function variantFor(base, size){
+    var v = (SHOPIFY.variants[base] || {})[size];
+    if(!v) v = SHOPIFY.variants.icecream[size];
+    return String(v || "").replace(/\D/g, "");
+  }
+  var SHOP_CONFIGURED = !!SHOPIFY.domain && SIZES.every(function(s){ return variantFor("icecream", s); });
+  /* Dev-store test mode: only on ?shopify-test (remembered for this tab) or a local preview */
+  var TEST_ON = /[?&]shopify-test\b/.test(location.search) || location.protocol === "file:" ||
+                /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  try {
+    if(TEST_ON) sessionStorage.setItem("omic-shopify-test", "1");
+    else TEST_ON = sessionStorage.getItem("omic-shopify-test") === "1";
+  } catch(e){}
+  var SHOP_READY = SHOP_CONFIGURED && (!SHOPIFY.devStore || TEST_ON);
+  var SHOP_TEST = SHOP_READY && !!SHOPIFY.devStore;
+  var money = function(n){
+    try { return new Intl.NumberFormat("en-US", {style:"currency", currency:SHOPIFY.currency}).format(n); }
+    catch(e){ return "$" + n.toFixed(2); }
+  };
+  document.querySelectorAll("[data-price]").forEach(function(el){
+    var p = priceOf(el.getAttribute("data-price"));
+    if(p !== null){ el.textContent = money(p); el.hidden = false; }
+  });
+
+  /* ---------- Flavor data ---------- */
+  function parse(list){
+    return list.map(function(s){ var p = s.split("|"); return {name:p[0], tags:p[1] || ""}; })
+               .sort(function(a,b){ return a.name.localeCompare(b.name); });
+  }
+  var DATA = { icecream: parse(FLAVORS.icList), sorbet: parse(FLAVORS.soList) };
+  var BASE_LABEL = { icecream: "Ice cream", sorbet: "Sorbet" };
+  function findFlavor(base, name){
+    var n = name.trim().toLowerCase();
+    for(var i=0;i<DATA[base].length;i++) if(DATA[base][i].name.toLowerCase() === n) return DATA[base][i];
+    return null;
+  }
+  function tagHtml(t){
+    var h = "";
+    if(t.indexOf("p") > -1) h += '<span class="ftag ftag-p">&#9733; popular</span>';
+    if(t.indexOf("s") > -1) h += '<span class="ftag ftag-s">seasonal</span>';
+    if(t.indexOf("c") > -1) h += '<span class="ftag ftag-c">booze</span>';
+    return h;
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  /* ---------- Builder state ---------- */
+  var state = { base: "icecream", size: "1.5", qty: 1, flavor: null, custom: false };
+  var input = $("flavorInput"), listEl = $("flavorList"), combo = $("combo"), hint = $("flavorHint");
+  var active = -1, options = [];
+
+  function setBase(base, keepFlavor){
+    state.base = base;
+    $(base === "icecream" ? "base-ic" : "base-so").checked = true;
+    input.placeholder = "Search " + DATA[base].length + (base === "icecream" ? " ice creams…" : " sorbets…");
+    if(!keepFlavor && state.flavor && !findFlavor(base, state.flavor)) clearFlavor();
+    renderChips();
+  }
+  function setSize(size){
+    state.size = size;
+    $("size-" + size).checked = true;
+    updateCalc();
+  }
+  function selectFlavor(name, custom){
+    state.flavor = name; state.custom = !!custom;
+    input.value = name;
+    combo.classList.add("has-value");
+    closeList();
+    var f = custom ? null : findFlavor(state.base, name);
+    hint.classList.toggle("warn", !!custom);
+    if(custom) hint.textContent = "Custom flavor: we’ll confirm the recipe, timing and any batch minimum with you.";
+    else if(f && f.tags.indexOf("s") > -1) hint.textContent = "Seasonal flavor: if it’s out of season we’ll call you about a substitute.";
+    else if(f && f.tags.indexOf("c") > -1) hint.textContent = "Made with wine or spirits, so there’s an additional cost.";
+    else hint.textContent = "";
+    renderChips();
+  }
+  function clearFlavor(){
+    state.flavor = null; state.custom = false;
+    input.value = ""; combo.classList.remove("has-value");
+    hint.textContent = ""; hint.classList.remove("warn");
+    renderChips();
+  }
+
+  /* Combobox */
+  function openList(){
+    var q = input.value.trim().toLowerCase();
+    var src = DATA[state.base];
+    var matches = q ? src.filter(function(f){ return f.name.toLowerCase().indexOf(q) > -1; }) : src;
+    options = matches.map(function(f){ return {name:f.name, tags:f.tags}; });
+    if(q && !findFlavor(state.base, q)) options.push({name: input.value.trim(), custom:true});
+    var html = "";
+    options.forEach(function(o, i){
+      var id = "opt-" + i;
+      if(o.custom){
+        html += '<li id="'+id+'" role="option" class="custom" aria-selected="false" data-i="'+i+'">+ Request &ldquo;'+esc(o.name)+'&rdquo; as a custom flavor</li>';
+      } else {
+        var label = esc(o.name);
+        if(q){
+          var at = o.name.toLowerCase().indexOf(q);
+          label = esc(o.name.slice(0,at)) + "<mark>" + esc(o.name.slice(at, at+q.length)) + "</mark>" + esc(o.name.slice(at+q.length));
+        }
+        html += '<li id="'+id+'" role="option" aria-selected="false" data-i="'+i+'"><span>'+label+'</span>'+tagHtml(o.tags)+'</li>';
+      }
+    });
+    listEl.innerHTML = html;
+    listEl.hidden = options.length === 0;
+    input.setAttribute("aria-expanded", options.length ? "true" : "false");
+    active = -1; input.removeAttribute("aria-activedescendant");
+  }
+  function closeList(){
+    listEl.hidden = true; input.setAttribute("aria-expanded","false");
+    input.removeAttribute("aria-activedescendant"); active = -1;
+  }
+  function setActive(i){
+    var items = listEl.children;
+    if(!items.length) return;
+    if(active > -1 && items[active]) items[active].setAttribute("aria-selected","false");
+    active = (i + items.length) % items.length;
+    items[active].setAttribute("aria-selected","true");
+    items[active].scrollIntoView({block:"nearest"});
+    input.setAttribute("aria-activedescendant", items[active].id);
+  }
+  function choose(i){
+    var o = options[i]; if(!o) return;
+    selectFlavor(o.name, o.custom);
+  }
+  input.addEventListener("focus", openList);
+  input.addEventListener("click", function(){ if(listEl.hidden) openList(); });
+  input.addEventListener("input", function(){
+    state.flavor = null; state.custom = false;
+    combo.classList.toggle("has-value", !!input.value);
+    hint.textContent = ""; hint.classList.remove("warn");
+    renderChips(); openList();
+  });
+  input.addEventListener("keydown", function(e){
+    if(e.key === "ArrowDown"){ e.preventDefault(); if(listEl.hidden) openList(); setActive(active + 1); }
+    else if(e.key === "ArrowUp"){ e.preventDefault(); if(listEl.hidden) openList(); setActive(active - 1); }
+    else if(e.key === "Enter"){
+      e.preventDefault();
+      if(!listEl.hidden && active > -1) choose(active);
+      else if(!listEl.hidden && options.length === 1) choose(0);
+      else if(state.flavor) addLine();
+    }
+    else if(e.key === "Escape"){ closeList(); }
+  });
+  listEl.addEventListener("mousedown", function(e){ e.preventDefault(); });
+  listEl.addEventListener("click", function(e){
+    var li = e.target.closest("li"); if(li) choose(+li.getAttribute("data-i"));
+  });
+  document.addEventListener("click", function(e){ if(!combo.contains(e.target)) closeList(); });
+  $("flavorClear").addEventListener("click", function(){ clearFlavor(); input.focus(); });
+
+  /* Popular chips */
+  function renderChips(){
+    var pop = DATA[state.base].filter(function(f){ return f.tags.indexOf("p") > -1; });
+    var el = $("chips");
+    el.innerHTML = '<span class="chips-label">Popular picks</span>' + pop.map(function(f){
+      var on = state.flavor === f.name ? " on" : "";
+      return '<button type="button" class="chip'+on+'" data-flavor="'+esc(f.name)+'">'+esc(f.name)+'</button>';
+    }).join("");
+  }
+  $("chips").addEventListener("click", function(e){
+    var b = e.target.closest(".chip"); if(b) selectFlavor(b.getAttribute("data-flavor"));
+  });
+
+  /* Base / size / qty */
+  $("baseSeg").addEventListener("change", function(e){ if(e.target.name === "base") setBase(e.target.value); });
+  $("sizeSeg").addEventListener("change", function(e){ if(e.target.name === "size") setSize(e.target.value); });
+  var qtyInput = $("qtyInput");
+  function clampQty(n){ n = parseInt(n,10); return isNaN(n) ? 1 : Math.max(1, Math.min(99, n)); }
+  function setQty(n){ state.qty = clampQty(n); qtyInput.value = state.qty; updateCalc(); }
+  $("qtyDown").addEventListener("click", function(){ setQty(state.qty - 1); });
+  $("qtyUp").addEventListener("click", function(){ setQty(state.qty + 1); });
+  qtyInput.addEventListener("change", function(){ setQty(qtyInput.value); });
+  qtyInput.addEventListener("input", function(){ var n = parseInt(qtyInput.value,10); if(!isNaN(n)){ state.qty = clampQty(n); updateCalc(); } });
+  function updateCalc(){
+    var s = SIZE_INFO[state.size], t;
+    if(s.one){
+      t = "<strong>" + countText(state.size, state.qty) + "</strong>";
+      if(s.gal) t += " (" + fmtNum(state.qty * s.gal) + " gal)";
+    } else {
+      var gal = state.qty * s.gal;
+      t = countText(state.size, state.qty) + " = <strong>" + fmtNum(gal) + " gallon" + (gal === 1 ? "" : "s") + "</strong>";
+    }
+    var p = priceOf(state.size);
+    if(p !== null) t += " &middot; " + money(state.qty * p);
+    $("qtyCalc").innerHTML = t;
+  }
+
+  /* ---------- Cart ---------- */
+  var KEY = "omic-wholesale-order-v1";
+  var cart = [];
+  try { cart = JSON.parse(localStorage.getItem(KEY)) || []; } catch(e){ cart = []; }
+  if(!Array.isArray(cart)) cart = [];
+  cart = cart.filter(function(l){ return l && l.flavor && SIZES.indexOf(String(l.size)) > -1 && DATA[l.base]; });
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch(e){} }
+
+  var addMsg = $("addMsg"), addTimer;
+  function addLine(){
+    if(!state.flavor){
+      var typed = input.value.trim();
+      if(typed){
+        var match = findFlavor(state.base, typed);
+        if(match) selectFlavor(match.name); else selectFlavor(typed, true);
+      } else {
+        hint.textContent = "Choose a flavor first."; hint.classList.add("warn");
+        input.focus(); return;
+      }
+    }
+    var id = state.base + "|" + state.flavor.toLowerCase() + "|" + state.size;
+    var existing = cart.filter(function(l){ return l.id === id; })[0];
+    if(existing) existing.qty = Math.min(99, existing.qty + state.qty);
+    else cart.push({ id:id, base:state.base, flavor:state.flavor, size:state.size, qty:state.qty, custom:state.custom });
+    save(); render();
+    addMsg.textContent = "Added " + countText(state.size, state.qty) + " of " + state.flavor + ".";
+    clearTimeout(addTimer); addTimer = setTimeout(function(){ addMsg.textContent = ""; }, 3500);
+    clearFlavor(); setQty(1);
+  }
+  $("addBtn").addEventListener("click", addLine);
+
+  var linesEl = $("lines");
+  function render(){
+    var price = 0, priced = true;
+    linesEl.innerHTML = cart.map(function(l, i){
+      var p = priceOf(l.size);
+      if(p === null) priced = false; else price += l.qty * p;
+      var meta = BASE_LABEL[l.base] + " · " + SIZE_INFO[l.size].label + (l.custom ? " · custom" : "");
+      return '<li class="line" data-i="'+i+'">'
+        + '<div class="line-name">'+esc(l.flavor)+'<span class="line-meta">'+esc(meta)+'</span></div>'
+        + '<div class="stepper"><button type="button" data-act="dec" aria-label="Fewer '+esc(l.flavor)+'">&minus;</button>'
+        + '<input type="number" min="1" max="99" value="'+l.qty+'" aria-label="Quantity of '+esc(l.flavor)+', '+esc(SIZE_INFO[l.size].label)+'" data-act="set">'
+        + '<button type="button" data-act="inc" aria-label="More '+esc(l.flavor)+'">+</button></div>'
+        + '<button type="button" class="line-rm" data-act="rm" aria-label="Remove '+esc(l.flavor)+'">&times;</button>'
+        + '</li>';
+    }).join("");
+    var n = cart.length;
+    $("empty").hidden = n > 0;
+    $("totals").hidden = n === 0;
+    $("sumCount").textContent = n + (n === 1 ? " item" : " items");
+    var vol = volumeText(cart);
+    priced = priced && n > 0;
+    $("totGal").textContent = vol;
+    $("subRow").hidden = !priced;
+    $("estRow").hidden = !SHOP_READY;
+    if(priced) $("totPrice").textContent = money(price);
+    $("obarText").textContent = n + (n === 1 ? " item" : " items") + " · " + vol;
+    var so = $("subnavOrder");
+    so.hidden = n === 0;
+    so.innerHTML = "<b>" + esc(vol) + "</b> in your order";
+    updateBar();
+  }
+  linesEl.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    var i = +b.closest(".line").getAttribute("data-i"), act = b.getAttribute("data-act");
+    if(act === "inc") cart[i].qty = Math.min(99, cart[i].qty + 1);
+    if(act === "dec"){ cart[i].qty -= 1; if(cart[i].qty < 1) cart.splice(i,1); }
+    if(act === "rm") cart.splice(i,1);
+    save(); render();
+  });
+  linesEl.addEventListener("change", function(e){
+    if(e.target.getAttribute("data-act") !== "set") return;
+    var i = +e.target.closest(".line").getAttribute("data-i");
+    cart[i].qty = clampQty(e.target.value);
+    save(); render();
+  });
+
+  /* Mobile order bar: visible when the order has items and the summary isn't on screen */
+  var obar = $("obar"), summaryVisible = false;
+  function updateBar(){ obar.classList.toggle("show", cart.length > 0 && !summaryVisible); }
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(en){ summaryVisible = en[0].isIntersecting; updateBar(); }, {threshold:.05}).observe($("summary"));
+  }
+
+  /* Size-card shortcuts */
+  function goBuilder(){
+    $("builder").scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"start"});
+  }
+  document.querySelectorAll("[data-pick-size]").forEach(function(b){
+    b.addEventListener("click", function(){
+      setSize(b.getAttribute("data-pick-size")); goBuilder();
+      setTimeout(function(){ input.focus({preventScroll:true}); }, reduced ? 0 : 600);
+    });
+  });
+
+  /* ---------- Checkout ---------- */
+  var form = $("summary"), msg = $("formMsg"), btn = $("checkoutBtn");
+  var d = new Date(); d.setDate(d.getDate() + 1);
+  $("d-date").min = d.toISOString().slice(0,10);
+
+  if(SHOP_READY){
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6z"/></svg>Continue to secure checkout';
+    $("checkoutNote").querySelector("span").textContent = SHOP_TEST
+      ? "Test checkout on your Shopify dev store. If Shopify asks for the store password, enter it, come back and press checkout again. Pay with Shopify’s test gateway; nothing is charged."
+      : "You’ll review and pay on Shopify’s secure checkout. Your flavors, business details and delivery date are attached to the order.";
+    var badge = document.createElement("span"); badge.className = "mode-badge" + (SHOP_TEST ? " test" : "");
+    badge.textContent = SHOP_TEST ? "Shopify test mode · dev store" : "Checkout powered by Shopify";
+    $("checkoutNote").after(badge);
+    $("addrField").hidden = true; $("d-addr").disabled = true;   // Shopify checkout collects the address
+  }
+
+  function orderText(){
+    return cart.map(function(l){
+      return countText(l.size, l.qty) + "  " + l.flavor + "  (" + BASE_LABEL[l.base] + (l.custom ? ", CUSTOM" : "") + ")";
+    }).join("\n");
+  }
+  function totalVol(){ return volumeText(cart); }
+  function showMsg(kind, html){ msg.className = "form-msg " + kind; msg.innerHTML = html; }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    msg.className = "form-msg";
+    if(!cart.length){
+      showMsg("err", "Add at least one flavor to your order first.");
+      goBuilder(); return;
+    }
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    var v = function(id){ return $(id).value.trim(); };
+
+    if(SHOP_READY){
+      var qtyByVariant = {}, order = [];
+      cart.forEach(function(l){
+        var vid = variantFor(l.base, l.size);
+        if(!qtyByVariant[vid]){ qtyByVariant[vid] = 0; order.push(vid); }
+        qtyByVariant[vid] += l.qty;
+      });
+      var path = order.map(function(vid){ return vid + ":" + qtyByVariant[vid]; }).join(",");
+      var note = "WHOLESALE ORDER, " + totalVol() + "\n" + orderText() + (v("d-notes") ? "\n\nNotes: " + v("d-notes") : "");
+      var params = [
+        ["note", note],
+        ["attributes[Business]", v("d-biz")],
+        ["attributes[Contact]", v("d-name")],
+        ["attributes[Phone]", v("d-phone")],
+        ["attributes[Preferred delivery]", v("d-date") || "Next available"],
+        ["checkout[email]", v("d-email")]
+      ].map(function(p){ return encodeURIComponent(p[0]) + "=" + encodeURIComponent(p[1]); }).join("&");
+      var domain = SHOPIFY.domain.replace(/^https?:\/\//, "").replace(/\/+$/, "");
+      btn.disabled = true; btn.textContent = "Opening checkout…";
+      window.location.assign("https://" + domain + "/cart/" + path + "?" + params);
+      return;
+    }
+
+    /* Request mode: email the order via Web3Forms */
+    var fd = new FormData();
+    fd.append("access_key", WEB3FORMS_KEY);
+    fd.append("subject", "Wholesale order: " + v("d-biz") + " (" + totalVol() + ")");
+    fd.append("from_name", "Olympic Mountain Ice Cream wholesale page");
+    fd.append("botcheck", form.botcheck.checked ? "on" : "");
+    fd.append("business", v("d-biz"));
+    fd.append("name", v("d-name"));
+    fd.append("email", v("d-email"));
+    fd.append("phone", v("d-phone"));
+    fd.append("preferred_delivery", v("d-date") || "Next available");
+    fd.append("delivery_address", v("d-addr"));
+    fd.append("total_volume", totalVol());
+    fd.append("order", orderText());
+    fd.append("notes", v("d-notes"));
+    btn.disabled = true; var label = btn.textContent; btn.textContent = "Sending…";
+    fetch("https://api.web3forms.com/submit", { method:"POST", headers:{Accept:"application/json"}, body:fd })
+      .then(function(r){ return r.json().then(function(j){ if(!r.ok || !j.success) throw new Error(j.message || "Failed"); }); })
+      .then(function(){
+        showMsg("ok", "<strong>Order received. Thank you!</strong> We’ll be in touch to confirm availability, pricing and your delivery day. Questions in the meantime? Call <a href=\"tel:+13604260696\">360-426-0696</a>.");
+        cart = []; save(); render();
+        form.querySelectorAll("textarea, input[type=date]").forEach(function(el){ el.value = ""; });
+      })
+      .catch(function(){
+        showMsg("err", "Something went wrong sending your order. Please try again, or call us at <a href=\"tel:+13604260696\">360-426-0696</a>.");
+      })
+      .then(function(){ btn.disabled = false; btn.textContent = label; });
+  });
+
+  /* ---------- Init ---------- */
+  /* Links like wholesale.html?size=10#order (from the home page) preselect a size */
+  var sizeParam = (location.search.match(/[?&]size=([a-z0-9.]+)/i) || [])[1];
+  setBase("icecream"); setSize(SIZES.indexOf(sizeParam) > -1 ? sizeParam : "1.5"); setQty(1); render();
+})();
+</script>
+</body>
+</html>

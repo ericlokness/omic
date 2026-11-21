@@ -4,13 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Olympic Mountain Ice Cream — Super-Premium Small-Batch Ice Cream &amp; Sorbet | Shelton, WA</title>
-<meta name="description" content="Family owned since 1984. Olympic Mountain Ice Cream crafts super-premium small-batch ice creams and sorbets in the Skokomish Valley from the freshest Pacific Northwest ingredients.">
+<meta name="description" content="Family owned since 1984. Olympic Mountain Ice Cream crafts super-premium small-batch ice creams and sorbets from the freshest Pacific Northwest ingredients. Visit our new creamery and scoop shop at 130 W Corporate Rd, Shelton, WA, open 10am–6pm daily.">
+<link rel="preload" as="image" href="images/logo-cream-v2.webp" fetchpriority="high">
+<link rel="ard" type="application/json" href="/.well-known/ard.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  "name": "Olympic Mountain Ice Cream",
+  "description": "Family-owned maker of super-premium, small-batch ice cream and sorbet since 1984. Creamery and scoop shop at the Port of Shelton, Washington.",
+  "url": "https://olympicmountainicecream.pages.dev/",
+  "logo": "https://olympicmountainicecream.pages.dev/images/logo-cream-v2.webp",
+  "image": "https://olympicmountainicecream.pages.dev/images/creamery-exterior.webp",
+  "telephone": "+1-360-426-0696",
+  "foundingDate": "1984",
+  "address": {"@type": "PostalAddress", "streetAddress": "130 W Corporate Rd", "addressLocality": "Shelton", "addressRegion": "WA", "postalCode": "98584", "addressCountry": "US"},
+  "geo": {"@type": "GeoCoordinates", "latitude": 47.24773, "longitude": -123.15019},
+  "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "10:00", "closes": "18:00"}],
+  "servesCuisine": ["Ice cream", "Sorbet"],
+  "sameAs": ["https://www.facebook.com/OlympicMountainIceCream/", "https://www.instagram.com/olympicmountainicecream/"]
+}
+</script>
 <style>
 :root{
+  /* Text-safe copper shades for light backgrounds (WCAG AA): small text 4.5:1+, large display 3:1+ */
+  --accent-text:#8a5a28;
+  --accent-display:#a8733a;
+  --btn:#9e6a32;
+  --btn-hover:#8a5a28;
   --midnight:#0a1424;
   --dusk:#16283f;
   --horizon:#24405f;
@@ -28,7 +53,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.7;overflow-x:hidden}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 ::selection{background:var(--copper);color:#fff}
 
@@ -37,10 +62,13 @@ a{color:inherit}
 .nav.scrolled{background:rgba(10,20,36,.92);backdrop-filter:blur(10px);box-shadow:0 2px 24px rgba(0,0,0,.35);padding:.65rem clamp(1.2rem,4vw,3rem)}
 .nav-brand img{height:44px;width:auto;transition:height .4s ease}
 .nav.scrolled .nav-brand img{height:36px}
-.nav-links{display:flex;gap:2.2rem;list-style:none}
-.nav-links a{color:var(--snow);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:4px}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--copper-bright);transition:width .3s ease}
-.nav-links a:hover::after{width:100%}
+.nav-links{display:flex;gap:2.2rem;list-style:none;position:relative}
+.nav-links a{color:var(--snow);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color .25s ease}
+.nav-links a:hover,.nav-links a.is-current{color:var(--copper-bright)}
+/* One copper marker slides to the link for the section you're reading */
+.nav-links::after{content:"";position:absolute;left:0;bottom:-3px;height:2px;border-radius:2px;background:var(--copper-bright);width:var(--mk-w,0px);transform:translateX(var(--mk-x,0px));opacity:var(--mk-o,0);transition:transform .45s cubic-bezier(.4,0,.2,1),width .45s cubic-bezier(.4,0,.2,1),opacity .3s ease;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.nav-links::after{transition:opacity .3s ease}}
+@media(min-width:761px) and (max-width:1100px){.nav-links{gap:1.3rem}.nav-links a{font-size:.74rem;letter-spacing:.1em}}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
 .nav-toggle span{display:block;width:26px;height:2px;background:var(--snow);border-radius:2px;margin:5px auto;transition:transform .35s ease,opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -52,10 +80,10 @@ a{color:inherit}
   .hero-scroll::after{height:30px}
   .nav-toggle{display:block}
   .nav-links{display:none}
-  .nav-drawer{display:flex;position:fixed;top:0;right:0;bottom:0;left:auto;width:min(78vw,320px);height:100vh;height:100dvh;flex-direction:column;justify-content:center;gap:2rem;list-style:none;margin:0;background:rgba(10,20,36,.98);backdrop-filter:blur(14px);padding:2rem 2.4rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:110}
-  .nav-drawer.open{transform:translateX(0)}
+  .nav-drawer{display:flex;position:fixed;top:0;right:0;bottom:0;left:auto;width:min(78vw,320px);height:100vh;height:100dvh;flex-direction:column;justify-content:center;gap:2rem;list-style:none;margin:0;background:rgba(10,20,36,.98);backdrop-filter:blur(14px);padding:2rem 2.4rem;transform:translateX(100%);visibility:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s linear .4s;box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:110}
+  .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s}
   .nav-drawer a{color:var(--snow);text-decoration:none;font-size:1.05rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-  .nav-drawer a:hover{color:var(--copper-bright)}
+  .nav-drawer a:hover,.nav-drawer a.is-current{color:var(--copper-bright)}
   body.nav-open{overflow:hidden}
   .nav-scrim{position:fixed;inset:0;background:rgba(6,12,24,.5);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;z-index:105}
   .nav-scrim.show{opacity:1;visibility:visible}
@@ -70,7 +98,8 @@ a{color:inherit}
 .hero-stars span{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;animation:twinkle var(--d,4s) ease-in-out var(--dl,0s) infinite}
 @keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--o,.9)}}
 .hero-inner{position:relative;z-index:2;text-align:center;padding:0 1.5rem;max-width:820px}
-.hero-logo{width:min(500px,82vw);margin:0 auto 1.6rem;filter:drop-shadow(0 6px 30px rgba(0,0,0,.55));opacity:0;animation:riseIn 1.4s ease .3s forwards}
+.hero-logo{width:min(500px,82vw);margin:0 auto 1.6rem;filter:drop-shadow(0 6px 30px rgba(0,0,0,.55));animation:logoRise 1.4s cubic-bezier(.19,1,.22,1) both}
+@keyframes logoRise{from{transform:translateY(22px)}to{transform:translateY(0)}}
 .hero-rule{width:120px;height:1px;margin:0 auto 1.4rem;background:linear-gradient(90deg,transparent,var(--copper-bright),transparent);opacity:0;animation:riseIn 1.2s ease .8s forwards}
 .hero-tag{color:var(--glacier);font-size:clamp(1rem,2.2vw,1.25rem);font-weight:400;letter-spacing:.02em;opacity:0;animation:riseIn 1.2s ease 1s forwards}
 .hero-tag em{font-family:var(--display);font-style:italic;color:var(--cream)}
@@ -96,9 +125,9 @@ a{color:inherit}
 /* ---------- Shared section bits ---------- */
 .section{padding:clamp(4.5rem,9vw,7.5rem) clamp(1.2rem,5vw,3rem)}
 .wrap{max-width:1120px;margin:0 auto}
-.eyebrow{color:var(--copper);font-size:.76rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1rem}
+.eyebrow{color:var(--accent-text);font-size:.76rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1rem}
 .heading{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.12;letter-spacing:-.01em}
-.heading em{font-style:italic;color:var(--copper)}
+.heading em{font-style:italic;color:var(--accent-display)}
 .cv-auto{content-visibility:auto;contain-intrinsic-size:1px 1200px}
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.19,1,.22,1)}
 .reveal.in{opacity:1;transform:none}
@@ -117,7 +146,7 @@ a{color:inherit}
 .flavor-collage img{width:100%;height:100%;object-fit:cover}
 .flavor-body{padding:clamp(1.6rem,3vw,2.4rem)}
 .flavor-title{font-family:var(--display);font-size:1.7rem;font-weight:500;display:flex;align-items:baseline;gap:.8rem}
-.flavor-count{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--copper)}
+.flavor-count{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text)}
 .flavor-list{list-style:none;margin-top:1.4rem;columns:1}
 .flavor-list li{padding:.62rem .1rem;border-bottom:1px dotted rgba(192,138,77,.45);font-size:1.02rem;font-weight:500;letter-spacing:.01em;display:flex;align-items:center;gap:.65rem}
 .flavor-list li:last-child{border-bottom:none}
@@ -164,10 +193,19 @@ a{color:inherit}
 .contact-card .big{font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.1rem);color:var(--snow);text-decoration:none;transition:color .3s ease}
 a.big:hover{color:var(--copper-bright)}
 .contact-card address{font-style:normal;font-size:1.08rem;line-height:1.8;color:var(--snow)}
+.hero,.gallery,.pint,.story,.contact,.footer{--accent-text:var(--copper);--accent-display:var(--copper)}
 .footer{background:var(--midnight);text-align:center;padding:3.2rem 1.5rem 2.6rem;position:relative}
 .footer img{width:min(280px,66vw);margin:0 auto 1.4rem;opacity:.94}
 .footer p{color:var(--glacier);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
-.footer .fine{margin-top:.9rem;letter-spacing:.04em;text-transform:none;font-size:.78rem;color:#5f7691}
+.social{list-style:none;display:flex;justify-content:center;gap:1.6rem;margin:0 0 1.5rem}
+.social a{display:inline-flex;align-items:center;gap:.5rem;color:var(--glacier);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;transition:color .25s ease}
+.social a:hover,.social a:focus-visible{color:var(--copper-bright)}
+.social svg{width:22px;height:22px}
+.contact-follow{margin-top:1.8rem}
+.social-card{justify-content:flex-start;margin:0}
+.social-card a{color:var(--snow);font-size:.9rem}
+
+.footer .fine{margin-top:.9rem;letter-spacing:.04em;text-transform:none;font-size:.78rem;color:#8299b3}
 
 /* ---------- Flavor library ---------- */
 .flavor-search{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;margin:0 0 2.4rem}
@@ -185,8 +223,8 @@ a.big:hover{color:var(--copper-bright)}
 @media(max-width:480px){.flavor-cols{column-count:1}}
 .flavor-cols li{break-inside:avoid;-webkit-column-break-inside:avoid;padding:.4rem .1rem;border-bottom:1px dotted rgba(192,138,77,.35);font-size:.95rem;line-height:1.4}
 .ftag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1em .5em;border-radius:999px;white-space:nowrap;line-height:1.4;vertical-align:middle;margin-left:.35em}
-.ftag-seasonal{background:rgba(127,185,66,.16);color:#5c8a2e;border:1px solid rgba(127,185,66,.5)}
-.ftag-cost{background:rgba(192,138,77,.14);color:var(--copper);border:1px solid rgba(192,138,77,.5)}
+.ftag-seasonal{background:rgba(127,185,66,.16);color:#456b21;border:1px solid rgba(127,185,66,.5)}
+.ftag-cost{background:rgba(192,138,77,.14);color:var(--accent-text);border:1px solid rgba(192,138,77,.5)}
 .ftag-popular{background:rgba(139,92,190,.15);color:#7d4fb0;border:1px solid rgba(139,92,190,.5)}
 .ftag-popular::before{content:"\2605";margin-right:.28em;font-size:.9em;line-height:1}
 /* Mobile flavor view: show only popular flavors until "Show all" is tapped */
@@ -196,8 +234,8 @@ a.big:hover{color:var(--copper-bright)}
   .flavor-cols .is-popular ~ li:not(.is-popular){}
   .flavor-cols:not(.show-all) li:not(.is-popular){display:none}
   .flavor-cols:not(.show-all){margin-bottom:.4rem}
-  .flavor-showall{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;background:none;border:1px solid rgba(192,138,77,.55);color:var(--copper);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;transition:background .25s ease,color .25s ease}
-  .flavor-showall:hover{background:var(--copper);color:#fff}
+  .flavor-showall{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;background:none;border:1px solid rgba(192,138,77,.55);color:var(--accent-text);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;transition:background .25s ease,color .25s ease}
+  .flavor-showall:hover{background:var(--btn-hover);color:#fff}
   .flavor-showall[hidden]{display:none}
   .flavor-legend-popular{display:block}
 }
@@ -205,9 +243,9 @@ a.big:hover{color:var(--copper-bright)}
 .flavor-none{display:none;font-family:var(--display);font-style:italic;color:var(--ink-soft);margin-top:.8rem}
 .custom-callout{max-width:760px;margin:2.6rem auto 0;text-align:center;background:#fffdf8;border:1px dashed rgba(192,138,77,.6);border-radius:14px;padding:clamp(1.6rem,3vw,2.2rem)}
 .custom-callout h3{font-family:var(--display);font-weight:500;font-size:1.5rem;margin-bottom:.5rem}
-.custom-callout h3 em{font-style:italic;color:var(--copper)}
+.custom-callout h3 em{font-style:italic;color:var(--accent-display)}
 .custom-callout p{color:var(--ink-soft)}
-.custom-callout a{color:var(--copper);font-weight:700;text-decoration:none}
+.custom-callout a{color:var(--accent-text);font-weight:700;text-decoration:none}
 .custom-callout a:hover{text-decoration:underline}
 /* ---------- Pint gallery ---------- */
 .pint-gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1200px;margin:2.5rem auto 0;background:#000}
@@ -232,10 +270,10 @@ a.big:hover{color:var(--copper-bright)}
 .loc-county li a{color:var(--ink);text-decoration:none;transition:color .25s ease}
 .loc-county li a:hover{color:var(--copper)}
 .loc-county li a::after{content:"\2197";font-size:.7em;margin-left:.3em;color:var(--copper);opacity:.7}
-.loc-pint{color:var(--copper);font-weight:700}
+.loc-pint{color:var(--accent-text);font-weight:700}
 .loc-hint{font-size:.85rem;color:var(--ink-soft);margin:.2rem 0 1.2rem}
-.loc-hint b{color:var(--copper)}
-.retail-title em{font-style:italic;color:var(--copper)}
+.loc-hint b{color:var(--accent-text)}
+.retail-title em{font-style:italic;color:var(--accent-display)}
 .retailers{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem}
 .retailers li{border:1px solid rgba(192,138,77,.32);border-radius:10px;padding:.85rem 1.1rem;background:#fffdf8;font-size:.95rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 10px 30px -22px rgba(34,41,58,.4)}
 .retailers li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper);flex-shrink:0}
@@ -244,10 +282,48 @@ a.big:hover{color:var(--copper-bright)}
 .map-legend{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center;margin-bottom:.4rem;font-size:.85rem;color:var(--ink-soft)}
 .map-legend span{display:inline-flex;align-items:center;gap:.45rem}
 .map-legend i{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2)}
-.map-note{font-size:.8rem;color:var(--ink-soft);opacity:.85;margin-bottom:.4rem}
+.map-legend i.lg-home{width:16px;height:16px;background:#0a1424;border:3px solid #d9a96a;box-shadow:none}
+.contact-hours{margin-top:.6rem;color:var(--glacier);font-size:.98rem}
+/* ---------- Visit (new creamery + shop) ---------- */
+.visit{background:var(--cream)}
+.visit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+@media(max-width:860px){.visit-grid{grid-template-columns:1fr}}
+.visit .heading{text-wrap:balance}
+.visit-text>p:not(.eyebrow){color:var(--ink-soft);font-size:1.05rem;margin-top:1.1rem;max-width:34rem}
+.visit-facts{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(192,138,77,.45);max-width:34rem}
+@media(max-width:480px){.visit-facts{grid-template-columns:1fr}}
+.visit-facts dt{font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-text);margin-bottom:.35rem}
+.visit-facts dd{font-family:var(--display);font-size:1.2rem;line-height:1.4;color:var(--ink)}
+.visit-cta{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-top:1.9rem}
+.visit-btn{display:inline-flex;align-items:center;background:var(--midnight);color:var(--cream);text-decoration:none;border-radius:999px;padding:.95rem 1.9rem;font-weight:700;font-size:.92rem;letter-spacing:.04em;transition:background .25s ease}
+.visit-btn:hover{background:var(--horizon)}
+.visit-call{color:var(--ink-soft);font-size:.98rem;text-decoration:none;border-bottom:1px solid rgba(192,138,77,.55);padding-bottom:1px}
+.visit-call:hover{color:var(--copper)}
+/* Snapshot prints: cream paper frame, gentle tilt, warm grade so phone photos sit in the palette */
+.snap{margin:0;background:#fffdf8;padding:10px 10px .85rem;border:1px solid rgba(192,138,77,.3);box-shadow:0 22px 45px -24px rgba(34,41,58,.45);transform:rotate(var(--tilt,0deg));transition:transform .5s ease,box-shadow .5s ease}
+.snap:hover{transform:rotate(0deg) scale(1.02);box-shadow:0 30px 55px -26px rgba(34,41,58,.5)}
+.snap-photo{position:relative;overflow:hidden;background:var(--cream-deep)}
+.snap-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+/* Subtle wash in the site's colors: a hint of copper at the top, fading to midnight at the bottom */
+.snap-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(217,169,106,.14) 0%,rgba(217,169,106,0) 38%,rgba(10,20,36,0) 62%,rgba(10,20,36,.26) 100%)}
+.snap-sky img{aspect-ratio:3/2;object-position:50% 72%}
+.visit-photos{position:relative;padding-bottom:37%}
+.snap-main{width:88%;margin:0 auto}
+.snap-inset{position:absolute;left:0;bottom:0;width:47%;z-index:1}
+.snap-inset-r{left:auto;right:0;bottom:4%;z-index:2}
+@media(max-width:860px){.visit-photos{margin-top:.5rem}}
+.snap figcaption{text-align:center;font-family:var(--display);font-style:italic;font-size:1rem;padding-top:.7rem;color:var(--ink-soft)}
+@media(prefers-reduced-motion:reduce){.snap,.snap:hover{transition:none}}
+@media(max-width:640px){.snap{padding:7px 7px .6rem}.snap figcaption{font-size:.8rem;line-height:1.3;padding-top:.45rem}.snap-main{width:94%}.visit-photos{padding-bottom:42%}.snap-inset{width:49%}}
+.hero-news{display:inline-block;margin-top:1.4rem;color:var(--cream);font-size:.9rem;text-decoration:none;border:1px solid rgba(217,169,106,.6);border-radius:999px;padding:.45rem 1.1rem;background:rgba(10,20,36,.35);opacity:0;animation:riseIn 1.2s ease 1.4s forwards;transition:background .25s ease,border-color .25s ease}
+.hero-news:hover{background:rgba(192,138,77,.3);border-color:var(--copper-bright)}
+@media(prefers-reduced-motion:reduce){.hero-news{opacity:1;animation:none}}
+.leaflet-tooltip.home-tip{font-weight:700;color:#0a1424;border-color:#d9a96a}
+
+.map-note{font-size:.8rem;color:var(--ink-soft);margin-bottom:.4rem}
 .leaflet-popup-content{font-family:var(--body);margin:.7rem .9rem}
 .leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
-.leaflet-popup-content a{color:var(--copper);font-weight:700;text-decoration:none}
+.leaflet-popup-content a{color:var(--accent-text);font-weight:700;text-decoration:none}
 .leaflet-attribution-flag{display:none!important}
 .leaflet-control-attribution{background:transparent!important;font-size:7.5px!important;line-height:1.2!important;padding:0 3px!important;color:rgba(90,82,70,.45)!important;box-shadow:none!important;opacity:.55;transition:opacity .3s ease}
 .leaflet-control-attribution:hover{opacity:.9}
@@ -271,7 +347,7 @@ a.big:hover{color:var(--copper-bright)}
 .pints-list a::after,.retailers a::after{content:"\2197";font-size:.7em;margin-left:.35em;color:var(--copper);opacity:.75}
 .pints-none{display:none;color:var(--ink-soft);font-style:italic;font-family:var(--display);font-size:1.05rem;margin-top:.5rem}
 .pints-foot{margin-top:2.2rem;color:var(--ink-soft);font-size:.95rem;max-width:640px}
-.pints-foot a{color:var(--copper);text-decoration:none}
+.pints-foot a{color:var(--accent-text);text-decoration:none}
 .pints-foot a:hover{text-decoration:underline}
 
 /* ---------- Reviews / Award ---------- */
@@ -292,6 +368,28 @@ a.big:hover{color:var(--copper-bright)}
 .award-photo{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.8);border:1px solid rgba(192,138,77,.3)}
 .award-photo img{width:100%;display:block}
 .award-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.2rem .8rem;font-size:.76rem;letter-spacing:.04em;color:rgba(255,255,255,.82);background:linear-gradient(transparent,rgba(0,0,0,.7))}
+/* ---------- Wholesale (doorway to wholesale.html) ---------- */
+.ws-home{background:var(--cream-deep)}
+.ws-home-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2.5rem,6vw,5rem);align-items:end}
+@media(max-width:860px){.ws-home-grid{grid-template-columns:1fr}}
+.ws-home .heading{text-wrap:balance}
+.ws-home-text p:not(.eyebrow){color:var(--ink-soft);font-size:1.05rem;margin-top:1.1rem;max-width:34rem}
+.ws-home-cta{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-top:2rem}
+.ws-home-btn{display:inline-flex;align-items:center;background:var(--midnight);color:var(--cream);text-decoration:none;border-radius:999px;padding:.95rem 1.9rem;font-weight:700;font-size:.92rem;letter-spacing:.04em;transition:background .25s ease}
+.ws-home-btn:hover{background:var(--horizon)}
+.ws-home-call{color:var(--ink-soft);font-size:.98rem;text-decoration:none;border-bottom:1px solid rgba(192,138,77,.55);padding-bottom:1px}
+.ws-home-call:hover{color:var(--copper)}
+/* The three containers stand on one shelf line, drawn at true relative size */
+.ws-tubs{list-style:none;display:flex;align-items:flex-end;justify-content:space-between;gap:.4rem;border-bottom:2px solid var(--ink);max-width:640px;width:100%;justify-self:end}
+.ws-tubs li{flex:0 1 auto;min-width:0}
+@media(max-width:860px){.ws-tubs{justify-self:stretch;max-width:none}}
+.ws-tubs a{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--ink);padding:0 .2rem;border-radius:8px 8px 0 0}
+.ws-tubs b{font-family:var(--display);font-weight:400;font-size:clamp(.95rem,1.9vw,1.3rem);line-height:1.15;text-align:center;margin-bottom:.7rem;white-space:nowrap}
+.ws-tubs svg{display:block;max-width:100%;height:auto;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.ws-tubs a:hover svg,.ws-tubs a:focus-visible svg{transform:translateY(-8px)}
+.ws-tubs a:hover b,.ws-tubs a:focus-visible b{color:var(--copper)}
+@media(max-width:560px){.ws-tubs{flex-wrap:wrap;column-gap:0;row-gap:1.6rem;border-bottom:0}.ws-tubs li{flex:0 0 33.333%;display:flex;justify-content:center;align-items:flex-end;border-bottom:2px solid var(--ink)}}
+
 /* ---------- FAQ ---------- */
 .faq{background:var(--cream)}
 .faq-list{max-width:820px;margin:2.6rem auto 0}
@@ -302,7 +400,7 @@ a.big:hover{color:var(--copper-bright)}
 .faq summary::after{content:"+";font-family:var(--display);font-size:1.5rem;font-weight:400;color:var(--copper);flex-shrink:0;line-height:1;transition:transform .3s ease}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq .faq-a{padding:0 1.4rem 1.3rem;color:var(--ink-soft)}
-.faq .faq-a a{color:var(--copper)}
+.faq .faq-a a{color:var(--accent-text)}
 
 /* ---------- Order form ---------- */
 .order-card{grid-column:1/-1;border:1px solid rgba(169,192,216,.25);border-radius:14px;padding:clamp(1.6rem,3.5vw,2.4rem);background:rgba(10,20,36,.45);backdrop-filter:blur(4px)}
@@ -313,16 +411,17 @@ a.big:hover{color:var(--copper-bright)}
 @media(max-width:640px){.order-grid{grid-template-columns:1fr}}
 .field{display:flex;flex-direction:column;gap:.35rem}
 .field.full{grid-column:1/-1}
+.field[hidden]{display:none}
 .field label{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--glacier)}
 .field input,.field select,.field textarea{background:rgba(10,20,36,.6);border:1px solid rgba(169,192,216,.35);border-radius:10px;padding:.8rem 1rem;color:var(--snow);font-family:var(--body);font-size:1rem;outline:none;transition:border-color .3s ease;width:100%}
 .field textarea{resize:vertical;min-height:110px}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--copper-bright)}
 .field select option{background:var(--midnight)}
 .order-submit{grid-column:1/-1;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:.4rem}
-.order-submit button{background:var(--copper);border:none;border-radius:999px;color:#fff;font-family:var(--body);font-weight:700;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;padding:.95rem 2.4rem;cursor:pointer;transition:background .3s ease,transform .2s ease}
-.order-submit button:hover{background:var(--copper-bright);transform:translateY(-1px)}
+.order-submit button{background:var(--btn);border:none;border-radius:999px;color:#fff;font-family:var(--body);font-weight:700;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;padding:.95rem 2.4rem;cursor:pointer;transition:background .3s ease,transform .2s ease}
+.order-submit button:hover{background:var(--btn-hover);transform:translateY(-1px)}
 .order-submit button:disabled{opacity:.55;cursor:default;transform:none}
-.order-note{font-size:.85rem;color:#5f7691}
+.order-note{font-size:.85rem;color:#8299b3}
 .hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none}
 .order-error{display:none;margin-top:.6rem;color:#c0392b;font-size:.9rem}
 .order-success{display:none;padding:1.2rem 1.4rem;border:1px solid rgba(192,138,77,.5);border-radius:10px;background:rgba(192,138,77,.12);color:var(--cream);grid-column:1/-1}
@@ -342,39 +441,46 @@ a.big:hover{color:var(--copper-bright)}
 
 <nav class="nav" id="nav">
   <a class="nav-brand" href="#top" aria-label="Olympic Mountain Ice Cream — home">
-    <img src="images/logo-cream.webp" alt="Olympic Mountain Ice Cream">
+    <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#flavors">Flavors</a></li>
+    <li><a href="#visit">Visit</a></li>
     <li><a href="#pints">Where to Find</a></li>
     <li><a href="#story">Story</a></li>
     <li><a href="#reviews">Reviews</a></li>
+    <li><a href="wholesale.html">Wholesale</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 <ul class="nav-drawer" id="navDrawer" aria-hidden="true">
   <li><a href="#flavors">Flavors</a></li>
+  <li><a href="#visit">Visit</a></li>
   <li><a href="#pints">Where to Find</a></li>
   <li><a href="#story">Story</a></li>
   <li><a href="#reviews">Reviews</a></li>
+  <li><a href="wholesale.html">Wholesale</a></li>
   <li><a href="#faq">FAQ</a></li>
   <li><a href="#contact">Contact</a></li>
 </ul>
 <div class="nav-scrim" id="navScrim"></div>
+
+<main id="main">
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-par" id="heroPar"><div class="hero-bg"></div></div>
   <div class="hero-stars" id="heroStars" aria-hidden="true"></div>
   <div class="hero-inner">
-    <img class="hero-logo" src="images/logo-cream.webp" alt="Olympic Mountain Ice Cream">
+    <img class="hero-logo" src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200" fetchpriority="high">
     <div class="hero-rule"></div>
-    <p class="hero-tag">Super-premium, small-batch ice creams &amp; sorbets, <em>crafted in the Skokomish Valley</em> from the Pacific Northwest harvest.</p>
+    <p class="hero-tag">Super-premium, small-batch ice creams &amp; sorbets, <em>born in the Skokomish Valley</em> and made from the Pacific Northwest harvest.</p>
     <p class="hero-since">Family Owned Since 1984</p>
+    <a class="hero-news" href="#visit">Our new creamery &amp; scoop shop is open in Shelton</a>
   </div>
   <a class="hero-scroll" href="#gallery"><span>Scoop In</span></a>
   <div class="hero-fade"></div>
@@ -385,18 +491,18 @@ a.big:hover{color:var(--copper-bright)}
   <p class="gallery-note reveal">Made by hand · Churned in small batches · Worth savoring</p>
   <div class="marquee">
     <div class="marquee-track" id="marqueeTrack">
-      <figure><img src="images/cherry-bordeaux.webp" alt="Amaretto Bordeaux cherry ice cream in a waffle cone" loading="lazy"></figure>
-      <figure><img src="images/four-flavors.webp" alt="Four scoops of ice cream on a tasting plate" loading="lazy"></figure>
-      <figure><img src="images/pistachio.webp" alt="Pistachio ice cream topped with roasted pistachios" loading="lazy"></figure>
-      <figure><img src="images/berry-cheesecake.webp" alt="Berry cheesecake ice cream with blackberry sauce" loading="lazy"></figure>
-      <figure><img src="images/cookies-cream.webp" alt="Cookies and cream ice cream with chocolate sandwich cookies" loading="lazy"></figure>
-      <figure><img src="images/summer-berries.webp" alt="Berry ice creams with fresh summer berries" loading="lazy"></figure>
-      <figure><img src="images/coffee-crunch.webp" alt="Coffee crunch ice cream cone held outdoors" loading="lazy"></figure>
-      <figure><img src="images/spumoni.webp" alt="Spoonful of spumoni ice cream" loading="lazy"></figure>
-      <figure><img src="images/strawberry-rhubarb.webp" alt="Strawberry rhubarb ice cream with fresh strawberries and rhubarb" loading="lazy"></figure>
-      <figure><img src="images/vanilla-pb-cup.webp" alt="Vanilla ice cream loaded with peanut butter cups" loading="lazy"></figure>
-      <figure><img src="images/bittersweet.webp" alt="Bittersweet chocolate ice cream in wooden bowls" loading="lazy"></figure>
-      <figure><img src="images/watermelon-sorbet.webp" alt="Watermelon sorbet with fresh watermelon slices" loading="lazy"></figure>
+      <figure><img src="images/cherry-bordeaux.webp" srcset="images/cherry-bordeaux-440.webp 440w, images/cherry-bordeaux-660.webp 660w, images/cherry-bordeaux.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Amaretto Bordeaux cherry ice cream in a waffle cone" loading="lazy"></figure>
+      <figure><img src="images/four-flavors.webp" srcset="images/four-flavors-440.webp 440w, images/four-flavors-660.webp 660w, images/four-flavors.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="548" alt="Four scoops of ice cream on a tasting plate" loading="lazy"></figure>
+      <figure><img src="images/pistachio.webp" srcset="images/pistachio-440.webp 440w, images/pistachio-660.webp 660w, images/pistachio.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Pistachio ice cream topped with roasted pistachios" loading="lazy"></figure>
+      <figure><img src="images/berry-cheesecake.webp" srcset="images/berry-cheesecake-440.webp 440w, images/berry-cheesecake-660.webp 660w, images/berry-cheesecake.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Berry cheesecake ice cream with blackberry sauce" loading="lazy"></figure>
+      <figure><img src="images/cookies-cream.webp" srcset="images/cookies-cream-440.webp 440w, images/cookies-cream-660.webp 660w, images/cookies-cream.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="749" alt="Cookies and cream ice cream with chocolate sandwich cookies" loading="lazy"></figure>
+      <figure><img src="images/summer-berries.webp" srcset="images/summer-berries-440.webp 440w, images/summer-berries-660.webp 660w, images/summer-berries.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="789" alt="Berry ice creams with fresh summer berries" loading="lazy"></figure>
+      <figure><img src="images/coffee-crunch.webp" srcset="images/coffee-crunch-440.webp 440w, images/coffee-crunch-660.webp 660w, images/coffee-crunch.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="895" alt="Coffee crunch ice cream cone held outdoors" loading="lazy"></figure>
+      <figure><img src="images/spumoni.webp" srcset="images/spumoni-440.webp 440w, images/spumoni-660.webp 660w, images/spumoni.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Spoonful of spumoni ice cream" loading="lazy"></figure>
+      <figure><img src="images/strawberry-rhubarb.webp" srcset="images/strawberry-rhubarb-440.webp 440w, images/strawberry-rhubarb-660.webp 660w, images/strawberry-rhubarb.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Strawberry rhubarb ice cream with fresh strawberries and rhubarb" loading="lazy"></figure>
+      <figure><img src="images/vanilla-pb-cup.webp" srcset="images/vanilla-pb-cup-440.webp 440w, images/vanilla-pb-cup-660.webp 660w, images/vanilla-pb-cup.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Vanilla ice cream loaded with peanut butter cups" loading="lazy"></figure>
+      <figure><img src="images/bittersweet.webp" srcset="images/bittersweet-440.webp 440w, images/bittersweet-660.webp 660w, images/bittersweet.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Bittersweet chocolate ice cream in wooden bowls" loading="lazy"></figure>
+      <figure><img src="images/watermelon-sorbet.webp" srcset="images/watermelon-sorbet-440.webp 440w, images/watermelon-sorbet-660.webp 660w, images/watermelon-sorbet.webp 1200w" sizes="(max-width: 846px) 220px, (max-width: 1269px) 26vw, 330px" width="1200" height="800" alt="Watermelon sorbet with fresh watermelon slices" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -415,9 +521,9 @@ a.big:hover{color:var(--copper-bright)}
     </div>
     <article class="flavor-block">
       <div class="flavor-strip">
-        <img src="images/mint-ball.webp" loading="eager" alt="Mint chocolate ice cream with malt balls" decoding="async">
-        <img src="images/rocky-road.webp" loading="eager" alt="Rocky road ice cream with marshmallow and almonds" decoding="async">
-        <img src="images/honeycomb.webp" loading="eager" alt="Honeycomb ice cream" decoding="async">
+        <img src="images/mint-ball.webp" srcset="images/mint-ball-480.webp 480w, images/mint-ball.webp 1200w" sizes="(max-width: 900px) 34vw, 200px" width="1200" height="800" loading="lazy" alt="Mint chocolate ice cream with malt balls" decoding="async">
+        <img src="images/rocky-road.webp" srcset="images/rocky-road-480.webp 480w, images/rocky-road.webp 1200w" sizes="(max-width: 900px) 34vw, 200px" width="1200" height="787" loading="lazy" alt="Rocky road ice cream with marshmallow and almonds" decoding="async">
+        <img src="images/honeycomb.webp" srcset="images/honeycomb-400.webp 400w, images/honeycomb.webp 600w" sizes="(max-width: 900px) 34vw, 200px" width="600" height="375" loading="lazy" alt="Honeycomb ice cream" decoding="async">
       </div>
       <div class="flavor-block-body">
         <h3 class="flavor-title">Ice Creams <span class="flavor-count" id="icCount">161 flavors</span></h3>
@@ -431,9 +537,9 @@ a.big:hover{color:var(--copper-bright)}
 
     <article class="flavor-block">
       <div class="flavor-strip">
-        <img src="images/orange-sherbet.webp" loading="eager" alt="Orange sherbet in a painted bowl" decoding="async">
-        <img src="images/plum-sorbet.webp" loading="eager" alt="Plum sorbet with fresh plums" decoding="async">
-        <img src="images/strawberry-rhubarb-sorbet.webp" loading="eager" alt="Strawberry rhubarb sorbet" decoding="async">
+        <img src="images/orange-sherbet.webp" srcset="images/orange-sherbet-480.webp 480w, images/orange-sherbet.webp 1200w" sizes="(max-width: 900px) 34vw, 200px" width="1200" height="800" loading="lazy" alt="Orange sherbet in a painted bowl" decoding="async">
+        <img src="images/plum-sorbet.webp" srcset="images/plum-sorbet-480.webp 480w, images/plum-sorbet.webp 1200w" sizes="(max-width: 900px) 34vw, 200px" width="1200" height="800" loading="lazy" alt="Plum sorbet with fresh plums" decoding="async">
+        <img src="images/strawberry-rhubarb-sorbet.webp" srcset="images/strawberry-rhubarb-sorbet-400.webp 400w, images/strawberry-rhubarb-sorbet.webp 600w" sizes="(max-width: 900px) 34vw, 200px" width="600" height="400" loading="lazy" alt="Strawberry rhubarb sorbet" decoding="async">
       </div>
       <div class="flavor-block-body">
         <h3 class="flavor-title">Sorbets <span class="flavor-count" id="soCount">77 flavors</span></h3>
@@ -454,15 +560,50 @@ a.big:hover{color:var(--copper-bright)}
 
 <!-- ============ PINT BAND ============ -->
 <section class="pint" aria-label="Take a pint home">
-  <img class="reveal" src="images/pint-lid.webp" alt="Olympic Mountain Ice Cream pint lid — Take a Pint Home Today, family owned since 1984" loading="lazy" decoding="async">
+  <img class="reveal" src="images/pint-lid.webp" srcset="images/pint-lid-640.webp 640w, images/pint-lid.webp 860w" sizes="min(430px, 84vw)" width="860" height="614" alt="Olympic Mountain Ice Cream pint lid — Take a Pint Home Today, family owned since 1984" loading="lazy" decoding="async">
   <div class="pint-gallery" aria-label="Pint flavors">
-    <figure class="reveal"><img src="images/pint-vanilla.webp" alt="Madagascar Vanilla pint with a scoop" loading="lazy"></figure>
-    <figure class="reveal d1"><img src="images/pint-double-choc-almond.webp" alt="Double Chocolate Almond pint with a scoop" loading="lazy"></figure>
-    <figure class="reveal d2"><img src="images/pint-espresso-flake.webp" alt="Espresso Flake pint with a scoop" loading="lazy"></figure>
-    <figure class="reveal d2"><img src="images/pint-lemon-cookie.webp" alt="Lemon Cookie pint with a scoop" loading="lazy"></figure>
-    <figure class="reveal d3"><img src="images/pint-toasted-coconut.webp" alt="Toasted Coconut pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal"><img src="images/pint-vanilla.webp" srcset="images/pint-vanilla-540.webp 540w, images/pint-vanilla.webp 1066w" sizes="(max-width: 560px) 50vw, (max-width: 900px) 34vw, 240px" width="1066" height="761" alt="Madagascar Vanilla pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d1"><img src="images/pint-double-choc-almond.webp" srcset="images/pint-double-choc-almond-540.webp 540w, images/pint-double-choc-almond.webp 1066w" sizes="(max-width: 560px) 50vw, (max-width: 900px) 34vw, 240px" width="1066" height="761" alt="Double Chocolate Almond pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d2"><img src="images/pint-espresso-flake.webp" srcset="images/pint-espresso-flake-540.webp 540w, images/pint-espresso-flake.webp 1066w" sizes="(max-width: 560px) 50vw, (max-width: 900px) 34vw, 240px" width="1066" height="761" alt="Espresso Flake pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d2"><img src="images/pint-lemon-cookie.webp" srcset="images/pint-lemon-cookie-540.webp 540w, images/pint-lemon-cookie.webp 1066w" sizes="(max-width: 560px) 50vw, (max-width: 900px) 34vw, 240px" width="1066" height="761" alt="Lemon Cookie pint with a scoop" loading="lazy"></figure>
+    <figure class="reveal d3"><img src="images/pint-toasted-coconut.webp" srcset="images/pint-toasted-coconut-540.webp 540w, images/pint-toasted-coconut.webp 1066w" sizes="(max-width: 560px) 50vw, (max-width: 900px) 34vw, 240px" width="1066" height="761" alt="Toasted Coconut pint with a scoop" loading="lazy"></figure>
   </div>
-  <p class="reveal d1">Ask for <strong>Olympic Mountain Ice Cream</strong> at your favorite Puget Sound restaurants and markets &mdash; or find a scoop near you below.</p>
+  <p class="reveal d1">Ask for <strong>Olympic Mountain Ice Cream</strong> at your favorite Puget Sound restaurants and markets, stop by our new scoop shop in Shelton, or find a scoop near you below.</p>
+</section>
+
+<!-- ============ VISIT (new creamery) ============ -->
+<section class="section visit cv-auto" id="visit" aria-labelledby="visitTitle" style="contain-intrinsic-size:1px 1300px">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div class="visit-text reveal">
+        <p class="eyebrow">Now Open</p>
+        <h2 class="heading" id="visitTitle">Our new home at the <em>Port of Shelton</em></h2>
+        <p>Olympic Mountain Ice Cream started in the Skokomish Valley. In November 2026 we moved to the Port of Shelton, next to the airport, and expanded into a state-of-the-art new creamery with room for many more small batches.</p>
+        <p>For the first time there&rsquo;s a shop too, with 16 flavors available in store for scoops, and pints to take home.</p>
+        <dl class="visit-facts">
+          <div><dt>Address</dt><dd>130 W Corporate Rd<br>Shelton, WA 98584</dd></div>
+          <div><dt>Open</dt><dd>10am&ndash;6pm<br>7 days a week</dd></div>
+        </dl>
+        <div class="visit-cta">
+          <a class="visit-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=130+W+Corporate+Rd,+Shelton,+WA+98584" target="_blank" rel="noopener">Get directions</a>
+          <a class="visit-call" href="tel:+13604260696">or call 360-426-0696</a>
+        </div>
+      </div>
+      <div class="visit-photos reveal d1">
+        <figure class="snap snap-main" style="--tilt:-1.2deg">
+          <div class="snap-photo snap-sky"><img src="images/creamery-exterior.webp" srcset="images/creamery-exterior-800.webp 800w, images/creamery-exterior.webp 1440w" sizes="(max-width: 860px) 90vw, 500px" alt="The new Olympic Mountain Ice Cream creamery and shop at 130 W Corporate Rd, Port of Shelton" width="1440" height="1080" loading="lazy" decoding="async"></div>
+        </figure>
+        <figure class="snap snap-inset" style="--tilt:2.4deg">
+          <div class="snap-photo"><img src="images/creamery-case-1.webp" srcset="images/creamery-case-1-800.webp 800w, images/creamery-case-1.webp 1440w" sizes="(max-width: 860px) 49vw, 270px" alt="Dipping cabinet in the shop with eight tubs of ice cream, from vanilla and chocolate to mint chip and cookies and cream" width="1440" height="1080" loading="lazy" decoding="async"></div>
+          <figcaption>16 flavors in store for scoops</figcaption>
+        </figure>
+        <figure class="snap snap-inset snap-inset-r" style="--tilt:-2deg">
+          <div class="snap-photo"><img src="images/creamery-shop.webp" srcset="images/creamery-shop-800.webp 800w, images/creamery-shop.webp 1440w" sizes="(max-width: 860px) 49vw, 270px" alt="Inside the shop: tables and chairs beside a glass-door freezer stocked with take-home containers" width="1440" height="1080" loading="lazy" decoding="async"></div>
+          <figcaption>Grab a seat, or a pint to go</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ============ FIND A PINT ============ -->
@@ -474,8 +615,8 @@ a.big:hover{color:var(--copper-bright)}
       <p>Grab a pint at a market or a scoop at a restaurant &mdash; over 200 spots across Puget Sound, by county below.</p>
     </div>
 
-    <div class="map-legend reveal"><span><i style="background:#c08a4d"></i>Pints to go</span><span><i style="background:#22395c"></i>Scoops &amp; desserts</span><span>Tap a pin for directions.</span></div>
-    <div class="map-wrap reveal" id="omicMap" aria-label="Map of Olympic Mountain Ice Cream locations"></div>
+    <div class="map-legend reveal"><span><i class="lg-home"></i>Our creamery &amp; shop</span><span><i style="background:#c08a4d"></i>Pints to go</span><span><i style="background:#22395c"></i>Scoops &amp; desserts</span><span>Tap a pin for directions.</span></div>
+    <div class="map-wrap reveal" id="omicMap" role="region" aria-label="Map of Olympic Mountain Ice Cream locations"></div>
     <p class="map-note reveal">Pin positions are approximate; use the Google Maps link in each pin for exact directions.</p>
 
     <h3 class="retail-title reveal">All locations <em>by county</em></h3>
@@ -522,11 +663,11 @@ a.big:hover{color:var(--copper-bright)}
         <p class="reveal">Then, on a 1984 road trip to Seattle, a scoop of refreshing cantaloupe sorbet sparked an exciting new vision. With three young children at home, trading horticulture for food production was an intimidating leap that demanded plenty of soul-searching. Karl and Bev knew achieving their dream would be no simple task.</p>
         <p class="reveal">&ldquo;Heavenly Gelato&rdquo; soon opened in Lacey, WA, and the family immersed themselves in learning everything they could about making the best possible product. After two years, they realized their small mall storefront couldn&rsquo;t support a dream of dozens of gourmet flavors. Still believing strongly in the product, they began selling wholesale to restaurants around Puget Sound — and found a foodie niche hungry for custom-crafted gourmet sorbets and ice cream. They renamed the business <strong>Olympic Mountain Ice Cream</strong>, applied their small-batch gelato craft, and launched their original line of super-premium ice creams.</p>
         <blockquote class="pullquote reveal">More than thirty years later, Karl and Bev hold the same incredibly high standards — forever convinced that ice cream should be an indulgence worth savoring.</blockquote>
-        <p class="reveal">Today the children are all grown, and grandchildren play in the yard of the forested family home and ice cream factory where it all continues, one small batch at a time.</p>
+        <p class="reveal">Today the children are all grown, and grandchildren play in the yard of the forested family home in the valley. In November 2026 the ice cream moved to a state-of-the-art new creamery at the Port of Shelton, with a shop where you can buy a scoop or a pint. The recipes haven&rsquo;t changed, and it all continues one small batch at a time.</p>
       </div>
       <aside class="story-side">
         <figure class="polaroid reveal d1">
-          <img src="images/karl-bev.webp" alt="Karl and Bev Black, founders of Olympic Mountain Ice Cream, in a summer meadow" loading="lazy" decoding="async">
+          <img src="images/karl-bev.webp" width="366" height="216" alt="Karl and Bev Black, founders of Olympic Mountain Ice Cream, in a summer meadow" loading="lazy" decoding="async">
           <figcaption>Karl &amp; Bev Black — founders</figcaption>
         </figure>
         <div class="ingredients reveal d2">
@@ -550,10 +691,47 @@ a.big:hover{color:var(--copper-bright)}
         <p class="award-byline">Scheenagh Harrington &middot; <a href="https://www.foodie.com/2059672/best-ice-cream-parlors-every-state-list/" target="_blank" rel="noopener">Foodie.com &mdash; The Best Ice Cream Parlors in Every US State &#8599;</a></p>
       </div>
       <figure class="award-photo reveal d1">
-        <img src="https://www.foodie.com/img/gallery/the-best-ice-cream-parlors-in-every-us-state/olympic-mountain-ice-cream-in-shelton-washington-1766191493.webp" alt="Olympic Mountain Ice Cream, featured by Foodie as the best in Washington" loading="lazy" onerror="this.onerror=null;this.src='images/foodie-award.webp'">
+        <img src="https://www.foodie.com/img/gallery/the-best-ice-cream-parlors-in-every-us-state/olympic-mountain-ice-cream-in-shelton-washington-1766191493.webp" width="780" height="438" alt="Olympic Mountain Ice Cream, featured by Foodie as the best in Washington" loading="lazy" onerror="this.onerror=null;this.src='images/foodie-award.webp'">
         <figcaption>olympicmountainicecream / Instagram, via Foodie.com</figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- ============ WHOLESALE ============ -->
+<section class="section ws-home cv-auto" id="wholesale" aria-labelledby="wsHomeTitle" style="contain-intrinsic-size:1px 700px">
+  <div class="wrap ws-home-grid">
+    <div class="ws-home-text reveal">
+      <p class="eyebrow">Wholesale</p>
+      <h2 class="heading" id="wsHomeTitle">Stock it, scoop it, serve it</h2>
+      <p>You&rsquo;ll find our ice cream at more than 200 restaurants, caf&eacute;s and markets around Puget Sound. Order any of our 238 flavors in pints, quarts, 1.5 and 3 gallon tubs or gelato pans, or ask us to make one just for your menu.</p>
+      <div class="ws-home-cta">
+        <a class="ws-home-btn" href="wholesale.html">Start a wholesale order</a>
+        <a class="ws-home-call" href="tel:+13604260696">or call 360-426-0696</a>
+      </div>
+    </div>
+    <ul class="ws-tubs reveal d1" aria-label="Order by size">
+      <li><a href="wholesale.html?size=pint#order" aria-label="Order pints">
+        <b>Pint</b>
+        <svg width="40" height="49" viewBox="0 0 44 54" aria-hidden="true"><path d="M6 11h32l-2 38a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#fffdf8" stroke="#c08a4d" stroke-width="2"/><rect x="3" y="4" width="38" height="9" rx="2.5" fill="#c08a4d"/></svg>
+      </a></li>
+      <li><a href="wholesale.html?size=quart#order" aria-label="Order quarts">
+        <b>Quart</b>
+        <svg width="50" height="63" viewBox="0 0 54 68" aria-hidden="true"><path d="M7 13h40l-2.5 49a3.5 3.5 0 0 1-3.5 3.5H13a3.5 3.5 0 0 1-3.5-3.5z" fill="#fffdf8" stroke="#c08a4d" stroke-width="2"/><rect x="3" y="5" width="48" height="10" rx="3" fill="#c08a4d"/></svg>
+      </a></li>
+      <li><a href="wholesale.html?size=1.5#order" aria-label="Order 1.5 gallon tubs">
+        <b>1.5 gal</b>
+        <svg width="80" height="77" viewBox="0 0 86 83" aria-hidden="true"><path d="M9 16h68l-7 61a4.5 4.5 0 0 1-4.5 4.5h-45A4.5 4.5 0 0 1 16 77z" fill="#fffdf8" stroke="#c08a4d" stroke-width="2"/><rect x="3" y="7" width="80" height="11" rx="3.5" fill="#c08a4d"/></svg>
+      </a></li>
+      <li><a href="wholesale.html?size=3#order" aria-label="Order 3 gallon tubs">
+        <b>3 gal</b>
+        <svg width="100" height="96" viewBox="0 0 100 96" aria-hidden="true"><path d="M10 18h80l-8 72a5 5 0 0 1-5 5H23a5 5 0 0 1-5-5z" fill="#fffdf8" stroke="#c08a4d" stroke-width="2"/><rect x="4" y="8" width="92" height="13" rx="4" fill="#c08a4d"/></svg>
+      </a></li>
+      <li><a href="wholesale.html?size=pan#order" aria-label="Order gelato pans">
+        <b>Gelato pan</b>
+        <svg width="112" height="52" viewBox="0 0 124 58" aria-hidden="true"><path d="M15 24c6-12 20-16 30-12 8-8 26-8 36 0 12-6 26-2 30 12z" fill="#fffdf8" stroke="#c08a4d" stroke-width="2"/><path d="M9 25h106l-5 27a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3z" fill="#f6efe3" stroke="#c08a4d" stroke-width="2"/><rect x="4" y="21" width="116" height="7" rx="2.5" fill="#c08a4d"/></svg>
+      </a></li>
+    </ul>
   </div>
 </section>
 
@@ -573,7 +751,7 @@ a.big:hover{color:var(--copper-bright)}
       </details>
       <details>
         <summary>Do you sell to the public?</summary>
-        <p class="faq-a">We don&rsquo;t have a storefront, but you&rsquo;re welcome to give us a call to see if we have your favorite flavor on hand.</p>
+        <p class="faq-a">Yes! Our new creamery has a shop where you can buy a scoop or a pint. Find us at <a href="#visit">130 W Corporate Rd, Shelton</a>, open 10am to 6pm, 7 days a week.</p>
       </details>
       <details>
         <summary>Does your ice cream contain gluten, eggs, or soy?</summary>
@@ -593,7 +771,7 @@ a.big:hover{color:var(--copper-bright)}
       </details>
       <details>
         <summary>I own a business and would like to carry your products. How do I set up an account?</summary>
-        <p class="faq-a">Give us a call at <a href="tel:+13604260696">360-426-0696</a> and we can help answer any questions you have about ordering and getting deliveries.</p>
+        <p class="faq-a">You can order pints, quarts, 1.5 and 3 gallon tubs and gelato pans on our <a href="wholesale.html">wholesale ordering page</a>, or give us a call at <a href="tel:+13604260696">360-426-0696</a> and we can help answer any questions you have about ordering and getting deliveries.</p>
       </details>
     </div>
   </div>
@@ -603,26 +781,28 @@ a.big:hover{color:var(--copper-bright)}
 <section class="section contact cv-auto" id="contact" style="contain-intrinsic-size:1px 1200px">
   <div class="wrap">
     <p class="eyebrow reveal">Get in Touch</p>
-    <h2 class="heading reveal">Say hello from <em>the valley</em></h2>
+    <h2 class="heading reveal">Say hello from <em>Shelton</em></h2>
     <div class="contact-grid">
       <div class="contact-card reveal d1">
         <h3>Phone</h3>
         <a class="big" href="tel:+13604260696">360-426-0696</a>
+        <h3 class="contact-follow">Follow along</h3>
+        <ul class="social social-card" aria-label="Olympic Mountain Ice Cream on social media"><li><a href="https://www.facebook.com/OlympicMountainIceCream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.3h-3.2V8.4c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.3h2.8V22z"/></svg><span>Facebook</span></a></li><li><a href="https://www.instagram.com/olympicmountainicecream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></li></ul>
       </div>
       <div class="contact-card reveal d2">
-        <h3>Mailing Address</h3>
+        <h3>Creamery &amp; Scoop Shop</h3>
         <address>
-          301 E Wallace Kneeland Blvd<br>
-          Suite 224-330<br>
+          130 W Corporate Rd<br>
           Shelton, WA 98584
         </address>
+        <p class="contact-hours">Open 10am&ndash;6pm, 7 days a week</p>
       </div>
-      <div class="order-card reveal d3" id="order">
-        <h3>Place an <em>order</em></h3>
-        <p>Tubs come in 1.5- and 3-gallon sizes (3-gallon minimum per flavor for new batches). Send us the details and we&rsquo;ll get back to you &mdash; or just call.</p>
+      <div class="order-card reveal d3" id="message">
+        <h3>Send us a <em>note</em></h3>
+        <p>Have an idea for a new flavor, a business opportunity, or an event you&rsquo;d like us at? Tell us about it and we&rsquo;ll get back to you. Ordering for a business? Use our <a href="wholesale.html" style="color:var(--copper-bright)">wholesale ordering page</a>.</p>
         <form id="orderForm" class="order-grid" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <input type="hidden" name="access_key" value="23aff677-d78f-4997-9eb7-50157f79d02d">
-          <input type="hidden" name="subject" value="New order/inquiry from olympicmountainicecream.com">
+          <input type="hidden" name="subject" id="of-subject" value="New message from olympicmountainicecream.com">
           <input type="hidden" name="from_name" value="Olympic Mountain Ice Cream website">
           <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
@@ -630,39 +810,38 @@ a.big:hover{color:var(--copper-bright)}
             <input id="of-name" name="name" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="of-business">Business (optional)</label>
-            <input id="of-business" name="business" type="text" autocomplete="organization">
-          </div>
-          <div class="field">
             <label for="of-email">Email</label>
             <input id="of-email" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="field">
-            <label for="of-phone">Phone</label>
+            <label for="of-business">Business or organization (optional)</label>
+            <input id="of-business" name="organization" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="of-phone">Phone (optional)</label>
             <input id="of-phone" name="phone" type="tel" autocomplete="tel">
           </div>
           <div class="field">
-            <label for="of-size">Order type</label>
-            <select id="of-size" name="order_type">
-              <option>3-gallon tub (full batch)</option>
-              <option>1.5-gallon tub</option>
-              <option>Pints</option>
-              <option>Wholesale account inquiry</option>
-              <option>Other / not sure yet</option>
+            <label for="of-topic">What&rsquo;s it about?</label>
+            <select id="of-topic" name="topic">
+              <option>A new flavor idea</option>
+              <option>A business opportunity</option>
+              <option>An event we could attend</option>
+              <option>Something else</option>
             </select>
           </div>
-          <div class="field">
-            <label for="of-flavor">Flavor(s)</label>
-            <input id="of-flavor" name="flavors" type="text" placeholder="e.g. Strawberry Rhubarb Pie">
+          <div class="field" id="of-date-field" hidden>
+            <label for="of-date">Event date</label>
+            <input id="of-date" name="event_date" type="date">
           </div>
           <div class="field full">
             <label for="of-msg">Message</label>
-            <textarea id="of-msg" name="message" placeholder="Quantities, timing, delivery area&hellip;"></textarea>
+            <textarea id="of-msg" name="message" required placeholder="Tell us about your flavor idea: what&rsquo;s in it, and what inspired it?"></textarea>
           </div>
-          <div class="order-success" id="orderSuccess">Thanks! Your request has been sent &mdash; we&rsquo;ll be in touch soon. Prefer to talk now? Call <a href="tel:+13604260696">360-426-0696</a>.</div>
-          <div class="order-error" id="orderError">Something went wrong sending your request. Please try again, or call us at <a href="tel:+13604260696">360-426-0696</a>.</div>
+          <div class="order-success" id="orderSuccess">Thanks! Your message has been sent, and we&rsquo;ll be in touch soon. Prefer to talk now? Call <a href="tel:+13604260696">360-426-0696</a>.</div>
+          <div class="order-error" id="orderError">Something went wrong sending your message. Please try again, or call us at <a href="tel:+13604260696">360-426-0696</a>.</div>
           <div class="order-submit">
-            <button type="submit">Send request</button>
+            <button type="submit">Send message</button>
             <span class="order-note">Prefer to talk? Call 360-426-0696.</span>
           </div>
         </form>
@@ -671,9 +850,12 @@ a.big:hover{color:var(--copper-bright)}
   </div>
 </section>
 
+</main>
+
 <footer class="footer">
-  <img src="images/logo-cream.webp" alt="Olympic Mountain Ice Cream">
-  <p>Family Owned Since 1984 · Shelton, Washington</p>
+  <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
+  <ul class="social" aria-label="Olympic Mountain Ice Cream on social media"><li><a href="https://www.facebook.com/OlympicMountainIceCream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.3h-3.2V8.4c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.3h2.8V22z"/></svg><span>Facebook</span></a></li><li><a href="https://www.instagram.com/olympicmountainicecream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></li></ul>
+  <p>Family Owned Since 1984 · 130 W Corporate Rd, Shelton, WA 98584</p>
   <p class="fine">© <span id="year"></span> Olympic Mountain Ice Cream. All rights reserved.</p>
 </footer>
 
@@ -709,6 +891,44 @@ a.big:hover{color:var(--copper-bright)}
     if (e.key === "Escape") setMenu(false);
   });
   onNav();
+
+  /* Section marker: the nav shows which section you're reading */
+  var navList = document.getElementById("navLinks");
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('#navLinks a[href^="#"], #navDrawer a[href^="#"]'));
+  var spyIds = [];
+  spyLinks.forEach(function(a){ var id = a.getAttribute("href").slice(1); if(spyIds.indexOf(id) < 0) spyIds.push(id); });
+  var spySecs = spyIds.map(function(id){ return document.getElementById(id); });
+  var currentId;
+  function moveMarker(){
+    var a = currentId && navList.querySelector('a[href="#' + currentId + '"]');
+    if(!a || !a.offsetWidth){ navList.style.setProperty("--mk-o", "0"); return; }
+    navList.style.setProperty("--mk-x", a.offsetLeft + "px");
+    navList.style.setProperty("--mk-w", a.offsetWidth + "px");
+    navList.style.setProperty("--mk-o", "1");
+  }
+  function spy(){
+    var line = window.innerHeight * 0.35, id = null;
+    for(var i = 0; i < spySecs.length; i++){
+      if(spySecs[i] && spySecs[i].getBoundingClientRect().top <= line) id = spyIds[i];
+    }
+    if(id && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) id = spyIds[spyIds.length - 1];
+    if(id === currentId) return;
+    currentId = id;
+    spyLinks.forEach(function(a){
+      var on = a.getAttribute("href") === "#" + id;
+      a.classList.toggle("is-current", on);
+      if(on) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+    });
+    moveMarker();
+  }
+  var spyTick = false;
+  window.addEventListener("scroll", function(){
+    if(spyTick) return; spyTick = true;
+    requestAnimationFrame(function(){ spy(); spyTick = false; });
+  }, {passive:true});
+  window.addEventListener("resize", moveMarker);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(moveMarker);
+  spy();
 
   /* Scroll reveals */
   var io = new IntersectionObserver(function(entries){
@@ -844,6 +1064,11 @@ a.big:hover{color:var(--copper-bright)}
     var bounds=[];
     SCOOP_PTS.forEach(function(p){var m=L.circleMarker([p[1],p[2]],{radius:6,color:"#fff",weight:1.5,fillColor:"#22395c",fillOpacity:.9}).addTo(omap);m.bindPopup(pop(p[0]));m.bindTooltip(p[0]);m._n=p[0].toLowerCase();scoopMarkers.push(m);bounds.push([p[1],p[2]]);});
     RETAIL_PTS.forEach(function(p){var m=L.circleMarker([p[1],p[2]],{radius:8,color:"#fff",weight:2,fillColor:"#c08a4d",fillOpacity:1}).addTo(omap);m.bindPopup(pop(p[0]));m.bindTooltip(p[0]);bounds.push([p[1],p[2]]);});
+    var HOME=[47.24773,-123.15019];
+    var home=L.circleMarker(HOME,{radius:11,color:"#d9a96a",weight:4,fillColor:"#0a1424",fillOpacity:1}).addTo(omap);
+    home.bindPopup("<b>Olympic Mountain Ice Cream creamery &amp; scoop shop</b><br>130 W Corporate Rd, Shelton, WA 98584<br>Open 10am\u20136pm, 7 days a week<br><a href='https://www.google.com/maps/dir/?api=1&destination=130+W+Corporate+Rd,+Shelton,+WA+98584' target='_blank' rel='noopener'>Get directions \u2197</a>");
+    home.bindTooltip("Our creamery & scoop shop",{permanent:true,direction:"right",offset:[12,0],className:"home-tip"});
+    bounds.push(HOME);
     omap.fitBounds(bounds,{padding:[30,30],maxZoom:10});
     omap.on("click",function(){omap.scrollWheelZoom.enable();});
     window._omap=omap;
@@ -905,9 +1130,25 @@ a.big:hover{color:var(--copper-bright)}
 
   /* Order form -> Web3Forms (async, stays on page) */
   var orderForm = document.getElementById("orderForm");
+  /* Topic changes the prompt, shows the event date field, and labels the email subject */
+  var topicSel = document.getElementById("of-topic"), msgBox = document.getElementById("of-msg"),
+      dateField = document.getElementById("of-date-field");
+  var PROMPTS = {
+    "A new flavor idea": "Tell us about your flavor idea: what\u2019s in it, and what inspired it?",
+    "A business opportunity": "Tell us about your business and what you have in mind.",
+    "An event we could attend": "What\u2019s the event, where is it, and how many people do you expect?",
+    "Something else": "How can we help?"
+  };
+  function onTopic(){
+    msgBox.placeholder = PROMPTS[topicSel.value] || "";
+    var ev = topicSel.value === "An event we could attend";
+    dateField.hidden = !ev; document.getElementById("of-date").disabled = !ev;
+  }
+  topicSel.addEventListener("change", onTopic); onTopic();
   orderForm.addEventListener("submit", function(e){
     e.preventDefault();
     if(!orderForm.checkValidity()){ orderForm.reportValidity(); return; }
+    document.getElementById("of-subject").value = "Website message: " + topicSel.value;
     var btn = orderForm.querySelector("button[type=submit]");
     var okEl = document.getElementById("orderSuccess");
     var errEl = document.getElementById("orderError");
@@ -919,7 +1160,7 @@ a.big:hover{color:var(--copper-bright)}
       body: new FormData(orderForm)
     }).then(function(r){ return r.json(); }).then(function(data){
       if(data.success){
-        orderForm.reset();
+        orderForm.reset(); onTopic();
         okEl.style.display = "block";
         btn.style.display = "none";
       } else {

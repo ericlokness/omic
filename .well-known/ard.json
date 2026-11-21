@@ -1,0 +1,40 @@
+{
+  "host": {
+    "displayName": "Olympic Mountain Ice Cream",
+    "identifier": "olympicmountainicecream.pages.dev",
+    "documentation": "https://olympicmountainicecream.pages.dev/llms.txt"
+  },
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:olympicmountainicecream.pages.dev:site:guide",
+      "displayName": "Olympic Mountain Ice Cream site guide",
+      "type": "text/markdown",
+      "url": "https://olympicmountainicecream.pages.dev/llms.txt",
+      "description": "Plain-language guide to Olympic Mountain Ice Cream: the creamery and scoop shop in Shelton, WA (address, hours, phone), the flavor library, where to buy, wholesale sizes and prices, delivery areas and allergen notes.",
+      "tags": ["ice cream", "sorbet", "scoop shop", "Shelton WA", "wholesale"],
+      "representativeQueries": [
+        "Where is the Olympic Mountain Ice Cream scoop shop and when is it open?",
+        "Which flavors does Olympic Mountain Ice Cream make?",
+        "Where can I buy Olympic Mountain Ice Cream around Puget Sound?",
+        "Are Olympic Mountain Ice Cream sorbets dairy free?"
+      ],
+      "updatedAt": "2026-11-20T00:00:00Z"
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:olympicmountainicecream.pages.dev:site:wholesale-ordering",
+      "displayName": "Olympic Mountain Ice Cream wholesale ordering",
+      "type": "text/html",
+      "url": "https://olympicmountainicecream.pages.dev/wholesale",
+      "description": "Order form for restaurants, cafés and markets: pints, quarts, 1.5 and 3 gallon tubs and gelato pans, with flavor search, quantities and business details. The creamery confirms availability, pricing and delivery day.",
+      "tags": ["wholesale", "food service", "ice cream tubs", "order form"],
+      "representativeQueries": [
+        "Order wholesale ice cream tubs for my restaurant in Washington",
+        "What sizes and prices does Olympic Mountain Ice Cream offer wholesale?",
+        "Does Olympic Mountain Ice Cream deliver to Olympia or Seattle?"
+      ],
+      "updatedAt": "2026-11-20T00:00:00Z"
+    }
+  ]
+}
