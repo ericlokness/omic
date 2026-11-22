@@ -1,6 +1,9 @@
 # Unused original photos (the site serves the .webp versions)
 images/*.jpg
 images/*.png
+# ...except the PNGs Stripe Checkout needs (Stripe accepts only PNG/JPG for its logo and icon)
+!images/logo-cream-v2.png
+!images/checkout-icon.png
 
 # Stripe shop: local tooling and secrets (never commit keys)
 node_modules/

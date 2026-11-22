@@ -41,6 +41,18 @@ export const SHOP = {
   successPath: "/order-complete",
   cancelPath: "/wholesale#summary",
   cacheSeconds: 300,
+  // Look of the Stripe payment page (Checkout branding_settings), sent with every session so it
+  // follows the site to any Stripe account. Logo and icon are site paths (PNG/JPG, Stripe's rule).
+  // Fonts: Stripe's list only (Fraunces/Karla aren't offered); "lora" is the closest serif to Fraunces.
+  branding: {
+    display_name: "Olympic Mountain Ice Cream",
+    background_color: "#0a1424",   // --midnight
+    button_color: "#9e6a32",       // --btn: copper deep enough for white text (4.6:1)
+    border_style: "pill",          // matches the site's pill buttons
+    font_family: "lora",
+    logo: "/images/logo-cream-v2.png",
+    icon: "/images/checkout-icon.png",
+  },
 };
 
 /* Cloudflare Pages Functions entry. A Worker calls handleShop() from its own fetch handler. */
@@ -127,6 +139,7 @@ async function checkout(request, env, ctx, origin) {
     },
     custom_text: { submit: { message: truncate("Your order: " + summary.join("; "), 1200) } },
   };
+  if (SHOP.branding) params.branding_settings = brandingSettings(origin);
   if (SHOP.promotionCodes) params.allow_promotion_codes = true;
   if (SHOP.collectPhone) params.phone_number_collection = { enabled: true };
   if (SHOP.saveCustomers) params.customer_creation = "always";
@@ -139,6 +152,15 @@ async function checkout(request, env, ctx, origin) {
 
   const session = await stripe(env, "POST", "checkout/sessions", params);
   return json({ url: session.url }, 200, { "Cache-Control": "no-store" });
+}
+
+/* SHOP.branding -> Checkout branding_settings; logo/icon site paths become absolute URLs on this host. */
+function brandingSettings(origin) {
+  const { logo, icon, ...rest } = SHOP.branding;
+  const out = { ...rest };
+  if (logo) out.logo = { type: "url", url: new URL(logo, origin).href };
+  if (icon) out.icon = { type: "url", url: new URL(icon, origin).href };
+  return out;
 }
 
 function readOptions(raw, customFlag) {
