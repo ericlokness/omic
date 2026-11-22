@@ -479,7 +479,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
         <div class="totals" id="totals" hidden>
           <div><span>Total volume</span><strong id="totGal">0 gal</strong></div>
           <div id="subRow" hidden><span>Estimated subtotal</span><strong id="totPrice"></strong></div>
-          <div id="estRow" hidden><span class="est">Shipping, delivery and tax are calculated at checkout.</span></div>
+          <div id="estRow" hidden><span class="est">Any delivery charge is shown at checkout.</span></div>
         </div>
 
         <fieldset class="details" style="border:0">
@@ -566,46 +566,24 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 
 <script>
 /* =====================================================================
-   SHOPIFY SETUP: fill this in to turn on Shopify checkout
+   STRIPE CHECKOUT
    ---------------------------------------------------------------------
-   A Shopify developer/Partner account is NOT needed. This uses Shopify
-   "cart permalinks", which work on any regular Shopify store plan.
+   Orders are paid on Stripe Checkout through this site's own shop API
+   (functions/api/[[path]].js). Products and prices live in Stripe: the
+   five sizes are Stripe products whose metadata "key" matches the size ids
+   below (pint, quart, 1.5, 3, pan). Flavors, base, business details and
+   delivery date are attached to each payment in the Stripe Dashboard.
 
-   1. In Shopify admin, create a product, e.g. "Wholesale Ice Cream",
-      with a "Size" option and five variants: Pint, Quart,
-      1.5 Gallon, 3 Gallon, Gelato Pan. Set your wholesale price on each
-      variant. Optionally create a second product, "Wholesale Sorbet",
-      with the same five sizes.
-      The product must be available on the "Online Store" sales channel.
-   2. Find each variant ID: open the product in admin, click a variant, and
-      copy the number at the end of the URL (…/variants/44123456789012).
-   3. Paste your store domain and the variant IDs below and save the file.
-
-   When "domain" and the ice cream variants are filled in, the page sends
-   customers straight to Shopify's secure checkout with their containers in
-   the cart. Flavor choices, business name, phone and delivery date go into the
-   order note and attributes, so you'll see them on the order in Shopify admin.
-   While they're blank, orders are emailed to you as requests instead.
-
-   FREE DEV STORE (devStore: true)
-   A free dev store is always password protected and only takes TEST payments,
-   so real customers can't buy from it. With devStore: true, Shopify checkout
-   is used only when YOU open the page as wholesale.html?shopify-test (or on
-   localhost). Everyone else keeps the email-order flow. When you move to a
-   paid Shopify plan, put the new store's domain and variant IDs here and set
-   devStore: false to switch every visitor to Shopify checkout.
-   (Full steps: SHOPIFY-SETUP.md, next to the files folder.)
+   When the page loads it asks /api/catalog for Stripe's current prices.
+   If that works, the order form switches to "Continue to secure checkout".
+   If the shop API isn't deployed or has no Stripe key yet, the page keeps
+   emailing orders through Web3Forms exactly as before.
+   Test mode: the preview site (preview.<project>.pages.dev) uses a Stripe
+   TEST key, so the button shows a "Stripe test mode" badge.
+   (Setup and deploy steps: PROJECT_HANDOFF.md, "Shop (Stripe)".)
    ===================================================================== */
-var SHOPIFY = {
-  devStore: true,             // true while the store is password-protected / in test mode (checkout only via ?shopify-test)
-  domain: "olympic-mountain-ice-cream.myshopify.com",
-  variants: {
-    // Shopify checkout turns on once every size below has a variant ID.
-    icecream: { pint: "67987947651317", quart: "67987947618549", "1.5": "67987947520245", "3": "67987947553013", pan: "67987947585781" },
-    sorbet:   { pint: "", quart: "", "1.5": "", "3": "", pan: "" }   // leave blank to use the ice cream variants
-  },
-  // Display prices only (Shopify charges the price set in admin). Use numbers, e.g. 48.
-  // Leave a size null to hide its price; the estimated subtotal shows only when every size in the order has a price.
+var SHOP = {
+  // Prices shown until Stripe's current prices load (Stripe always charges its own price).
   // Retail price list. TODO (owner to revisit): delivery pricing. The "Standard" list
   // (pint 4.65, quart 9.99, 1.5 gal 45.70, 3 gal 88.40, gelato pan 33.50) is the
   // delivery price, but how it applies to orders isn't decided yet, so it isn't used.
@@ -731,30 +709,22 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     if(pans) parts.push(countText("pan", pans));
     return parts.join(" + ");
   }
-  function priceOf(size){ var p = SHOPIFY.prices[size]; return typeof p === "number" ? p : null; }
-  function variantFor(base, size){
-    var v = (SHOPIFY.variants[base] || {})[size];
-    if(!v) v = SHOPIFY.variants.icecream[size];
-    return String(v || "").replace(/\D/g, "");
-  }
-  var SHOP_CONFIGURED = !!SHOPIFY.domain && SIZES.every(function(s){ return variantFor("icecream", s); });
-  /* Dev-store test mode: only on ?shopify-test (remembered for this tab) or a local preview */
-  var TEST_ON = /[?&]shopify-test\b/.test(location.search) || location.protocol === "file:" ||
-                /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
-  try {
-    if(TEST_ON) sessionStorage.setItem("omic-shopify-test", "1");
-    else TEST_ON = sessionStorage.getItem("omic-shopify-test") === "1";
-  } catch(e){}
-  var SHOP_READY = SHOP_CONFIGURED && (!SHOPIFY.devStore || TEST_ON);
-  var SHOP_TEST = SHOP_READY && !!SHOPIFY.devStore;
+  /* Prices: SHOP.prices show at once; /api/catalog replaces them with Stripe's current prices */
+  var PRICES = {};
+  Object.keys(SHOP.prices).forEach(function(k){ PRICES[k] = SHOP.prices[k]; });
+  function priceOf(size){ var p = PRICES[size]; return typeof p === "number" ? p : null; }
+  var SHOP_READY = false;   // true once /api/catalog answers: orders go to Stripe Checkout
   var money = function(n){
-    try { return new Intl.NumberFormat("en-US", {style:"currency", currency:SHOPIFY.currency}).format(n); }
+    try { return new Intl.NumberFormat("en-US", {style:"currency", currency:SHOP.currency}).format(n); }
     catch(e){ return "$" + n.toFixed(2); }
   };
-  document.querySelectorAll("[data-price]").forEach(function(el){
-    var p = priceOf(el.getAttribute("data-price"));
-    if(p !== null){ el.textContent = money(p); el.hidden = false; }
-  });
+  function showPrices(){
+    document.querySelectorAll("[data-price]").forEach(function(el){
+      var p = priceOf(el.getAttribute("data-price"));
+      if(p !== null){ el.textContent = money(p); el.hidden = false; }
+    });
+  }
+  showPrices();
 
   /* ---------- Flavor data ---------- */
   function parse(list){
@@ -1020,16 +990,33 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
   var d = new Date(); d.setDate(d.getDate() + 1);
   $("d-date").min = d.toISOString().slice(0,10);
 
-  if(SHOP_READY){
-    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6z"/></svg>Continue to secure checkout';
-    $("checkoutNote").querySelector("span").textContent = SHOP_TEST
-      ? "Test checkout on your Shopify dev store. If Shopify asks for the store password, enter it, come back and press checkout again. Pay with Shopify’s test gateway; nothing is charged."
-      : "You’ll review and pay on Shopify’s secure checkout. Your flavors, business details and delivery date are attached to the order.";
-    var badge = document.createElement("span"); badge.className = "mode-badge" + (SHOP_TEST ? " test" : "");
-    badge.textContent = SHOP_TEST ? "Shopify test mode · dev store" : "Checkout powered by Shopify";
-    $("checkoutNote").after(badge);
-    $("addrField").hidden = true; $("d-addr").disabled = true;   // Shopify checkout collects the address
+  var noteSpan = $("checkoutNote").querySelector("span");
+  var requestLabel = btn.innerHTML, requestNote = noteSpan.textContent, badge = null;
+  var LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6z"/></svg>';
+  var checkoutLabel = LOCK + "Continue to secure checkout";
+  function enableCheckout(test){
+    SHOP_READY = true;
+    btn.innerHTML = checkoutLabel;
+    noteSpan.textContent = test
+      ? "Stripe test mode: pay with card 4242 4242 4242 4242, any future date and any CVC. Nothing is charged."
+      : "You’ll review and pay on Stripe’s secure checkout. Your flavors, business details and delivery date are attached to the order.";
+    if(!badge){ badge = document.createElement("span"); $("checkoutNote").after(badge); }
+    badge.className = "mode-badge" + (test ? " test" : "");
+    badge.textContent = test ? "Stripe test mode" : "Secure checkout by Stripe";
+    $("addrField").hidden = true; $("d-addr").disabled = true;   // Stripe Checkout collects the address
+    render();
   }
+  function disableCheckout(){
+    SHOP_READY = false;
+    btn.innerHTML = requestLabel; noteSpan.textContent = requestNote;
+    if(badge){ badge.remove(); badge = null; }
+    $("addrField").hidden = false; $("d-addr").disabled = false;
+    render();
+  }
+  /* Coming back from Stripe with the browser's Back button can restore a disabled button */
+  window.addEventListener("pageshow", function(e){
+    if(e.persisted){ btn.disabled = false; btn.innerHTML = SHOP_READY ? checkoutLabel : requestLabel; }
+  });
 
   function orderText(){
     return cart.map(function(l){
@@ -1050,25 +1037,35 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     var v = function(id){ return $(id).value.trim(); };
 
     if(SHOP_READY){
-      var qtyByVariant = {}, order = [];
-      cart.forEach(function(l){
-        var vid = variantFor(l.base, l.size);
-        if(!qtyByVariant[vid]){ qtyByVariant[vid] = 0; order.push(vid); }
-        qtyByVariant[vid] += l.qty;
+      /* Stripe mode: the shop API checks every size against Stripe's prices and opens Stripe Checkout */
+      var lines = cart.map(function(l){
+        return { product: l.size, qty: l.qty, options: { base: BASE_LABEL[l.base], flavor: l.flavor }, custom: !!l.custom };
       });
-      var path = order.map(function(vid){ return vid + ":" + qtyByVariant[vid]; }).join(",");
-      var note = "WHOLESALE ORDER, " + totalVol() + "\n" + orderText() + (v("d-notes") ? "\n\nNotes: " + v("d-notes") : "");
-      var params = [
-        ["note", note],
-        ["attributes[Business]", v("d-biz")],
-        ["attributes[Contact]", v("d-name")],
-        ["attributes[Phone]", v("d-phone")],
-        ["attributes[Preferred delivery]", v("d-date") || "Next available"],
-        ["checkout[email]", v("d-email")]
-      ].map(function(p){ return encodeURIComponent(p[0]) + "=" + encodeURIComponent(p[1]); }).join("&");
-      var domain = SHOPIFY.domain.replace(/^https?:\/\//, "").replace(/\/+$/, "");
-      btn.disabled = true; btn.textContent = "Opening checkout…";
-      window.location.assign("https://" + domain + "/cart/" + path + "?" + params);
+      var details = {
+        business: v("d-biz"), contact: v("d-name"), phone: v("d-phone"), email: v("d-email"),
+        delivery_date: v("d-date") || "Next available", notes: v("d-notes")
+      };
+      btn.disabled = true; btn.textContent = "Opening secure checkout…";
+      fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ lines: lines, details: details })
+      })
+        .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { status: r.status, body: j }; }); })
+        .then(function(res){
+          if(res.body.url){ window.location.assign(res.body.url); return; }
+          btn.disabled = false; btn.innerHTML = checkoutLabel;
+          if(res.status === 503){   // the shop API is deployed but switched off: go back to emailing orders
+            disableCheckout();
+            showMsg("err", "Online checkout isn’t available right now. Add your delivery address and press <strong>Send wholesale order</strong> to email us your order instead.");
+            return;
+          }
+          showMsg("err", esc(res.body.error || "Checkout couldn’t start.") + " Please try again, or call us at <a href=\"tel:+13604260696\">360-426-0696</a>.");
+        })
+        .catch(function(){
+          btn.disabled = false; btn.innerHTML = checkoutLabel;
+          showMsg("err", "Checkout couldn’t start. Check your connection and try again, or call us at <a href=\"tel:+13604260696\">360-426-0696</a>.");
+        });
       return;
     }
 
@@ -1105,6 +1102,22 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
   /* Links like wholesale.html?size=10#order (from the home page) preselect a size */
   var sizeParam = (location.search.match(/[?&]size=([a-z0-9.]+)/i) || [])[1];
   setBase("icecream"); setSize(SIZES.indexOf(sizeParam) > -1 ? sizeParam : "1.5"); setQty(1); render();
+
+  /* Stripe checkout: on when the shop API answers with a Stripe product for every size */
+  if(window.fetch && location.protocol !== "file:"){
+    fetch("/api/catalog", { headers: { Accept: "application/json" } })
+      .then(function(r){ if(!r.ok) throw new Error("catalog " + r.status); return r.json(); })
+      .then(function(c){
+        var found = {};
+        (c.products || []).forEach(function(p){
+          if(SIZES.indexOf(p.key) > -1 && p.price && typeof p.price.amount === "number"){ PRICES[p.key] = p.price.amount / 100; found[p.key] = true; }
+        });
+        if(!SIZES.every(function(k){ return found[k]; })) return;   // a size is missing in Stripe: keep emailing orders
+        showPrices();
+        enableCheckout(c.mode === "test");
+      })
+      .catch(function(){ /* no shop API yet: orders are emailed as before */ });
+  }
 })();
 </script>
 </body>

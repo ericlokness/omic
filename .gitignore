@@ -1,3 +1,8 @@
 # Unused original photos (the site serves the .webp versions)
 images/*.jpg
 images/*.png
+
+# Stripe shop: local tooling and secrets (never commit keys)
+node_modules/
+.wrangler/
+.dev.vars

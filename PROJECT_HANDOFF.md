@@ -4,14 +4,18 @@ _Handoff notes to resume work in a new Claude session. Give this file (and the s
 
 ## Update — November 2026 (read this first; the sections below are the original September notes)
 
-**Live site:** https://olympicmountainicecream.pages.dev (Cloudflare Pages, deployed by uploading a zip of this folder). `olympicmountainicecream.com` still points to the old Apache host, so `robots.txt`, `sitemap.xml`, `llms.txt`, `.well-known/ard.json` and the JSON-LD in `index.html` use the pages.dev address — switch them when the domain moves to Cloudflare.
+**Live site:** https://olympicmountainicecream.pages.dev (Cloudflare Pages). Deploy with `node tools/deploy.mjs` (see "Shop (Stripe)" below), not by uploading a zip: a dashboard upload can't deploy functions and would publish `tools/`, `functions/` and `shop-data.xlsx` as public files. `olympicmountainicecream.com` still points to the old Apache host, so `robots.txt`, `sitemap.xml`, `llms.txt`, `.well-known/ard.json` and the JSON-LD in `index.html` use the pages.dev address — switch them when the domain moves to Cloudflare.
 
 **Repository:** this folder is the repo root (`github.com/ericlokness/omic`). When building the Cloudflare upload zip, leave out `.git/`, `.gitignore` and this file. Unused original `.jpg`/`.png` photos in `images/` are git-ignored.
 
 **Current structure**
 ```
 index.html          home page (adds a "Visit" section, social links, inquiry form)
-wholesale.html      wholesale ordering page (B2B), optional Shopify checkout
+wholesale.html      wholesale ordering page (B2B); Stripe checkout when the shop API is on, else emailed orders
+order-complete.html thank-you page after Stripe Checkout (empties the wholesale cart once paid)
+functions/api/      shop API for Stripe (Cloudflare Pages Function): /api/catalog, /api/checkout, /api/order
+tools/              stripe-setup.mjs (workbook → Stripe) and deploy.mjs (Wrangler deploy); not deployed
+shop-data.xlsx      the shop's products, tax, shipping and coupons, as loaded into Stripe; not deployed
 404.html            not-found page (stops Cloudflare serving index.html for unknown paths)
 robots.txt, sitemap.xml
 llms.txt            plain-language guide for AI agents (Lighthouse "Agentic Browsing")
@@ -22,10 +26,35 @@ images/             WebP; phone-sized variants are named <name>-440/-480/-540/-6
 
 **What changed since September**
 - **New creamery (Nov 2026):** moved from the Skokomish Valley to 130 W Corporate Rd, Shelton, WA 98584 (Port of Shelton); scoop shop open 10am–6pm, 7 days; 16 flavors in store. "Visit" section with three snapshot photos, creamery pin on the map (47.24773, -123.15019), updated story/FAQ/contact/footer. The old mailing address was removed.
-- **Wholesale page:** sizes Pint $6.75, Quart $13.25, 1.5 gal $49.50, 3 gal $95.80, Gelato pan $39.00 (owner's "Retail" price list). Order builder with flavor search; orders are emailed via Web3Forms. Shopify checkout (cart permalinks) is wired to a **dev store** (`olympic-mountain-ice-cream.myshopify.com`, `devStore: true`) and only appears at `wholesale.html?shopify-test`. Going live needs a paid Shopify store, new variant IDs and `devStore: false` (see `SHOPIFY-SETUP.md` in the parent folder).
+- **Wholesale page:** sizes Pint $6.75, Quart $13.25, 1.5 gal $49.50, 3 gal $95.80, Gelato pan $39.00 (owner's "Retail" price list). Order builder with flavor search. Orders are emailed via Web3Forms until Stripe checkout is switched on (see "Shop (Stripe)"). The earlier Shopify dev-store checkout was removed in Nov 2026; `SHOPIFY-SETUP.md` in the parent folder is obsolete.
 - **Open decision:** how the owner's "Standard" (delivery) price list applies to orders is undecided; a TODO sits above `prices` in `wholesale.html`.
 - **Contact form** is now for flavor ideas, business opportunities and events (topic select; event date field), not orders. Facebook and Instagram links in the contact card and footers.
 - **PageSpeed (Nov 20, mobile; Performance / Accessibility / Best Practices / SEO):** home 96 / 97 / 100 / 100, wholesale 94 / 100 / 100 / 100, Agentic Browsing 4/4 on both. A map-note contrast fix (home Accessibility → 100 expected) was made after that test. Done: responsive `srcset` images, sized images, hero logo prioritized and visible from the first frame, flavor-strip images now `loading="lazy"` (they are below the fold on phones; LCP improved), text-safe copper tokens (`--accent-text #8a5a28`, `--accent-display #a8733a`, `--btn #9e6a32`) for AA contrast on light sections, `<main>` landmarks, hidden mobile drawer uses `visibility:hidden`.
+
+## Shop (Stripe) — set up Nov 2026 with the stripe-shop skill
+Payment for wholesale orders moves from emailed requests to **Stripe Checkout**. The Stripe Dashboard is the shop admin (products, prices, coupons, orders, refunds). Hosting stays on Cloudflare's free plan.
+
+**How it works:** `wholesale.html` asks `/api/catalog` for Stripe's current prices on load. If the shop API answers with a Stripe product for every size, the button becomes "Continue to secure checkout"; otherwise the page keeps emailing orders through Web3Forms. Checkout sends only size keys, quantities, base and flavor, plus the business details; `functions/api/[[path]].js` looks up each size's default price in Stripe and opens Stripe Checkout. Flavors and business details appear on the payment's metadata (order_1…, business, contact, phone, delivery_date, notes). Stripe collects the delivery address. Custom flavors are marked "(custom)".
+
+**Stripe products** (metadata `key` = the page's size id; `shop=yes`): pint $6.75, quart $13.25, 1.5 $49.50, 3 $95.80, pan $39.00 — the "Retail" list, prices excluding tax. Change a price in the Dashboard by adding a new price to the product and making it the default; the site picks it up within 5 minutes. `shop-data.xlsx` is the record; `node tools/stripe-setup.mjs shop-data.xlsx` loads it (safe to re-run).
+
+**Current state (Nov 22, 2026)**
+- Test products are in **Eric's own Stripe sandbox "OMIC sandbox"**, for testing only. For go-live they must be created in the **owner's** Stripe account (run the setup script with a key from that account).
+- Tax: **none for now** (`SHOP.tax = "none"`, workbook `tax_mode` none). Washington exempts food and food ingredients from retail sales tax, and packaged ice cream sold unheated without utensils by a food manufacturer isn't "prepared food" (RCW 82.08.0293). The owner's accountant should confirm, especially for wine/spirits flavors (the rule doesn't address food containing alcohol). OMIC still owes B&O tax on these sales; it isn't added at checkout. If tax is ever needed: WA's free address rate lookup (dor.wa.gov URL interface) or Stripe Tax.
+- Shipping: no rate yet (delivery fee, area and any minimum order still to decide). Checkout collects a US address and charges no delivery fee until a rate exists.
+- Coupons: none yet.
+- Open with the owner: Standard vs Retail prices; wine/spirits flavors (surcharge products `booze-<size>` + `addons` in the API's SHOP settings, or email-only); custom flavors paid upfront or request-only; delivery fee/area/minimum; accountant to confirm no sales tax.
+
+**Keys** (never in the repo or the chat): Cloudflare secret `STRIPE_SECRET_KEY` = a restricted key with Products, Prices, Shipping rates, Tax rates: Read and Checkout Sessions: Write. Preview environment = test key; production = live key (only at go-live).
+
+**Deploy**
+```
+npx wrangler login
+npx wrangler pages secret put STRIPE_SECRET_KEY --project-name olympicmountainicecream --env preview
+node tools/deploy.mjs olympicmountainicecream preview      # https://preview.olympicmountainicecream.pages.dev
+node tools/deploy.mjs olympicmountainicecream main         # production (only at go-live)
+```
+`deploy.mjs` leaves out `functions/`, `tools/`, `*.xlsx`, `*.md`, git and Wrangler files. Until a production key is set, a production deploy keeps emailing orders (the API answers 503 and the page falls back).
 
 ## What this is
 A single-page marketing website for **Olympic Mountain Ice Cream** (OMIC), a family-owned Washington State ice cream & sorbet maker (Shelton, WA; founders Karl & Bev Black; family owned since 1984; phone 360-426-0696; olympicmountainicecream.com). Built as a **single static `index.html`** for deployment on **Cloudflare Pages**. The owner's stack preference is static single-file HTML + Cloudflare (Pages/KV/Zero Trust/Email Routing).
