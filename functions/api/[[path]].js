@@ -228,9 +228,11 @@ async function order(url, env) {
   if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(id)) throw new ShopError("Unknown order.");
   const s = await stripe(env, "GET", `checkout/sessions/${id}`);
   const complete = s.status === "complete";
-  // paid: money received. free: a 100%-off code covered it (Stripe reports "no_payment_required").
+  // paid: money received. free: a 100%-off code covered it. Stripe reports a $0 promotion-code order
+  // as payment_status "paid" with amount_total 0 and no PaymentIntent (seen in test, Nov 2026), and
+  // other $0 sessions as "no_payment_required", so check both.
   // pending: checkout finished but the money is still on its way, e.g. ACH Direct Debit (up to 4 business days).
-  const free = complete && s.payment_status === "no_payment_required";
+  const free = complete && (s.payment_status === "no_payment_required" || s.amount_total === 0);
   const paid = complete && (s.payment_status === "paid" || free);
   const pending = complete && s.payment_status === "unpaid";
   return json({ paid, free, pending, status: s.status, amount_total: s.amount_total, currency: s.currency },
