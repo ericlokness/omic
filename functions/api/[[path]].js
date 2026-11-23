@@ -36,6 +36,7 @@ export const SHOP = {
   shippingRates: "auto",         // active Stripe shipping rates (none yet: delivery fee still to decide)
   collectPhone: false,           // the order form already asks for a phone number
   promotionCodes: true,
+  adaptivePricing: false,        // US-only wholesale: always show and charge USD (no converted local-currency prices)
   tax: "none",                   // no sales tax: packaged ice cream is exempt food in WA (owner's accountant to confirm)
   saveCustomers: true,
   successPath: "/order-complete",
@@ -140,6 +141,7 @@ async function checkout(request, env, ctx, origin) {
     custom_text: { submit: { message: truncate("Your order: " + summary.join("; "), 1200) } },
   };
   if (SHOP.branding) params.branding_settings = brandingSettings(origin);
+  if (typeof SHOP.adaptivePricing === "boolean") params.adaptive_pricing = { enabled: SHOP.adaptivePricing };
   if (SHOP.promotionCodes) params.allow_promotion_codes = true;
   if (SHOP.collectPhone) params.phone_number_collection = { enabled: true };
   if (SHOP.saveCustomers) params.customer_creation = "always";
