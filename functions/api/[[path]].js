@@ -2,7 +2,7 @@
  *
  *   GET  /api/catalog                       active products + current prices (public fields only)
  *   POST /api/checkout                      { lines:[{product, qty, options, custom}], details:{…} } -> { url }
- *   GET  /api/order?session_id=cs_…         { paid, status, amount_total, currency } for the thank-you page
+ *   GET  /api/order?session_id=cs_…         { paid, free, pending, status, amount_total, currency } for the thank-you page
  *
  * Secret: STRIPE_SECRET_KEY = a RESTRICTED key (rk_test_… / rk_live_…) with
  *   Products: Read · Prices: Read · Shipping rates: Read · Tax rates: Read · Checkout Sessions: Write.
@@ -227,7 +227,13 @@ async function order(url, env) {
   const id = url.searchParams.get("session_id") || "";
   if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(id)) throw new ShopError("Unknown order.");
   const s = await stripe(env, "GET", `checkout/sessions/${id}`);
-  return json({ paid: s.payment_status === "paid", status: s.status, amount_total: s.amount_total, currency: s.currency },
+  const complete = s.status === "complete";
+  // paid: money received. free: a 100%-off code covered it (Stripe reports "no_payment_required").
+  // pending: checkout finished but the money is still on its way, e.g. ACH Direct Debit (up to 4 business days).
+  const free = complete && s.payment_status === "no_payment_required";
+  const paid = complete && (s.payment_status === "paid" || free);
+  const pending = complete && s.payment_status === "unpaid";
+  return json({ paid, free, pending, status: s.status, amount_total: s.amount_total, currency: s.currency },
     200, { "Cache-Control": "no-store" });
 }
 

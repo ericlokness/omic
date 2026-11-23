@@ -27,7 +27,7 @@ a{color:var(--copper-bright)}
   <img src="/images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
   <div id="paid" hidden>
     <h1>Thank you, your order is <em>in</em></h1>
-    <p>Payment received<span id="amount"></span>. Your receipt is on its way by email.</p>
+    <p id="paidLine">Payment received<span id="amount"></span>. Your receipt is on its way by email.</p>
     <p>We&rsquo;ll be in touch to confirm your flavors and delivery day. Questions? Call <a href="tel:+13604260696">360-426-0696</a>.</p>
   </div>
   <div id="pending">
@@ -40,7 +40,8 @@ a{color:var(--copper-bright)}
   </div>
 </main>
 <script>
-/* Ask the shop API whether Stripe has the payment, then empty the wholesale cart. */
+/* Ask the shop API how the order stands (paid, free with a code, or bank payment still clearing),
+   then empty the wholesale cart. */
 (function(){
   var CART_KEY = "omic-wholesale-order-v1";
   var id = new URLSearchParams(location.search).get("session_id");
@@ -52,9 +53,14 @@ a{color:var(--copper-bright)}
   fetch("/api/order?session_id=" + encodeURIComponent(id), { headers: { Accept: "application/json" } })
     .then(function(r){ return r.json(); })
     .then(function(res){
-      if(!res.paid){ notConfirmed(); return; }
+      if(!res.paid && !res.pending){ notConfirmed(); return; }
       try { localStorage.removeItem(CART_KEY); } catch(e){}
-      if(typeof res.amount_total === "number" && res.currency){
+      var line = document.getElementById("paidLine");
+      if(res.free){
+        line.textContent = "No payment was needed: your code covered the order.";
+      } else if(res.pending){
+        line.textContent = "Your bank payment is on its way. Bank (ACH) payments take up to 4 business days to clear; your receipt arrives by email once it does.";
+      } else if(typeof res.amount_total === "number" && res.currency){
         try {
           document.getElementById("amount").textContent = ": " + new Intl.NumberFormat("en-US", { style: "currency", currency: res.currency.toUpperCase() }).format(res.amount_total / 100);
         } catch(e){}
