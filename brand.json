@@ -30,5 +30,11 @@
     "background": "body background",
     "accent": "button background",
     "logo": "<img> with logo in its name"
+  },
+  "giftup": {
+    "artwork": {
+      "images/brand/gift-card.png": "3e294562-5d46-4f94-1212-08df4a08db09",
+      "images/brand/gift-card-2.png": "e052069f-34ba-4dbd-b7fa-08df49f92632"
+    }
   }
 }
