@@ -68,14 +68,15 @@ a{color:inherit}
 /* One copper marker slides to the link for the section you're reading */
 .nav-links::after{content:"";position:absolute;left:0;bottom:-3px;height:2px;border-radius:2px;background:var(--copper-bright);width:var(--mk-w,0px);transform:translateX(var(--mk-x,0px));opacity:var(--mk-o,0);transition:transform .45s cubic-bezier(.4,0,.2,1),width .45s cubic-bezier(.4,0,.2,1),opacity .3s ease;pointer-events:none}
 @media(prefers-reduced-motion:reduce){.nav-links::after{transition:opacity .3s ease}}
-@media(min-width:761px) and (max-width:1100px){.nav-links{gap:1.3rem}.nav-links a{font-size:.74rem;letter-spacing:.1em}}
+@media(min-width:921px) and (max-width:1100px){.nav-links{gap:1.1rem}.nav-links a{font-size:.72rem;letter-spacing:.09em}}
+.nav-links a{white-space:nowrap}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
 .nav-toggle span{display:block;width:26px;height:2px;background:var(--snow);border-radius:2px;margin:5px auto;transition:transform .35s ease,opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-drawer{display:none}
-@media(max-width:760px){
+@media(max-width:920px){
   .hero-scroll{bottom:5rem;font-size:.72rem;letter-spacing:.24em}
   .hero-scroll::after{height:30px}
   .nav-toggle{display:block}
@@ -302,6 +303,13 @@ a.big:hover{color:var(--copper-bright)}
 .visit-btn:hover{background:var(--horizon)}
 .visit-call{color:var(--ink-soft);font-size:.98rem;text-decoration:none;border-bottom:1px solid rgba(192,138,77,.55);padding-bottom:1px}
 .visit-call:hover{color:var(--copper)}
+.visit-gift{display:flex;align-items:center;gap:1.2rem;margin-top:clamp(2rem,4vw,3rem);padding:1rem 1.3rem;border:1px solid rgba(192,138,77,.4);border-radius:14px;background:#fffdf8;color:var(--ink);text-decoration:none;box-shadow:0 18px 40px -30px rgba(34,41,58,.4)}
+.visit-gift img{width:120px;flex-shrink:0;border-radius:8px}
+.visit-gift strong{display:block;font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--ink)}
+.visit-gift span{color:var(--ink-soft)}
+.visit-gift .visit-gift-cta{margin-left:auto;background:var(--midnight);color:var(--cream);border-radius:999px;padding:.75rem 1.4rem;font-weight:700;font-size:.9rem;white-space:nowrap}
+.visit-gift:hover .visit-gift-cta,.visit-gift:focus-visible .visit-gift-cta{background:var(--horizon)}
+@media(max-width:600px){.visit-gift{flex-wrap:wrap}.visit-gift img{width:96px}.visit-gift .visit-gift-cta{margin-left:0}}
 /* Snapshot prints: cream paper frame, gentle tilt, warm grade so phone photos sit in the palette */
 .snap{margin:0;background:#fffdf8;padding:10px 10px .85rem;border:1px solid rgba(192,138,77,.3);box-shadow:0 22px 45px -24px rgba(34,41,58,.45);transform:rotate(var(--tilt,0deg));transition:transform .5s ease,box-shadow .5s ease}
 .snap:hover{transform:rotate(0deg) scale(1.02);box-shadow:0 30px 55px -26px rgba(34,41,58,.5)}
@@ -456,6 +464,7 @@ a.big:hover{color:var(--copper-bright)}
     <li><a href="#story">Story</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="wholesale.html">Wholesale</a></li>
+    <li><a href="gift-cards.html">Gift Cards</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -467,6 +476,7 @@ a.big:hover{color:var(--copper-bright)}
   <li><a href="#story">Story</a></li>
   <li><a href="#reviews">Reviews</a></li>
   <li><a href="wholesale.html">Wholesale</a></li>
+  <li><a href="gift-cards.html">Gift Cards</a></li>
   <li><a href="#faq">FAQ</a></li>
   <li><a href="#contact">Contact</a></li>
 </ul>
@@ -606,6 +616,11 @@ a.big:hover{color:var(--copper-bright)}
         </figure>
       </div>
     </div>
+    <a class="visit-gift reveal" href="gift-cards.html">
+      <img src="images/brand/gift-card.png" alt="" width="1152" height="768" loading="lazy" decoding="async">
+      <span><strong>Gift cards</strong>Send an Olympic Mountain gift card by email, straight away or on a date you choose.</span>
+      <span class="visit-gift-cta">Shop gift cards</span>
+    </a>
   </div>
 </section>
 

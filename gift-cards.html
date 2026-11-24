@@ -55,14 +55,15 @@ button,input,select,textarea{font:inherit}
 /* Same sliding marker as the home page; here it rests on "Wholesale" */
 .nav-links::after{bottom:-3px;background:var(--copper-bright)}
 
-@media(min-width:761px) and (max-width:1100px){.nav-links{gap:1.3rem}.nav-links a{font-size:.74rem;letter-spacing:.1em}}
+@media(min-width:921px) and (max-width:1100px){.nav-links{gap:1.1rem}.nav-links a{font-size:.72rem;letter-spacing:.09em}}
+.nav-links a{white-space:nowrap}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
 .nav-toggle span{display:block;width:26px;height:2px;background:var(--snow);border-radius:2px;margin:5px auto;transition:transform .35s ease,opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-drawer{display:none}
-@media(max-width:760px){
+@media(max-width:920px){
   .nav-toggle{display:block}
   .nav-links{display:none}
   .nav-drawer{display:flex;position:fixed;top:0;right:0;bottom:0;width:min(78vw,320px);height:100dvh;flex-direction:column;justify-content:center;gap:2rem;list-style:none;background:rgba(10,20,36,.98);backdrop-filter:blur(14px);padding:2rem 2.4rem;transform:translateX(100%);visibility:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s linear .4s;box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:110}
@@ -144,7 +145,7 @@ button,input,select,textarea{font:inherit}
     <li><a href="index.html#pints">Where to Find</a></li>
     <li><a href="index.html#story">Story</a></li>
     <li><a href="index.html#reviews">Reviews</a></li>
-    <li><a href="#top">Wholesale</a></li>
+    <li><a href="wholesale.html">Wholesale</a></li><li><a href="#top" aria-current="page">Gift Cards</a></li>
     <li><a href="index.html#faq">FAQ</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -155,7 +156,7 @@ button,input,select,textarea{font:inherit}
   <li><a href="index.html#pints">Where to Find</a></li>
   <li><a href="index.html#story">Story</a></li>
   <li><a href="index.html#reviews">Reviews</a></li>
-  <li><a href="#top">Wholesale</a></li>
+  <li><a href="wholesale.html">Wholesale</a></li><li><a href="#top" aria-current="page">Gift Cards</a></li>
   <li><a href="index.html#faq">FAQ</a></li>
   <li><a href="index.html#contact">Contact</a></li>
 </ul>
