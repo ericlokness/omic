@@ -1,0 +1,34 @@
+{
+  "siteUrl": "https://preview.olympicmountainicecream.pages.dev",
+  "name": "Olympic Mountain Ice Cream",
+  "logo": "images/logo-cream-v2.webp",
+  "icon": null,
+  "colors": {
+    "brand": "#0a1424",
+    "accent": "#9e6a32",
+    "background": "#f6efe3",
+    "text": "#22293a"
+  },
+  "fonts": {
+    "body": "Karla",
+    "display": "Fraunces",
+    "stripe": "inter"
+  },
+  "radius": "pill",
+  "label": "Gift card",
+  "fontFile": null,
+  "images": {
+    "checkoutLogo": "images/brand/checkout-logo.png",
+    "emailLogo": "images/brand/email-logo.png",
+    "checkoutIcon": "images/brand/checkout-icon.png",
+    "giftCards": [
+      "images/brand/gift-card.png",
+      "images/brand/gift-card-2.png"
+    ]
+  },
+  "found": {
+    "background": "body background",
+    "accent": "button background",
+    "logo": "<img> with logo in its name"
+  }
+}
