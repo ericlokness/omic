@@ -16,7 +16,7 @@ const [project, branch = "preview"] = process.argv.slice(2);
 if (!project) { console.error("Usage: node tools/deploy.mjs <pages-project-name> [branch]"); process.exit(1); }
 if (!existsSync("functions")) { console.error("Run this from the site's root folder (the one with functions/)."); process.exit(1); }
 
-const SKIP = /^(\.git|\.github|\.wrangler|node_modules|functions|tools|dist|\.dev\.vars.*|\.env.*|.+\.xlsx|.+\.md|\.gitignore|package(-lock)?\.json)$/i;
+const SKIP = /^(\.git|\.github|\.wrangler|node_modules|functions|tools|dist|\.dev\.vars.*|\.env.*|.+\.xlsx|.+\.md|\.gitignore|brand\.json|package(-lock)?\.json)$/i;
 const out = mkdtempSync(join(tmpdir(), `${project}-deploy-`));
 cpSync(".", out, { recursive: true, filter: (src) => !src.split(sep).some((part) => SKIP.test(part)) });
 

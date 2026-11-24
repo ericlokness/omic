@@ -1,0 +1,30 @@
+<!--
+  Gift Up gift card checkout, for a /gift-cards page built from the site's own layout (header, footer, styles).
+
+  1. Replace YOUR-GIFT-UP-ID with the ID from Gift Up → Installation (giftup.app/installation). It is public;
+     the API key is not needed here and never goes into the site.
+  2. Keep the <noscript> line: without JavaScript the checkout can't load.
+  3. If the site's _headers sets a Content-Security-Policy, allow https://cdn.giftup.app (script) and
+     https://giftup.app (frame). If a payment window won't open on this page, check Cross-Origin-Opener-Policy:
+     "same-origin" blocks pop-ups from the checkout; remove it for this page with
+        /gift-cards*
+          ! Cross-Origin-Opener-Policy
+  4. Add the page to the nav or footer, sitemap.xml and llms.txt, and a line near the cart's checkout button:
+     "Have a gift card? Enter its code at checkout under 'Add promotion code'."
+
+  Buyers pay through Gift Up on the client's own Stripe account; Gift Up emails the card and keeps the balance.
+  The code works on this site's Stripe Checkout (a Stripe promotion code) and in the shop with the Gift Up app.
+-->
+<section class="gift-cards" aria-labelledby="gift-cards-title">
+  <h1 id="gift-cards-title">Gift cards</h1>
+  <p>Send a gift card by email, straight away or on a date you choose.</p>
+  <div class="gift-up-target" data-site-id="YOUR-GIFT-UP-ID" data-language="en-US"></div>
+  <noscript><p>Please turn on JavaScript to buy a gift card, or contact us and we'll set one up for you.</p></noscript>
+</section>
+<script>
+  (function (g, i, f, t, u, p, s) {
+    g[u] = g[u] || function () { (g[u].q = g[u].q || []).push(arguments); };
+    p = i.createElement(f); p.async = 1; p.src = t;
+    s = i.getElementsByTagName(f)[0]; s.parentNode.insertBefore(p, s);
+  })(window, document, "script", "https://cdn.giftup.app/dist/gift-up.js", "giftup");
+</script>
