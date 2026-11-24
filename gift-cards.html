@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift Cards — Olympic Mountain Ice Cream | Shelton, WA</title>
+<meta name="description" content="Give an Olympic Mountain Ice Cream gift card, sent by email straight away or on a date you choose.">
+<meta name="robots" content="noindex">
+<link rel="ard" type="application/json" href="/.well-known/ard.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
+<style>
+:root{
+  /* Text-safe copper shades for light backgrounds (WCAG AA): small text 4.5:1+, large display 3:1+ */
+  --accent-text:#8a5a28;
+  --accent-display:#a8733a;
+  --btn:#9e6a32;
+  --btn-hover:#8a5a28;
+  --midnight:#0a1424;
+  --dusk:#16283f;
+  --horizon:#24405f;
+  --snow:#eef3f9;
+  --glacier:#a9c0d8;
+  --copper:#c08a4d;
+  --copper-bright:#d9a96a;
+  --cream:#f6efe3;
+  --cream-deep:#efe5d2;
+  --paper:#fffdf8;
+  --ink:#22293a;
+  --ink-soft:#4d5568;
+  --line:rgba(192,138,77,.28);
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+::selection{background:var(--copper);color:#fff}
+:focus-visible{outline:2px solid var(--copper-bright);outline-offset:3px}
+
+/* ---------- Nav (matches home page) ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem clamp(1.2rem,4vw,3rem);transition:background .4s ease,box-shadow .4s ease,padding .4s ease}
+.nav.scrolled{background:rgba(10,20,36,.92);backdrop-filter:blur(10px);box-shadow:0 2px 24px rgba(0,0,0,.35);padding:.65rem clamp(1.2rem,4vw,3rem)}
+.nav-brand img{height:44px;width:auto;transition:height .4s ease}
+.nav.scrolled .nav-brand img{height:36px}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;position:relative}
+.nav-links a{color:var(--snow);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color .25s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--copper-bright)}
+/* Same sliding marker as the home page; here it rests on "Wholesale" */
+.nav-links::after{bottom:-3px;background:var(--copper-bright)}
+
+@media(min-width:761px) and (max-width:1100px){.nav-links{gap:1.3rem}.nav-links a{font-size:.74rem;letter-spacing:.1em}}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
+.nav-toggle span{display:block;width:26px;height:2px;background:var(--snow);border-radius:2px;margin:5px auto;transition:transform .35s ease,opacity .25s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{display:none}
+@media(max-width:760px){
+  .nav-toggle{display:block}
+  .nav-links{display:none}
+  .nav-drawer{display:flex;position:fixed;top:0;right:0;bottom:0;width:min(78vw,320px);height:100dvh;flex-direction:column;justify-content:center;gap:2rem;list-style:none;background:rgba(10,20,36,.98);backdrop-filter:blur(14px);padding:2rem 2.4rem;transform:translateX(100%);visibility:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s linear .4s;box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:110}
+  .nav-drawer.open{transform:translateX(0);visibility:visible;transition:transform .4s cubic-bezier(.4,0,.2,1),visibility 0s}
+  .nav-drawer a{color:var(--snow);text-decoration:none;font-size:1.05rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+  .nav-drawer a:hover,.nav-drawer a[aria-current="page"]{color:var(--copper-bright)}
+  body.nav-open{overflow:hidden}
+  .nav-scrim{position:fixed;inset:0;background:rgba(6,12,24,.5);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;z-index:105}
+  .nav-scrim.show{opacity:1;visibility:visible}
+}
+
+/* ---------- Shared ---------- */
+.section{padding:clamp(4.5rem,9vw,7rem) clamp(1.2rem,5vw,3rem)}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{color:var(--accent-text);font-size:.76rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1rem}
+.heading{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.12;letter-spacing:-.01em}
+.heading em{font-style:italic;color:var(--accent-display)}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:1rem;max-width:620px}
+.center{text-align:center}.center .lede{margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--btn);border:1px solid var(--btn);border-radius:999px;color:#fff;font-family:var(--body);font-weight:700;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;padding:.95rem 2rem;cursor:pointer;text-decoration:none;transition:background .3s ease,border-color .3s ease,transform .2s ease,color .3s ease}
+.btn:hover{background:var(--btn-hover);border-color:var(--btn-hover);transform:translateY(-1px)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.btn-ghost{background:transparent;color:var(--cream);border-color:rgba(217,169,106,.6)}
+.btn-ghost:hover{background:rgba(217,169,106,.14);border-color:var(--copper-bright);color:#fff}
+.btn-line{background:transparent;color:var(--accent-text);border-color:rgba(192,138,77,.55)}
+.btn-line:hover{background:var(--btn-hover);border-color:var(--btn-hover);color:#fff}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.19,1,.22,1)}
+.reveal.in{opacity:1;transform:none}
+.footer{background:var(--midnight);text-align:center;padding:3.2rem 1.5rem 2.6rem}
+.footer img{width:min(280px,66vw);margin:0 auto 1.4rem;opacity:.94}
+.footer p{color:var(--glacier);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
+.footer-links{margin-bottom:.9rem}
+.footer-links a{color:var(--snow);text-decoration:none;border-bottom:1px solid rgba(217,169,106,.6);padding-bottom:2px}
+.footer-links a:hover,.footer-links a:focus-visible{color:var(--copper-bright)}
+.social{list-style:none;display:flex;justify-content:center;gap:1.6rem;margin:0 0 1.5rem}
+.social a{display:inline-flex;align-items:center;gap:.5rem;color:var(--glacier);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;transition:color .25s ease}
+.social a:hover,.social a:focus-visible{color:var(--copper-bright)}
+.social svg{width:22px;height:22px}
+.footer .fine{margin-top:.9rem;letter-spacing:.04em;text-transform:none;font-size:.78rem;color:#8299b3}
+
+/* ---------- Gift cards page ---------- */
+.gc-hero{background:linear-gradient(180deg,var(--midnight),var(--dusk));color:var(--snow);padding:clamp(7.5rem,14vw,9.5rem) clamp(1.2rem,5vw,3rem) clamp(3.5rem,7vw,5rem)}
+.gc-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+@media(max-width:860px){.gc-hero-grid{grid-template-columns:1fr}}
+.gc-hero .eyebrow{color:var(--copper-bright)}
+.gc-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.6vw,3.8rem);line-height:1.08;letter-spacing:-.01em}
+.gc-hero h1 em{font-style:italic;color:var(--copper-bright)}
+.gc-hero p.sub{color:#d3deea;font-size:clamp(1.02rem,1.8vw,1.15rem);margin-top:1.2rem;max-width:32rem}
+.gc-card{margin:0;transform:rotate(-2deg);filter:drop-shadow(0 30px 50px rgba(0,0,0,.45))}
+.gc-card img{width:100%;border-radius:clamp(10px,1.6vw,18px)}
+.gc-buy{background:var(--cream)}
+.gc-panel{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.4rem,3.5vw,2.4rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
+.gc-panel h2{font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,3vw,1.9rem)}
+.gc-panel h2 em{font-style:italic;color:var(--accent-display)}
+.gc-panel .lede{margin-top:.4rem}
+.gift-up-target{margin-top:1.6rem;min-height:120px}
+.gc-soon{margin-top:1.6rem;border:1px dashed rgba(192,138,77,.55);border-radius:12px;padding:1.4rem 1.5rem;color:var(--ink-soft)}
+.gc-soon strong{color:var(--ink)}
+.gc-soon a{color:var(--accent-text);font-weight:700}
+.gc-how{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:760px;margin:2rem auto 0}
+@media(max-width:700px){.gc-how{grid-template-columns:1fr}}
+.gc-how li{border-top:2px solid var(--copper);padding-top:.8rem;color:var(--ink-soft);font-size:.98rem}
+.gc-how b{display:block;font-family:var(--display);font-weight:500;font-size:1.15rem;color:var(--ink);margin-bottom:.2rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="index.html" aria-label="Olympic Mountain Ice Cream — home">
+    <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#flavors">Flavors</a></li>
+    <li><a href="index.html#visit">Visit</a></li>
+    <li><a href="index.html#pints">Where to Find</a></li>
+    <li><a href="index.html#story">Story</a></li>
+    <li><a href="index.html#reviews">Reviews</a></li>
+    <li><a href="#top">Wholesale</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+<ul class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <li><a href="index.html#flavors">Flavors</a></li>
+  <li><a href="index.html#visit">Visit</a></li>
+  <li><a href="index.html#pints">Where to Find</a></li>
+  <li><a href="index.html#story">Story</a></li>
+  <li><a href="index.html#reviews">Reviews</a></li>
+  <li><a href="#top">Wholesale</a></li>
+  <li><a href="index.html#faq">FAQ</a></li>
+  <li><a href="index.html#contact">Contact</a></li>
+</ul>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main id="main">
+<header class="gc-hero" id="top">
+  <div class="wrap gc-hero-grid">
+    <div>
+      <p class="eyebrow">Gift Cards</p>
+      <h1>Give the gift of <em>a good scoop</em></h1>
+      <p class="sub">Send an Olympic Mountain Ice Cream gift card by email, straight away or on a date you choose.</p>
+    </div>
+    <figure class="gc-card"><img src="images/brand/gift-card.png" alt="Olympic Mountain Ice Cream gift card: the cream logo on midnight blue with a copper border" width="1152" height="768" fetchpriority="high"></figure>
+  </div>
+</header>
+
+<section class="section gc-buy" aria-labelledby="buyTitle">
+  <div class="gc-panel">
+    <h2 id="buyTitle">Choose an <em>amount</em></h2>
+    <p class="lede">Pick the value, add a message, and choose when it should arrive. Payment is handled securely by Stripe.</p>
+    <!-- Gift Up checkout. Replace YOUR-GIFT-UP-ID with the ID from Gift Up → Installation (public; the API key never goes here). -->
+    <div class="gift-up-target" id="giftUp" data-site-id="YOUR-GIFT-UP-ID" data-language="en-US"></div>
+    <div class="gc-soon" id="giftSoon" hidden><strong>Gift cards are coming soon.</strong> Questions in the meantime? Call <a href="tel:+13604260696">360-426-0696</a>.</div>
+    <noscript><p class="gc-soon">Please turn on JavaScript to buy a gift card, or call us at 360-426-0696.</p></noscript>
+  </div>
+  <ul class="gc-how">
+    <li><b>Sent by email</b>The card arrives with its own code, now or on the day you pick.</li>
+    <li><b>Use it online</b>On a wholesale order, enter the code at checkout under &ldquo;Add promotion code&rdquo;.</li>
+    <li><b>Questions?</b>Call us at <a href="tel:+13604260696">360-426-0696</a>.</li>
+  </ul>
+</section>
+</main>
+
+<footer class="footer">
+  <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
+  <ul class="social" aria-label="Olympic Mountain Ice Cream on social media"><li><a href="https://www.facebook.com/OlympicMountainIceCream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.3h-3.2V8.4c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.3h2.8V22z"/></svg><span>Facebook</span></a></li><li><a href="https://www.instagram.com/olympicmountainicecream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></li></ul>
+  <p class="footer-links"><a href="gift-cards.html">Gift cards</a></p>
+  <p>Family Owned Since 1984 · 130 W Corporate Rd, Shelton, WA 98584</p>
+  <p class="fine">© <span id="year"></span> Olympic Mountain Ice Cream. All rights reserved.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  /* Nav: darken on scroll, phone menu */
+  var nav = $("nav");
+  function onNav(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onNav, {passive:true}); onNav();
+  var navToggle = $("navToggle"), navDrawer = $("navDrawer"), navScrim = $("navScrim");
+  function setMenu(open){
+    navDrawer.classList.toggle("open", open);
+    navScrim.classList.toggle("show", open);
+    document.body.classList.toggle("nav-open", open);
+    navDrawer.setAttribute("aria-hidden", open ? "false" : "true");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  navToggle.addEventListener("click", function(){ setMenu(!navDrawer.classList.contains("open")); });
+  navScrim.addEventListener("click", function(){ setMenu(false); });
+  navDrawer.addEventListener("click", function(e){ if(e.target.tagName === "A") setMenu(false); });
+  $("year").textContent = new Date().getFullYear();
+
+  /* Gift Up checkout: load it only once a real Gift Up ID is in place; until then show "coming soon". */
+  var target = $("giftUp");
+  var id = target.getAttribute("data-site-id") || "";
+  if(!id || id === "YOUR-GIFT-UP-ID"){
+    target.hidden = true; $("giftSoon").hidden = false; return;
+  }
+  (function (g, i, f, t, u, p, s) {
+    g[u] = g[u] || function () { (g[u].q = g[u].q || []).push(arguments); };
+    p = i.createElement(f); p.async = 1; p.src = t;
+    s = i.getElementsByTagName(f)[0]; s.parentNode.insertBefore(p, s);
+  })(window, document, "script", "https://cdn.giftup.app/dist/gift-up.js", "giftup");
+})();
+</script>
+</body>
+</html>

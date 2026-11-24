@@ -273,6 +273,9 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .footer{background:var(--midnight);text-align:center;padding:3.2rem 1.5rem 2.6rem}
 .footer img{width:min(280px,66vw);margin:0 auto 1.4rem;opacity:.94}
 .footer p{color:var(--glacier);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
+.footer-links{margin-bottom:.9rem}
+.footer-links a{color:var(--snow);text-decoration:none;border-bottom:1px solid rgba(217,169,106,.6);padding-bottom:2px}
+.footer-links a:hover,.footer-links a:focus-visible{color:var(--copper-bright)}
 .social{list-style:none;display:flex;justify-content:center;gap:1.6rem;margin:0 0 1.5rem}
 .social a{display:inline-flex;align-items:center;gap:.5rem;color:var(--glacier);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;transition:color .25s ease}
 .social a:hover,.social a:focus-visible{color:var(--copper-bright)}
@@ -555,6 +558,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 <footer class="footer">
   <img src="images/logo-cream-v2.webp" alt="Olympic Mountain Ice Cream" width="537" height="200">
   <ul class="social" aria-label="Olympic Mountain Ice Cream on social media"><li><a href="https://www.facebook.com/OlympicMountainIceCream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.3h-3.2V8.4c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.3h2.8V22z"/></svg><span>Facebook</span></a></li><li><a href="https://www.instagram.com/olympicmountainicecream/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></li></ul>
+  <p class="footer-links"><a href="gift-cards.html">Gift cards</a></p>
   <p>Family Owned Since 1984 · 130 W Corporate Rd, Shelton, WA 98584</p>
   <p class="fine">© <span id="year"></span> Olympic Mountain Ice Cream. All rights reserved.</p>
 </footer>
@@ -1000,6 +1004,7 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     noteSpan.textContent = test
       ? "Stripe test mode: pay with card 4242 4242 4242 4242, any future date and any CVC. Nothing is charged."
       : "You’ll review and pay on Stripe’s secure checkout. Your flavors, business details and delivery date are attached to the order.";
+    noteSpan.textContent += " Have a gift card or promo code? Enter it on the payment page under “Add promotion code”.";
     if(!badge){ badge = document.createElement("span"); $("checkoutNote").after(badge); }
     badge.className = "mode-badge" + (test ? " test" : "");
     badge.textContent = test ? "Stripe test mode" : "Secure checkout by Stripe";
