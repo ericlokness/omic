@@ -71,7 +71,7 @@ button,input,select,textarea{font:inherit}
 @media(prefers-reduced-motion:reduce){.nav-links::after,.subnav ul::after,.subnav{transition:opacity .3s ease}}
 /* Land section headings below the two fixed bars */
 section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw,7rem))}
-#builder,#summary{scroll-margin-top:7.5rem}
+#builder,#summary,#pay{scroll-margin-top:7.5rem}
 @media(min-width:921px) and (max-width:1100px){.nav-links{gap:1.1rem}.nav-links a{font-size:.72rem;letter-spacing:.09em}}
 .nav-links a{white-space:nowrap}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
@@ -150,6 +150,16 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .order{background:var(--cream-deep)}
 .order-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(1.4rem,3vw,2.4rem);margin-top:clamp(2.4rem,5vw,3.4rem);align-items:start}
 @media(max-width:960px){.order-layout{grid-template-columns:1fr}}
+.order-layout[hidden]{display:none}
+/* Embedded Stripe Checkout: the payment form opens here, on this page */
+.pay{margin-top:clamp(2.4rem,5vw,3.4rem);background:linear-gradient(180deg,var(--dusk),var(--midnight));color:var(--snow);border-radius:16px;padding:clamp(1rem,2.6vw,1.8rem);box-shadow:0 30px 70px -35px rgba(10,20,36,.8);border:1px solid rgba(169,192,216,.18)}
+.pay[hidden]{display:none}
+.pay-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:0 .3rem 1.2rem}
+.pay-head h3{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,2.6vw,1.8rem)}
+.pay-head h3:focus{outline:none}
+.pay-back{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;background:transparent;border:1px solid rgba(217,169,106,.6);border-radius:999px;color:var(--cream);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.3rem;cursor:pointer;transition:background .25s ease,color .25s ease}
+.pay-back:hover,.pay-back:focus-visible{background:rgba(217,169,106,.14);color:#fff}
+.pay-form{min-height:460px;border-radius:12px;overflow:hidden}
 .builder{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.4rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
 .bstep{padding:1.4rem 0;border-bottom:1px dotted rgba(192,138,77,.45)}
 .bstep:first-child{padding-top:0}
@@ -424,7 +434,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
       <p class="lede">Add as many flavors and sizes as you need. Your order is saved on this device, so you can come back to it.</p>
     </div>
 
-    <div class="order-layout">
+    <div class="order-layout" id="orderLayout">
       <!-- Builder -->
       <div class="builder" id="builder">
         <div class="bstep">
@@ -506,6 +516,15 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <div class="form-msg" id="formMsg" role="alert"></div>
         </div>
       </form>
+    </div>
+
+    <!-- Payment: Stripe's embedded checkout opens here when the shop runs in embedded mode -->
+    <div class="pay" id="pay" hidden>
+      <div class="pay-head">
+        <h3 id="payTitle" tabindex="-1">Secure <em>payment</em></h3>
+        <button type="button" class="pay-back" id="payBack"><span aria-hidden="true">&larr;</span> Back to your order</button>
+      </div>
+      <div class="pay-form" id="stripeCheckout"></div>
     </div>
   </div>
 </section>
@@ -976,7 +995,8 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
 
   /* Mobile order bar: visible when the order has items and the summary isn't on screen */
   var obar = $("obar"), summaryVisible = false;
-  function updateBar(){ obar.classList.toggle("show", cart.length > 0 && !summaryVisible); }
+  var paying = false;   // true while Stripe's payment form is open on the page
+  function updateBar(){ obar.classList.toggle("show", cart.length > 0 && !summaryVisible && !paying); }
   if("IntersectionObserver" in window){
     new IntersectionObserver(function(en){ summaryVisible = en[0].isIntersecting; updateBar(); }, {threshold:.05}).observe($("summary"));
   }
@@ -1006,8 +1026,8 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     btn.innerHTML = checkoutLabel;
     noteSpan.textContent = test
       ? "Stripe test mode: pay with card 4242 4242 4242 4242, any future date and any CVC. Nothing is charged."
-      : "You’ll review and pay on Stripe’s secure checkout. Your flavors, business details and delivery date are attached to the order.";
-    noteSpan.textContent += " Have a gift card or promo code? Enter it on the payment page under “Add promotion code”.";
+      : "You’ll review and pay through Stripe’s secure checkout. Your flavors, business details and delivery date are attached to the order.";
+    noteSpan.textContent += " Have a gift card or promo code? Enter it at payment under “Add promotion code”.";
     if(!badge){ badge = document.createElement("span"); $("checkoutNote").after(badge); }
     badge.className = "mode-badge" + (test ? " test" : "");
     badge.textContent = test ? "Stripe test mode" : "Secure checkout by Stripe";
@@ -1023,7 +1043,51 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
   }
   /* Coming back from Stripe with the browser's Back button can restore a disabled button */
   window.addEventListener("pageshow", function(e){
-    if(e.persisted){ btn.disabled = false; btn.innerHTML = SHOP_READY ? checkoutLabel : requestLabel; }
+    if(e.persisted){ closePayment(); btn.disabled = false; btn.innerHTML = SHOP_READY ? checkoutLabel : requestLabel; }
+  });
+
+  /* Embedded Stripe Checkout: /api/checkout returns a client secret and the publishable key, and Stripe's
+     payment form opens in #pay on this page (the address bar keeps this site's domain). Stripe.js must load
+     from js.stripe.com; it's only fetched when a buyer starts paying. After payment Stripe sends the buyer
+     to /order-complete. "Back to your order" closes the form and keeps the cart. */
+  var STRIPE_JS = "https://js.stripe.com/endive/stripe.js", stripeJs = null, embedded = null;
+  function loadStripeJs(){
+    if(window.Stripe) return Promise.resolve(window.Stripe);
+    if(!stripeJs){
+      stripeJs = new Promise(function(resolve, reject){
+        var s = document.createElement("script"); s.src = STRIPE_JS; s.async = true;
+        s.onload = function(){ window.Stripe ? resolve(window.Stripe) : reject(new Error("Stripe.js")); };
+        s.onerror = function(){ stripeJs = null; reject(new Error("Stripe.js didn't load")); };
+        document.head.appendChild(s);
+      });
+    }
+    return stripeJs;
+  }
+  function openPayment(res){
+    return loadStripeJs().then(function(Stripe){
+      var stripe = Stripe(res.publishableKey);
+      var create = stripe.createEmbeddedCheckoutPage || stripe.initEmbeddedCheckout;   // newer / older Stripe.js name
+      return create.call(stripe, { fetchClientSecret: function(){ return Promise.resolve(res.clientSecret); } });
+    }).then(function(co){
+      if(embedded){ try{ embedded.destroy(); }catch(e){} }   // Stripe allows one form per page
+      embedded = co;
+      $("orderLayout").hidden = true; $("pay").hidden = false;
+      paying = true; updateBar();
+      co.mount($("stripeCheckout"));
+      $("pay").scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"start"});
+      $("payTitle").focus({preventScroll:true});
+    });
+  }
+  function closePayment(){
+    if(embedded){ try{ embedded.destroy(); }catch(e){} embedded = null; }
+    $("pay").hidden = true; $("orderLayout").hidden = false;
+    paying = false; updateBar();
+    btn.disabled = false; if(SHOP_READY) btn.innerHTML = checkoutLabel;
+  }
+  $("payBack").addEventListener("click", function(){
+    closePayment();
+    $("summary").scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"start"});
+    btn.focus({preventScroll:true});
   });
 
   function orderText(){
@@ -1045,7 +1109,8 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     var v = function(id){ return $(id).value.trim(); };
 
     if(SHOP_READY){
-      /* Stripe mode: the shop API checks every size against Stripe's prices and opens Stripe Checkout */
+      /* Stripe mode: the shop API checks every size against Stripe's prices and opens Stripe Checkout
+         (embedded in #pay on this page, or Stripe's hosted page if no publishable key is set) */
       var lines = cart.map(function(l){
         return { product: l.size, qty: l.qty, options: { base: BASE_LABEL[l.base], flavor: l.flavor }, custom: !!l.custom };
       });
@@ -1061,7 +1126,13 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
       })
         .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { status: r.status, body: j }; }); })
         .then(function(res){
-          if(res.body.url){ window.location.assign(res.body.url); return; }
+          if(res.body.url){ window.location.assign(res.body.url); return; }   // hosted mode (no publishable key set)
+          if(res.body.clientSecret){
+            return openPayment(res.body).catch(function(){
+              closePayment();
+              showMsg("err", "The payment form couldn’t load. Check your connection and try again, or call us at <a href=\"tel:+13604260696\">360-426-0696</a>.");
+            });
+          }
           btn.disabled = false; btn.innerHTML = checkoutLabel;
           if(res.status === 503){   // the shop API is deployed but switched off: go back to emailing orders
             disableCheckout();

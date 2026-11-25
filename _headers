@@ -12,6 +12,12 @@
 /gift-cards*
   ! Cross-Origin-Opener-Policy
 
+# Wholesale page: Stripe's embedded checkout may open a pop-up (wallet or bank sign-in), which "same-origin"
+# would cut off; "same-origin-allow-popups" keeps the rest of the protection
+/wholesale*
+  ! Cross-Origin-Opener-Policy
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
 /.well-known/ard.json
   Content-Type: application/json; charset=utf-8
   Access-Control-Allow-Origin: *

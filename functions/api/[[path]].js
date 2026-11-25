@@ -1,12 +1,15 @@
 /* Stripe shop API for a static site on Cloudflare (Pages Functions or a Worker).
  *
  *   GET  /api/catalog                       active products + current prices (public fields only)
- *   POST /api/checkout                      { lines:[{product, qty, options, custom}], details:{…} } -> { url }
+ *   POST /api/checkout                      { lines:[{product, qty, options, custom}], details:{…} }
+ *                                           -> { clientSecret, publishableKey } (embedded) or { url } (hosted)
  *   GET  /api/order?session_id=cs_…         { paid, free, pending, status, amount_total, currency } for the thank-you page
  *
  * Secret: STRIPE_SECRET_KEY = a RESTRICTED key (rk_test_… / rk_live_…) with
  *   Products: Read · Prices: Read · Shipping rates: Read · Tax rates: Read · Checkout Sessions: Write.
- * Set it with wrangler, never in this file. The site sends product KEYS and quantities only;
+ * Variable: STRIPE_PUBLISHABLE_KEY = pk_test_… / pk_live_… (public; the page needs it to show the embedded
+ *   payment form). Without it, or if it doesn't match the secret key's mode, checkout uses Stripe's hosted page.
+ * Set them with wrangler, never in this file. The site sends product KEYS and quantities only;
  * Stripe decides every amount, so a visitor can't change a price.
  *
  * Product key = the product's metadata "key" in Stripe (same in test and live mode), else its id.
@@ -39,8 +42,10 @@ export const SHOP = {
   adaptivePricing: false,        // US-only wholesale: always show and charge USD (no converted local-currency prices)
   tax: "none",                   // no sales tax: packaged ice cream is exempt food in WA (owner's accountant to confirm)
   saveCustomers: true,
+  checkoutUi: "embedded",        // Stripe's payment form shows inside wholesale.html (#pay), so buyers stay on this
+                                 // domain. Needs STRIPE_PUBLISHABLE_KEY; without it checkout uses Stripe's hosted page.
   successPath: "/order-complete",
-  cancelPath: "/wholesale#summary",
+  cancelPath: "/wholesale#summary",   // hosted page only
   cacheSeconds: 300,
   // Look of the Stripe payment page (Checkout branding_settings), sent with every session so it
   // follows the site to any Stripe account. Logo and icon are site paths (PNG/JPG, Stripe's rule).
@@ -128,11 +133,14 @@ async function checkout(request, env, ctx, origin) {
     ? (cat.taxRates.length === 1 ? { tax_rates: cat.taxRates } : { dynamic_tax_rates: cat.taxRates })
     : {};
 
+  const embedded = useEmbedded(env);
+  const returnTo = `${origin}${SHOP.successPath}?session_id={CHECKOUT_SESSION_ID}`;
   const params = {
     mode: "payment",
     line_items: [...qtyByPrice].map(([price, quantity]) => ({ price, quantity, ...taxLine })),
-    success_url: `${origin}${SHOP.successPath}?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}${SHOP.cancelPath}`,
+    ...(embedded
+      ? { ui_mode: embeddedMode, return_url: returnTo }
+      : { success_url: returnTo, cancel_url: `${origin}${SHOP.cancelPath}` }),
     metadata,
     payment_intent_data: {
       description: truncate(`Website order${firstField ? " — " + firstField : ""} (${summary.length} line${summary.length === 1 ? "" : "s"})`, 300),
@@ -152,8 +160,39 @@ async function checkout(request, env, ctx, origin) {
     if (cat.shippingRates.length) params.shipping_options = cat.shippingRates.map((id) => ({ shipping_rate: id }));
   }
 
-  const session = await stripe(env, "POST", "checkout/sessions", params);
+  const session = await createSession(env, params);
+  if (embedded) {
+    return json({ clientSecret: session.client_secret, publishableKey: env.STRIPE_PUBLISHABLE_KEY }, 200, { "Cache-Control": "no-store" });
+  }
   return json({ url: session.url }, 200, { "Cache-Control": "no-store" });
+}
+
+/* Embedded checkout needs a publishable key of the same mode as the secret key; otherwise use the hosted page. */
+function useEmbedded(env) {
+  if (SHOP.checkoutUi !== "embedded") return false;
+  const pk = env.STRIPE_PUBLISHABLE_KEY || "";
+  if (!pk) return false;
+  if (!/^pk_(test|live)_[A-Za-z0-9]+$/.test(pk) || /^pk_test_/.test(pk) !== isTest(env)) {
+    console.warn("shop: STRIPE_PUBLISHABLE_KEY is not a publishable key of the same mode as STRIPE_SECRET_KEY; using hosted checkout");
+    return false;
+  }
+  return true;
+}
+
+/* Stripe renamed ui_mode "embedded" to "embedded_page" in newer API versions. Try the new name and switch once
+   (and remember it) if this account's API version only knows the other. */
+let embeddedMode = "embedded_page";
+async function createSession(env, params) {
+  try {
+    return await stripe(env, "POST", "checkout/sessions", params);
+  } catch (e) {
+    const uiModeError = params.ui_mode && e.status === 400 && (e.stripe?.param === "ui_mode" || /ui_mode/.test(e.message));
+    if (!uiModeError) throw e;
+    const other = params.ui_mode === "embedded_page" ? "embedded" : "embedded_page";
+    const session = await stripe(env, "POST", "checkout/sessions", { ...params, ui_mode: other });
+    embeddedMode = other;
+    return session;
+  }
 }
 
 /* SHOP.branding -> Checkout branding_settings; logo/icon site paths become absolute URLs on this host. */
@@ -230,10 +269,9 @@ async function order(url, env) {
   if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(id)) throw new ShopError("Unknown order.");
   const s = await stripe(env, "GET", `checkout/sessions/${id}`);
   const complete = s.status === "complete";
-  // paid: money received. free: a 100%-off code covered it. Stripe reports a $0 promotion-code order
-  // as payment_status "paid" with amount_total 0 and no PaymentIntent (seen in test, Nov 2026), and
-  // other $0 sessions as "no_payment_required", so check both.
-  // pending: checkout finished but the money is still on its way, e.g. ACH Direct Debit (up to 4 business days).
+  // paid: money received. free: a code (coupon or gift card) covered it. Stripe reports a 0 total promotion-code
+  // order as "paid" with amount_total 0 and no PaymentIntent (seen in test, Nov 2026), and other zero-total
+  // sessions as "no_payment_required", so check both.
   const free = complete && (s.payment_status === "no_payment_required" || s.amount_total === 0);
   const paid = complete && (s.payment_status === "paid" || free);
   const pending = complete && s.payment_status === "unpaid";
