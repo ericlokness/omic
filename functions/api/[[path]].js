@@ -148,7 +148,7 @@ async function checkout(request, env, ctx, origin) {
     },
     custom_text: { submit: { message: truncate("Your order: " + summary.join("; "), 1200) } },
   };
-  if (SHOP.branding) params.branding_settings = brandingSettings(origin);
+  if (SHOP.branding) params.branding_settings = brandingSettings(origin, embedded);
   if (typeof SHOP.adaptivePricing === "boolean") params.adaptive_pricing = { enabled: SHOP.adaptivePricing };
   if (SHOP.promotionCodes) params.allow_promotion_codes = true;
   if (SHOP.collectPhone) params.phone_number_collection = { enabled: true };
@@ -179,14 +179,16 @@ function useEmbedded(env) {
   return true;
 }
 
-/* Stripe renamed ui_mode "embedded" to "embedded_page" in newer API versions. Try the new name and switch once
-   (and remember it) if this account's API version only knows the other. */
-let embeddedMode = "embedded_page";
+/* Stripe renamed ui_mode "embedded" to "embedded_page" in newer API versions. Start with the name the pinned
+   STRIPE_VERSION (2024-06-20) knows, "embedded", and switch once (and remember it) if Stripe asks for the other. */
+let embeddedMode = "embedded";
 async function createSession(env, params) {
   try {
     return await stripe(env, "POST", "checkout/sessions", params);
   } catch (e) {
-    const uiModeError = params.ui_mode && e.status === 400 && (e.stripe?.param === "ui_mode" || /ui_mode/.test(e.message));
+    // Only a complaint about the ui_mode value itself, not e.g. "You cannot set `logo` when `ui_mode` is `embedded`"
+    const uiModeError = params.ui_mode && e.status === 400 &&
+      (e.stripe?.param === "ui_mode" || /ui_mode value|invalid (value for )?ui_mode/i.test(e.message));
     if (!uiModeError) throw e;
     const other = params.ui_mode === "embedded_page" ? "embedded" : "embedded_page";
     const session = await stripe(env, "POST", "checkout/sessions", { ...params, ui_mode: other });
@@ -195,10 +197,13 @@ async function createSession(env, params) {
   }
 }
 
-/* SHOP.branding -> Checkout branding_settings; logo/icon site paths become absolute URLs on this host. */
-function brandingSettings(origin) {
+/* SHOP.branding -> Checkout branding_settings; logo/icon site paths become absolute URLs on this host.
+   Embedded checkout sits inside our own page, so Stripe refuses a logo or icon there ("You cannot set `logo`
+   when `ui_mode` is `embedded`", seen Nov 26, 2026); it still takes the name, colours, border and font. */
+function brandingSettings(origin, embedded) {
   const { logo, icon, ...rest } = SHOP.branding;
   const out = { ...rest };
+  if (embedded) return out;
   if (logo) out.logo = { type: "url", url: new URL(logo, origin).href };
   if (icon) out.icon = { type: "url", url: new URL(icon, origin).href };
   return out;
