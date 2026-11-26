@@ -237,7 +237,8 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .add-msg{font-size:.9rem;color:#4f7a2a;min-height:1.4em;width:100%}
 
 /* ---------- Summary (dark, echoes the home-page order card) ---------- */
-.summary{position:sticky;top:5.5rem;background:linear-gradient(180deg,var(--dusk),var(--midnight));color:var(--snow);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.2rem);box-shadow:0 30px 70px -35px rgba(10,20,36,.8);border:1px solid rgba(169,192,216,.18)}
+/* Flat midnight, the same blue as the Secure payment panel and Stripe's form beside it while paying */
+.summary{position:sticky;top:5.5rem;background:var(--midnight);color:var(--snow);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.2rem);box-shadow:0 30px 70px -35px rgba(10,20,36,.8);border:1px solid rgba(169,192,216,.18)}
 @media(max-width:960px){.summary{position:static}}
 .summary h3{font-family:var(--display);font-weight:500;font-size:1.6rem;display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
 .summary h3 em{font-style:italic;color:var(--copper-bright)}
