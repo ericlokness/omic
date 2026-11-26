@@ -150,16 +150,32 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .order{background:var(--cream-deep)}
 .order-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(1.4rem,3vw,2.4rem);margin-top:clamp(2.4rem,5vw,3.4rem);align-items:start}
 @media(max-width:960px){.order-layout{grid-template-columns:1fr}}
-.order-layout[hidden]{display:none}
-/* Embedded Stripe Checkout: the payment form opens here, on this page */
-.pay{margin-top:clamp(2.4rem,5vw,3.4rem);background:linear-gradient(180deg,var(--dusk),var(--midnight));color:var(--snow);border-radius:16px;padding:clamp(1rem,2.6vw,1.8rem);box-shadow:0 30px 70px -35px rgba(10,20,36,.8);border:1px solid rgba(169,192,216,.18)}
+/* Embedded Stripe Checkout: while paying, Stripe's form takes the builder's place in the left column and the
+   order summary stays on the right, locked (the open payment can't change). One column on phones: form first. */
+.order-layout.paying .builder{display:none}
+.pay{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.1rem,2.8vw,2rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
 .pay[hidden]{display:none}
-.pay-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:0 .3rem 1.2rem}
-.pay-head h3{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,2.6vw,1.8rem)}
+.order-layout.paying .pay{animation:payIn .4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes payIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pay-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:0 0 1.2rem}
+.pay-head h3{font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,2.6vw,1.7rem);color:var(--ink)}
+.pay-head h3 em{font-style:italic;color:var(--accent-display)}
 .pay-head h3:focus{outline:none}
-.pay-back{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;background:transparent;border:1px solid rgba(217,169,106,.6);border-radius:999px;color:var(--cream);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.3rem;cursor:pointer;transition:background .25s ease,color .25s ease}
-.pay-back:hover,.pay-back:focus-visible{background:rgba(217,169,106,.14);color:#fff}
+.pay-back{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;background:transparent;border:1px solid rgba(192,138,77,.55);border-radius:999px;color:var(--accent-text);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.3rem;cursor:pointer;transition:background .25s ease,color .25s ease}
+.pay-back:hover,.pay-back:focus-visible{background:rgba(192,138,77,.12);color:var(--ink)}
 .pay-form{min-height:460px;border-radius:12px;overflow:hidden}
+.order-layout.paying .line .stepper,.order-layout.paying .line-rm,.order-layout.paying .details,.order-layout.paying .checkout{display:none}
+.order-layout.paying .line{grid-template-columns:minmax(0,1fr) auto}
+.line-qty{display:none;font-family:var(--display);font-size:1.05rem;color:var(--cream);white-space:nowrap}
+.order-layout.paying .line-qty{display:block}
+.sum-locked{margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(217,169,106,.35)}
+.sum-locked[hidden]{display:none}
+.sum-locked dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem 1.1rem;font-size:.92rem}
+.sum-locked dt{color:var(--glacier)}
+.sum-locked dd{color:var(--snow);overflow-wrap:anywhere}
+.sum-locked p{margin-top:1rem;font-size:.88rem;color:var(--glacier)}
+.sum-edit{background:none;border:0;padding:0;font:inherit;color:var(--copper-bright);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sum-edit:hover,.sum-edit:focus-visible{color:#fff}
 .builder{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.4rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
 .bstep{padding:1.4rem 0;border-bottom:1px dotted rgba(192,138,77,.45)}
 .bstep:first-child{padding-top:0}
@@ -307,6 +323,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
   .w-hero-bg{animation:none}
   .reveal{opacity:1;transform:none;transition:none}
   .size-card{transition:none}
+  .order-layout.paying .pay{animation:none}
 }
 </style>
 </head>
@@ -435,6 +452,15 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
     </div>
 
     <div class="order-layout" id="orderLayout">
+      <!-- Payment: Stripe's embedded checkout opens here, in the builder's place (shop in embedded mode) -->
+      <div class="pay" id="pay" hidden>
+        <div class="pay-head">
+          <h3 id="payTitle" tabindex="-1">Secure <em>payment</em></h3>
+          <button type="button" class="pay-back" id="payBack"><span aria-hidden="true">&larr;</span> Back to your order</button>
+        </div>
+        <div class="pay-form" id="stripeCheckout"></div>
+      </div>
+
       <!-- Builder -->
       <div class="builder" id="builder">
         <div class="bstep">
@@ -497,6 +523,11 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <div id="subRow" hidden><span>Estimated subtotal</span><strong id="totPrice"></strong></div>
           <div id="estRow" hidden><span class="est">Any delivery charge is shown at checkout.</span></div>
         </div>
+        <!-- While paying: the order is locked and the business details show as text -->
+        <div class="sum-locked" id="sumLocked" hidden>
+          <dl id="sumLockedList"></dl>
+          <p>Need to change something? <button type="button" class="sum-edit" id="sumEdit">Go back to your order</button></p>
+        </div>
 
         <fieldset class="details" style="border:0">
           <legend>Business details</legend>
@@ -516,15 +547,6 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <div class="form-msg" id="formMsg" role="alert"></div>
         </div>
       </form>
-    </div>
-
-    <!-- Payment: Stripe's embedded checkout opens here when the shop runs in embedded mode -->
-    <div class="pay" id="pay" hidden>
-      <div class="pay-head">
-        <h3 id="payTitle" tabindex="-1">Secure <em>payment</em></h3>
-        <button type="button" class="pay-back" id="payBack"><span aria-hidden="true">&larr;</span> Back to your order</button>
-      </div>
-      <div class="pay-form" id="stripeCheckout"></div>
     </div>
   </div>
 </section>
@@ -956,6 +978,7 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
       var meta = BASE_LABEL[l.base] + " · " + SIZE_INFO[l.size].label + (l.custom ? " · custom" : "");
       return '<li class="line" data-i="'+i+'">'
         + '<div class="line-name">'+esc(l.flavor)+'<span class="line-meta">'+esc(meta)+'</span></div>'
+        + '<span class="line-qty">&times; '+l.qty+'</span>'
         + '<div class="stepper"><button type="button" data-act="dec" aria-label="Fewer '+esc(l.flavor)+'">&minus;</button>'
         + '<input type="number" min="1" max="99" value="'+l.qty+'" aria-label="Quantity of '+esc(l.flavor)+', '+esc(SIZE_INFO[l.size].label)+'" data-act="set">'
         + '<button type="button" data-act="inc" aria-label="More '+esc(l.flavor)+'">+</button></div>'
@@ -1071,24 +1094,42 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     }).then(function(co){
       if(embedded){ try{ embedded.destroy(); }catch(e){} }   // Stripe allows one form per page
       embedded = co;
-      $("orderLayout").hidden = true; $("pay").hidden = false;
+      fillLocked();
+      $("orderLayout").classList.add("paying"); $("pay").hidden = false; $("sumLocked").hidden = false;
       paying = true; updateBar();
       co.mount($("stripeCheckout"));
-      $("pay").scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"start"});
+      // Glide up when the form is close; jump when it's more than a screen away (phones, where the builder
+      // above the summary has just been taken out), so a long smooth scroll can't stop short.
+      var far = Math.abs($("pay").getBoundingClientRect().top) > window.innerHeight;
+      $("pay").scrollIntoView({behavior: (reduced || far) ? "auto" : "smooth", block:"start"});
       $("payTitle").focus({preventScroll:true});
     });
   }
   function closePayment(){
     if(embedded){ try{ embedded.destroy(); }catch(e){} embedded = null; }
-    $("pay").hidden = true; $("orderLayout").hidden = false;
+    $("pay").hidden = true; $("sumLocked").hidden = true; $("orderLayout").classList.remove("paying");
     paying = false; updateBar();
     btn.disabled = false; if(SHOP_READY) btn.innerHTML = checkoutLabel;
   }
-  $("payBack").addEventListener("click", function(){
+  function backToOrder(){
     closePayment();
     $("summary").scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"start"});
     btn.focus({preventScroll:true});
-  });
+  }
+  $("payBack").addEventListener("click", backToOrder);
+  $("sumEdit").addEventListener("click", backToOrder);
+  /* The business details, shown as text in the locked summary while paying */
+  function fillLocked(){
+    var rows = [["Business","d-biz"],["Contact","d-name"],["Phone","d-phone"],["Email","d-email"],["Delivery","d-date"],["Notes","d-notes"]];
+    $("sumLockedList").innerHTML = rows.map(function(r){
+      var v = $(r[1]).value.trim();
+      if(r[1] === "d-date"){
+        var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+        v = m ? new Date(+m[1], m[2] - 1, +m[3]).toLocaleDateString("en-US", {weekday:"short", month:"short", day:"numeric"}) : "Next available";
+      }
+      return v ? "<dt>" + r[0] + "</dt><dd>" + esc(v) + "</dd>" : "";
+    }).join("");
+  }
 
   function orderText(){
     return cart.map(function(l){

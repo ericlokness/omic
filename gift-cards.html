@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gift Cards — Olympic Mountain Ice Cream | Shelton, WA</title>
-<meta name="description" content="Give an Olympic Mountain Ice Cream gift card, sent by email straight away or on a date you choose.">
+<meta name="description" content="Give an Olympic Mountain Ice Cream gift card to spend on scoops and pints at our Port of Shelton creamery, at our events or on a wholesale order.">
 <meta name="robots" content="noindex">
 <link rel="ard" type="application/json" href="/.well-known/ard.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,6 +127,8 @@ button,input,select,textarea{font:inherit}
 @media(max-width:700px){.gc-how{grid-template-columns:1fr}}
 .gc-how li{border-top:2px solid var(--copper);padding-top:.8rem;color:var(--ink-soft);font-size:.98rem}
 .gc-how b{display:block;font-family:var(--display);font-weight:500;font-size:1.15rem;color:var(--ink);margin-bottom:.2rem}
+.gc-questions{max-width:760px;margin:1.6rem auto 0;text-align:center;color:var(--ink-soft);font-size:.95rem}
+.gc-questions a{color:var(--accent-text);font-weight:700}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
@@ -168,7 +170,7 @@ button,input,select,textarea{font:inherit}
     <div>
       <p class="eyebrow">Gift Cards</p>
       <h1>Give the gift of <em>a good scoop</em></h1>
-      <p class="sub">Send an Olympic Mountain Ice Cream gift card by email, straight away or on a date you choose.</p>
+      <p class="sub">A present they can spend on scoops and pints at our Port of Shelton creamery, at events where we&rsquo;re serving, or on a wholesale order. It arrives by email, straight away or on the day you choose.</p>
     </div>
     <figure class="gc-card"><img src="images/brand/gift-card.png" alt="Olympic Mountain Ice Cream gift card: the cream logo on midnight blue with a copper border" width="1152" height="768" fetchpriority="high"></figure>
   </div>
@@ -177,17 +179,18 @@ button,input,select,textarea{font:inherit}
 <section class="section gc-buy" aria-labelledby="buyTitle">
   <div class="gc-panel">
     <h2 id="buyTitle">Choose an <em>amount</em></h2>
-    <p class="lede">Pick the value, add a message, and choose when it should arrive. Payment is handled securely by Stripe.</p>
+    <p class="lede">Pick an amount, add a personal message and choose when it arrives. Payment is handled securely by Stripe.</p>
     <!-- Gift Up checkout. Replace YOUR-GIFT-UP-ID with the ID from Gift Up → Installation (public; the API key never goes here). -->
     <div class="gift-up-target" id="giftUp" data-site-id="e2d368c8-9f9f-4bf6-a4c2-6ebf9bc8f65c" data-language="en-US"></div>
     <div class="gc-soon" id="giftSoon" hidden><strong>Gift cards are coming soon.</strong> Questions in the meantime? Call <a href="tel:+13604260696">360-426-0696</a>.</div>
     <noscript><p class="gc-soon">Please turn on JavaScript to buy a gift card, or call us at 360-426-0696.</p></noscript>
   </div>
-  <ul class="gc-how">
-    <li><b>Sent by email</b>The card arrives with its own code, now or on the day you pick.</li>
-    <li><b>Use it online</b>On a wholesale order, enter the code at checkout under &ldquo;Add promotion code&rdquo;.</li>
-    <li><b>Questions?</b>Call us at <a href="tel:+13604260696">360-426-0696</a>.</li>
+  <ul class="gc-how" aria-label="Where a gift card can be spent">
+    <li><b>In the shop</b>Scoops, pints and more at our creamery at the Port of Shelton, open 10am to 6pm every day.</li>
+    <li><b>At our events</b>Wherever we&rsquo;re scooping at markets, fairs and festivals.</li>
+    <li><b>On wholesale orders</b>Enter the card&rsquo;s code under &ldquo;Add promotion code&rdquo; when you pay.</li>
   </ul>
+  <p class="gc-questions">Questions about a gift card? Call us at <a href="tel:+13604260696">360-426-0696</a>.</p>
 </section>
 </main>
 

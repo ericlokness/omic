@@ -97,6 +97,7 @@ a{color:inherit}
 @keyframes heroDrift{from{transform:scale(1.02) translateY(0)}to{transform:scale(1.1) translateY(-1.5%)}}
 .hero-stars{position:absolute;inset:0;pointer-events:none}
 .hero-stars span{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;animation:twinkle var(--d,4s) ease-in-out var(--dl,0s) infinite}
+.hero-stars span.glow{box-shadow:0 0 6px 1px rgba(255,255,255,.5)}
 @keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--o,.9)}}
 .hero-inner{position:relative;z-index:2;text-align:center;padding:0 1.5rem;max-width:820px}
 .hero-logo{width:min(500px,82vw);margin:0 auto 1.6rem;filter:drop-shadow(0 6px 30px rgba(0,0,0,.55));animation:logoRise 1.4s cubic-bezier(.19,1,.22,1) both}
@@ -365,7 +366,7 @@ a.big:hover{color:var(--copper-bright)}
 .awards{background:radial-gradient(120% 140% at 50% 0%,#1c140e,#0d0906 70%);color:var(--cream);position:relative;overflow:hidden}
 .awards::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(192,138,77,.14),transparent 16%,transparent 84%,rgba(192,138,77,.14));pointer-events:none}
 .awards .wrap{position:relative;z-index:1}
-.award-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:center;margin-top:2.6rem}
+.award-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.8rem,4vw,3.4rem);align-items:center;margin-top:2.6rem}
 @media(max-width:820px){.award-grid{grid-template-columns:1fr;gap:2rem}}
 .award-badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(192,138,77,.5);color:var(--copper-bright);border-radius:999px;padding:.45rem 1.1rem;font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
 .award-badge svg{width:15px;height:15px;fill:var(--copper-bright)}
@@ -376,7 +377,7 @@ a.big:hover{color:var(--copper-bright)}
 .award-byline{margin:1.3rem 0 0;font-size:.82rem;letter-spacing:.06em;color:var(--ink-soft);color:#9c8f7d}
 .award-byline a{color:var(--copper-bright);text-decoration:none}
 .award-byline a:hover{text-decoration:underline}
-.award-photo{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.8);border:1px solid rgba(192,138,77,.3)}
+.award-photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.8);border:1px solid rgba(192,138,77,.3)}
 .award-photo img{width:100%;display:block}
 .award-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.2rem .8rem;font-size:.76rem;letter-spacing:.04em;color:rgba(255,255,255,.82);background:linear-gradient(transparent,rgba(0,0,0,.7))}
 /* ---------- Wholesale (doorway to wholesale.html) ---------- */
@@ -390,8 +391,8 @@ a.big:hover{color:var(--copper-bright)}
 .ws-home-btn:hover{background:var(--horizon)}
 .ws-home-call{color:var(--ink-soft);font-size:.98rem;text-decoration:none;border-bottom:1px solid rgba(192,138,77,.55);padding-bottom:1px}
 .ws-home-call:hover{color:var(--copper)}
-/* The three containers stand on one shelf line, drawn at true relative size */
-.ws-tubs{list-style:none;display:flex;align-items:flex-end;justify-content:space-between;gap:.4rem;border-bottom:2px solid var(--ink);max-width:640px;width:100%;justify-self:end}
+/* The containers stand side by side, drawn at true relative size */
+.ws-tubs{list-style:none;display:flex;align-items:flex-end;justify-content:space-between;gap:.4rem;max-width:640px;width:100%;justify-self:end}
 .ws-tubs li{flex:0 1 auto;min-width:0}
 @media(max-width:860px){.ws-tubs{justify-self:stretch;max-width:none}}
 .ws-tubs a{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--ink);padding:0 .2rem;border-radius:8px 8px 0 0}
@@ -399,7 +400,7 @@ a.big:hover{color:var(--copper-bright)}
 .ws-tubs svg{display:block;max-width:100%;height:auto;transition:transform .35s cubic-bezier(.4,0,.2,1)}
 .ws-tubs a:hover svg,.ws-tubs a:focus-visible svg{transform:translateY(-8px)}
 .ws-tubs a:hover b,.ws-tubs a:focus-visible b{color:var(--copper)}
-@media(max-width:560px){.ws-tubs{flex-wrap:wrap;column-gap:0;row-gap:1.6rem;border-bottom:0}.ws-tubs li{flex:0 0 33.333%;display:flex;justify-content:center;align-items:flex-end;border-bottom:2px solid var(--ink)}}
+@media(max-width:560px){.ws-tubs{flex-wrap:wrap;column-gap:0;row-gap:1.6rem}.ws-tubs li{flex:0 0 33.333%;display:flex;justify-content:center;align-items:flex-end}}
 
 /* ---------- FAQ ---------- */
 .faq{background:var(--cream)}
@@ -618,7 +619,7 @@ a.big:hover{color:var(--copper-bright)}
     </div>
     <a class="visit-gift reveal" href="gift-cards.html">
       <img src="images/brand/gift-card.png" alt="" width="1152" height="768" loading="lazy" decoding="async">
-      <span><strong>Gift cards</strong>Send an Olympic Mountain gift card by email, straight away or on a date you choose.</span>
+      <span><strong>Gift cards</strong>A present they can spend on scoops and pints in our shop, at our events or on a wholesale order.</span>
       <span class="visit-gift-cta">Shop gift cards</span>
     </a>
   </div>
@@ -709,7 +710,7 @@ a.big:hover{color:var(--copper-bright)}
         <p class="award-byline">Scheenagh Harrington &middot; <a href="https://www.foodie.com/2059672/best-ice-cream-parlors-every-state-list/" target="_blank" rel="noopener">Foodie.com &mdash; The Best Ice Cream Parlors in Every US State &#8599;</a></p>
       </div>
       <figure class="award-photo reveal d1">
-        <img src="https://www.foodie.com/img/gallery/the-best-ice-cream-parlors-in-every-us-state/olympic-mountain-ice-cream-in-shelton-washington-1766191493.webp" width="780" height="438" alt="Olympic Mountain Ice Cream, featured by Foodie as the best in Washington" loading="lazy" onerror="this.onerror=null;this.src='images/foodie-award.webp'">
+        <img src="images/foodie-award-photo.webp" width="535" height="438" alt="A tub of chocolate ice cream topped with caramel and cookie pieces, the photo Foodie ran with its Washington pick" loading="lazy" decoding="async">
         <figcaption>olympicmountainicecream / Instagram, via Foodie.com</figcaption>
       </figure>
     </div>
@@ -957,20 +958,33 @@ a.big:hover{color:var(--copper-bright)}
   }, {threshold:.14, rootMargin:"0px 0px -40px 0px"});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
 
-  /* Twinkling stars over the hero sky */
+  /* Twinkling stars over the hero sky, scaled to the screen so a large monitor looks like a phone does:
+     about one star per 4,200 px of sky area (48 to 200 stars), and on wide screens bigger, brighter stars
+     with a soft glow. Rebuilt after a resize only if the count or size would change noticeably. */
   if(!reduced){
-    var stars = document.getElementById("heroStars");
-    for(var i=0;i<48;i++){
-      var s = document.createElement("span");
-      s.style.left = (Math.random()*100).toFixed(2)+"%";
-      s.style.top  = (Math.random()*52).toFixed(2)+"%";
-      s.style.setProperty("--d", (2.6+Math.random()*4).toFixed(2)+"s");
-      s.style.setProperty("--dl",(Math.random()*6).toFixed(2)+"s");
-      s.style.setProperty("--o", (0.35+Math.random()*0.6).toFixed(2));
-      var size = Math.random()<.25 ? 3 : 2;
-      s.style.width = s.style.height = size+"px";
-      stars.appendChild(s);
-    }
+    var stars = document.getElementById("heroStars"), starN = 0, starK = 0, starTimer;
+    var makeStars = function(){
+      var w = window.innerWidth, h = Math.max(window.innerHeight, 640) * .52;   // hero is 100svh (min 640px); sky = top 52%
+      var n = Math.max(48, Math.min(200, Math.round(w * h / 4200)));
+      var k = Math.max(1, Math.min(1.5, w / 1000));   // star size: 1x on phones, up to 1.5x on wide screens
+      if(starN && Math.abs(n - starN) / starN < .15 && Math.abs(k - starK) < .1) return;
+      starN = n; starK = k;
+      var wide = k > 1.2, frag = document.createDocumentFragment();
+      for(var i=0;i<n;i++){
+        var s = document.createElement("span"), big = Math.random() < .25;
+        s.style.left = (Math.random()*100).toFixed(2)+"%";
+        s.style.top  = (Math.random()*52).toFixed(2)+"%";
+        s.style.setProperty("--d", (2.6+Math.random()*4).toFixed(2)+"s");
+        s.style.setProperty("--dl",(Math.random()*6).toFixed(2)+"s");
+        s.style.setProperty("--o", ((wide ? .5 : .35) + Math.random()*(wide ? .5 : .6)).toFixed(2));
+        s.style.width = s.style.height = ((big ? 3 : 2) * k).toFixed(1)+"px";
+        if(big && wide) s.className = "glow";
+        frag.appendChild(s);
+      }
+      stars.replaceChildren(frag);
+    };
+    makeStars();
+    window.addEventListener("resize", function(){ clearTimeout(starTimer); starTimer = setTimeout(makeStars, 300); }, {passive:true});
   }
 
   /* Gentle hero parallax */
