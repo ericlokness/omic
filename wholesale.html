@@ -170,10 +170,18 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .order-layout.paying .line-qty{display:block}
 .sum-locked{margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(217,169,106,.35)}
 .sum-locked[hidden]{display:none}
-.sum-locked dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem 1.1rem;font-size:.92rem}
+.sum-locked dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem 1.3rem;font-size:1.06rem}
 .sum-locked dt{color:var(--glacier)}
 .sum-locked dd{color:var(--snow);overflow-wrap:anywhere}
-.sum-locked p{margin-top:1rem;font-size:.88rem;color:var(--glacier)}
+.sum-locked p{margin-top:1.2rem;font-size:1rem;color:var(--glacier)}
+/* While paying, the summary steps up in size (about 15%) so it holds its own beside Stripe's larger form text */
+.order-layout.paying .summary h3{font-size:1.85rem}
+.order-layout.paying .line-name{font-size:1.15rem}
+.order-layout.paying .line-meta{font-size:.9rem}
+.order-layout.paying .line-qty{font-size:1.3rem}
+.order-layout.paying .totals div{font-size:1.06rem}
+.order-layout.paying .totals strong{font-size:1.6rem}
+.order-layout.paying .totals .est{font-size:.88rem}
 .sum-edit{background:none;border:0;padding:0;font:inherit;color:var(--copper-bright);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .sum-edit:hover,.sum-edit:focus-visible{color:#fff}
 .builder{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.4rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
@@ -971,6 +979,8 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
 
   var linesEl = $("lines");
   function render(){
+    var fm = $("formMsg");   // an "add a flavor first" message is out of date once the order has a line
+    if(cart.length && fm && fm.dataset.empty){ fm.className = "form-msg"; fm.innerHTML = ""; delete fm.dataset.empty; }
     var price = 0, priced = true;
     linesEl.innerHTML = cart.map(function(l, i){
       var p = priceOf(l.size);
@@ -1137,13 +1147,13 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     }).join("\n");
   }
   function totalVol(){ return volumeText(cart); }
-  function showMsg(kind, html){ msg.className = "form-msg " + kind; msg.innerHTML = html; }
+  function showMsg(kind, html){ msg.className = "form-msg " + kind; msg.innerHTML = html; delete msg.dataset.empty; }
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
     msg.className = "form-msg";
     if(!cart.length){
-      showMsg("err", "Add at least one flavor to your order first.");
+      showMsg("err", "Add at least one flavor to your order first."); msg.dataset.empty = "1";
       goBuilder(); return;
     }
     if(!form.checkValidity()){ form.reportValidity(); return; }
