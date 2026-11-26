@@ -99,10 +99,18 @@ a{color:var(--copper-bright)}
     fd.append("order", o.lines);
     fd.append("notes", o.notes);
     fd.append("stripe_checkout_session", o.id);
-    fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body: fd })
-      .then(function(r){ return r.json(); })
-      .then(function(j){ if(j && j.success){ try { localStorage.setItem(sentKey, "1"); } catch(e){} } })
-      .catch(function(){});
+    // keepalive: the request still finishes if the buyer leaves this page straight away. If it fails (network,
+    // a blocker), try twice more a few seconds apart; with no success the page tries again on the next visit.
+    function send(attempt){
+      fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body: fd, keepalive: true })
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(j && j.success){ try { localStorage.setItem(sentKey, "1"); } catch(e){} }
+          else if(attempt < 3) setTimeout(function(){ send(attempt + 1); }, 4000);
+        })
+        .catch(function(){ if(attempt < 3) setTimeout(function(){ send(attempt + 1); }, 4000); });
+    }
+    send(1);
   }
 })();
 </script>
