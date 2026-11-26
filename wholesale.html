@@ -153,16 +153,17 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 /* Embedded Stripe Checkout: while paying, Stripe's form takes the builder's place in the left column and the
    order summary stays on the right, locked (the open payment can't change). One column on phones: form first. */
 .order-layout.paying .builder{display:none}
-.pay{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.1rem,2.8vw,2rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
+/* Midnight, flat, to match Stripe's midnight form inside it (a light form turns Stripe's buttons blue while paying) */
+.pay{background:var(--midnight);color:var(--snow);border:1px solid rgba(169,192,216,.18);border-radius:16px;padding:clamp(1.1rem,2.8vw,2rem);box-shadow:0 30px 70px -35px rgba(10,20,36,.8)}
 .pay[hidden]{display:none}
 .order-layout.paying .pay{animation:payIn .4s cubic-bezier(.2,.7,.2,1) both}
 @keyframes payIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .pay-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:0 0 1.2rem}
-.pay-head h3{font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,2.6vw,1.7rem);color:var(--ink)}
-.pay-head h3 em{font-style:italic;color:var(--accent-display)}
+.pay-head h3{font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,2.6vw,1.7rem);color:var(--snow)}
+.pay-head h3 em{font-style:italic;color:var(--copper-bright)}
 .pay-head h3:focus{outline:none}
-.pay-back{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;background:transparent;border:1px solid rgba(192,138,77,.55);border-radius:999px;color:var(--accent-text);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.3rem;cursor:pointer;transition:background .25s ease,color .25s ease}
-.pay-back:hover,.pay-back:focus-visible{background:rgba(192,138,77,.12);color:var(--ink)}
+.pay-back{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;background:transparent;border:1px solid rgba(217,169,106,.6);border-radius:999px;color:var(--cream);font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.3rem;cursor:pointer;transition:background .25s ease,color .25s ease}
+.pay-back:hover,.pay-back:focus-visible{background:rgba(217,169,106,.14);color:#fff}
 .pay-form{min-height:460px;border-radius:12px;overflow:hidden}
 .order-layout.paying .line .stepper,.order-layout.paying .line-rm,.order-layout.paying .details,.order-layout.paying .checkout{display:none}
 .order-layout.paying .line{grid-template-columns:minmax(0,1fr) auto}

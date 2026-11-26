@@ -58,9 +58,6 @@ export const SHOP = {
     font_family: "lora",
     logo: "/images/logo-cream-v2.png",
     icon: "/images/checkout-icon.png",
-    // Embedded form only: it sits in the wholesale page's light "paper" panel (where the order builder was),
-    // so it gets the paper colour instead of midnight. Not a Stripe field; brandingSettings() swaps it in.
-    embeddedBackground: "#fffdf8",   // --paper
   },
 };
 
@@ -204,12 +201,11 @@ async function createSession(env, params) {
    Embedded checkout sits inside our own page, so Stripe refuses a logo or icon there ("You cannot set `logo`
    when `ui_mode` is `embedded`", seen Nov 26, 2026); it still takes the name, colours, border and font. */
 function brandingSettings(origin, embedded) {
-  const { logo, icon, embeddedBackground, ...rest } = SHOP.branding;
+  const { logo, icon, ...rest } = SHOP.branding;
   const out = { ...rest };
-  if (embedded) {
-    if (embeddedBackground) out.background_color = embeddedBackground;
-    return out;
-  }
+  // Keep the embedded form on midnight too: with any light background (white, paper or cream, tested Nov 26, 2026)
+  // Stripe's processing animation turns "Add code" and "View details" a fixed blue that branding can't change.
+  if (embedded) return out;
   if (logo) out.logo = { type: "url", url: new URL(logo, origin).href };
   if (icon) out.icon = { type: "url", url: new URL(icon, origin).href };
   return out;
