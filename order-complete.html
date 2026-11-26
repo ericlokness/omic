@@ -67,8 +67,43 @@ a{color:var(--copper-bright)}
       }
       document.getElementById("pending").hidden = true;
       document.getElementById("paid").hidden = false;
+      emailCreamery(res);
     })
     .catch(notConfirmed);
+
+  /* Email the order to the creamery (the same Web3Forms inbox as the wholesale and contact forms), once per
+     order: a reload or a second visit to this page doesn't send it again. The full order also stays on the
+     payment in the Stripe Dashboard. */
+  var WEB3FORMS_KEY = "23aff677-d78f-4997-9eb7-50157f79d02d";
+  function emailCreamery(res){
+    var o = res.order;
+    if(!o || !o.id) return;
+    var sentKey = "omic-order-emailed-" + o.id;
+    try { if(localStorage.getItem(sentKey)) return; } catch(e){}
+    var amount = "";
+    try { amount = new Intl.NumberFormat("en-US", { style: "currency", currency: (res.currency || "usd").toUpperCase() }).format((res.amount_total || 0) / 100); } catch(e){}
+    var status = res.free ? "PAID IN FULL WITH A CODE (nothing charged)"
+      : res.pending ? "BANK PAYMENT PENDING: " + amount + " by ACH, clears in up to 4 business days"
+      : "PAID: " + amount;
+    var fd = new FormData();
+    fd.append("access_key", WEB3FORMS_KEY);
+    fd.append("subject", (res.pending ? "Wholesale order, bank payment pending: " : "Paid wholesale order: ") + (o.business || "website order") + (amount && !res.free ? " (" + amount + ")" : ""));
+    fd.append("from_name", "Olympic Mountain Ice Cream online checkout");
+    fd.append("payment", status);
+    fd.append("business", o.business);
+    fd.append("name", o.contact);
+    fd.append("email", o.email);
+    fd.append("phone", o.phone);
+    fd.append("preferred_delivery", o.delivery_date || "Next available");
+    fd.append("delivery_address", o.address);
+    fd.append("order", o.lines);
+    fd.append("notes", o.notes);
+    fd.append("stripe_checkout_session", o.id);
+    fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body: fd })
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if(j && j.success){ try { localStorage.setItem(sentKey, "1"); } catch(e){} } })
+      .catch(function(){});
+  }
 })();
 </script>
 </body>

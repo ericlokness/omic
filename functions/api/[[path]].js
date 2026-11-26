@@ -33,9 +33,11 @@ export const SHOP = {
     { key: "contact", label: "Contact name", required: true, maxLength: 80 },
     { key: "phone", label: "Phone", required: true, maxLength: 40 },
     { key: "delivery_date", label: "Preferred delivery", maxLength: 20 },
+    { key: "address", label: "Delivery address", required: true, maxLength: 300 },
     { key: "notes", label: "Notes", maxLength: 500 },
   ],
-  shippingCountries: ["US"],     // Stripe collects the delivery address
+  shippingCountries: [],         // none: the order form asks for the delivery address once, so Stripe doesn't ask again.
+                                 // (A delivery fee would then go in as a line item; Stripe shipping rates need this on.)
   shippingRates: "auto",         // active Stripe shipping rates (none yet: delivery fee still to decide)
   collectPhone: false,           // the order form already asks for a phone number
   promotionCodes: true,
@@ -282,7 +284,22 @@ async function order(url, env) {
   const free = complete && (s.payment_status === "no_payment_required" || s.amount_total === 0);
   const paid = complete && (s.payment_status === "paid" || free);
   const pending = complete && s.payment_status === "unpaid";
-  return json({ paid, free, pending, status: s.status, amount_total: s.amount_total, currency: s.currency },
+  // The order itself, so the thank-you page can email it to the creamery. Only for a completed session; the
+  // session id is known only to the buyer who just paid, and this is their own order.
+  let orderDetails = null;
+  if (complete) {
+    const md = s.metadata || {};
+    const lines = Object.keys(md).filter((k) => /^order_\d+$/.test(k))
+      .sort((a, b) => Number(a.slice(6)) - Number(b.slice(6))).map((k) => md[k]).join("\n");
+    orderDetails = {
+      id: s.id,
+      business: md.business || "", contact: md.contact || "", phone: md.phone || "",
+      email: s.customer_details?.email || s.customer_email || "",
+      delivery_date: md.delivery_date || "", address: md.address || "", notes: md.notes || "",
+      lines,
+    };
+  }
+  return json({ paid, free, pending, status: s.status, amount_total: s.amount_total, currency: s.currency, order: orderDetails },
     200, { "Cache-Control": "no-store" });
 }
 
