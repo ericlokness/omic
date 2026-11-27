@@ -548,7 +548,9 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <div class="field"><label for="d-phone">Phone</label><input id="d-phone" name="phone" type="tel" autocomplete="tel" required></div>
           <div class="field"><label for="d-email">Email</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="d-date">Preferred delivery</label><input id="d-date" name="delivery_date" type="date"></div>
-          <div class="field full" id="addrField"><label for="d-addr">Delivery address</label><input id="d-addr" name="address" autocomplete="street-address" placeholder="Street, city and ZIP" required></div>
+          <div class="field full" id="addrField"><label for="d-addr">Delivery address</label><input id="d-addr" name="address" autocomplete="address-line1" placeholder="Street and number, suite" required></div>
+          <div class="field"><label for="d-city">City</label><input id="d-city" name="city" autocomplete="address-level2" required></div>
+          <div class="field"><label for="d-zip">ZIP</label><input id="d-zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="\d{5}(-\d{4})?" title="5-digit ZIP code" required></div>
           <div class="field full"><label for="d-notes">Notes</label><textarea id="d-notes" name="notes" placeholder="Receiving hours, dock access, standing order&hellip;"></textarea></div>
         </fieldset>
 
@@ -1160,6 +1162,7 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     $("reviewDetails").innerHTML = rows.map(function(r){
       var v = $(r[1]).value.trim();
       if(r[1] === "d-date") v = niceDate(v);
+      if(r[1] === "d-addr") v = [v, $("d-city").value.trim(), ("WA " + $("d-zip").value.trim()).trim()].filter(Boolean).join(", ");
       return v ? "<dt>" + r[0] + "</dt><dd>" + esc(v) + "</dd>" : "";
     }).join("");
   }
@@ -1184,7 +1187,7 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
       });
       var details = {
         business: v("d-biz"), contact: v("d-name"), phone: v("d-phone"), email: v("d-email"),
-        delivery_date: v("d-date") || "Next available", address: v("d-addr"), notes: v("d-notes") || "None"   // always sent: the Stripe order-email workflow reads it
+        delivery_date: v("d-date") || "Next available", address: v("d-addr"), city: v("d-city"), zip: v("d-zip"), notes: v("d-notes") || "None"   // always sent: the Stripe order-email workflow reads it
       };
       btn.disabled = true; btn.textContent = "Opening secure checkout…";
       fetch("/api/checkout", {

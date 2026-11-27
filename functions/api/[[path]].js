@@ -33,9 +33,12 @@ export const SHOP = {
     { key: "contact", label: "Contact name", required: true, maxLength: 80 },
     { key: "phone", label: "Phone", required: true, maxLength: 40 },
     { key: "delivery_date", label: "Preferred delivery", maxLength: 20 },
-    { key: "address", label: "Delivery address", required: true, maxLength: 300 },
+    { key: "address", label: "Delivery address", required: true, maxLength: 200 },
+    { key: "city", label: "City", required: true, maxLength: 80 },
+    { key: "zip", label: "ZIP", required: true, maxLength: 10 },
     { key: "notes", label: "Notes", maxLength: 500 },
   ],
+  deliveryState: "WA",           // every delivery is in Washington; the order form asks for street, city and ZIP
   shippingCountries: [],         // none: the order form asks for the delivery address once, so Stripe doesn't ask again.
                                  // (A delivery fee would then go in as a line item; Stripe shipping rates need this on.)
   shippingRates: "auto",         // active Stripe shipping rates (none yet: delivery fee still to decide)
@@ -129,6 +132,18 @@ async function checkout(request, env, ctx, origin) {
   }
 
   const { fields, email } = readDetails(body.details);
+  // Delivery address: street, city and ZIP from the order form. It goes on the payment as its SHIPPING address
+  // (Stripe shows it under Shipping), and as one line in the metadata for the order email. It is never the card's
+  // billing address: Stripe's form asks for that separately, and the card is checked against its own billing ZIP.
+  const delivery = fields.address ? {
+    line1: fields.address, city: fields.city || "", state: SHOP.deliveryState, postal_code: fields.zip || "", country: "US",
+  } : null;
+  if (delivery && !/^\d{5}(-\d{4})?$/.test(delivery.postal_code)) throw new ShopError("Please enter a 5-digit ZIP code.");
+  if (delivery) {
+    fields.address = `${delivery.line1}, ${delivery.city}, ${delivery.state} ${delivery.postal_code}`;
+    delete fields.city;
+    delete fields.zip;
+  }
   const metadata = buildMetadata(fields, summary);
   const firstField = Object.values(fields)[0];
   const taxLine = SHOP.tax === "rates" && cat.taxRates.length
@@ -147,6 +162,7 @@ async function checkout(request, env, ctx, origin) {
     payment_intent_data: {
       description: truncate(`Website order${firstField ? " — " + firstField : ""} (${summary.length} line${summary.length === 1 ? "" : "s"})`, 300),
       metadata,
+      ...(delivery ? { shipping: { name: fields.business || fields.contact || "Wholesale customer", ...(fields.phone ? { phone: fields.phone } : {}), address: delivery } } : {}),
     },
     custom_text: { submit: { message: truncate("Your order: " + summary.join("; "), 1200) } },
   };
