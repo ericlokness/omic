@@ -145,7 +145,11 @@ async function checkout(request, env, ctx, origin) {
     delete fields.city;
     delete fields.zip;
   }
-  const metadata = buildMetadata(fields, summary);
+  // Order number, e.g. W261127-7K3Q (order date in Pacific time + 4 random characters): on the payment's metadata,
+  // its description and client_reference_id, so it shows and is searchable in the Dashboard, the order email and the
+  // thank-you page.
+  const orderNumber = makeOrderNumber();
+  const metadata = buildMetadata({ order_number: orderNumber, ...fields }, summary);
   const firstField = Object.values(fields)[0];
   const taxLine = SHOP.tax === "rates" && cat.taxRates.length
     ? (cat.taxRates.length === 1 ? { tax_rates: cat.taxRates } : { dynamic_tax_rates: cat.taxRates })
@@ -183,8 +187,9 @@ async function checkout(request, env, ctx, origin) {
       ? { ui_mode: embeddedMode, return_url: returnTo }
       : { success_url: returnTo, cancel_url: `${origin}${SHOP.cancelPath}` }),
     metadata,
+    client_reference_id: orderNumber,
     payment_intent_data: {
-      description: truncate(`Website order${firstField ? " — " + firstField : ""} (${summary.length} line${summary.length === 1 ? "" : "s"})`, 300),
+      description: truncate(`Order ${orderNumber}${firstField ? " — " + firstField : ""} (${summary.length} line${summary.length === 1 ? "" : "s"})`, 300),
       metadata,
       ...(delivery ? { shipping: { name: fields.business || fields.contact || "Wholesale customer", ...(fields.phone ? { phone: fields.phone } : {}), address: delivery } } : {}),
     },
@@ -251,6 +256,17 @@ function brandingSettings(origin, embedded) {
   if (logo) out.logo = { type: "url", url: new URL(logo, origin).href };
   if (icon) out.icon = { type: "url", url: new URL(icon, origin).href };
   return out;
+}
+
+/* W + order date (yymmdd, Pacific time) + "-" + 4 random characters without look-alikes (no 0/O, 1/I/L). */
+function makeOrderNumber() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Los_Angeles", year: "2-digit", month: "2-digit", day: "2-digit",
+  }).formatToParts(new Date());
+  const part = (type) => parts.find((p) => p.type === type)?.value || "00";
+  const abc = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+  const tail = [...crypto.getRandomValues(new Uint8Array(4))].map((b) => abc[b % abc.length]).join("");
+  return `W${part("year")}${part("month")}${part("day")}-${tail}`;
 }
 
 function readOptions(raw, customFlag) {
@@ -326,7 +342,8 @@ async function order(url, env) {
   const free = complete && (s.payment_status === "no_payment_required" || s.amount_total === 0);
   const paid = complete && (s.payment_status === "paid" || free);
   const pending = complete && s.payment_status === "unpaid";
-  return json({ paid, free, pending, status: s.status, amount_total: s.amount_total, currency: s.currency },
+  return json({ paid, free, pending, status: s.status, amount_total: s.amount_total, currency: s.currency,
+    order_number: s.metadata?.order_number || s.client_reference_id || null },
     200, { "Cache-Control": "no-store" });
 }
 
