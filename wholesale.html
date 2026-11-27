@@ -71,7 +71,7 @@ button,input,select,textarea{font:inherit}
 @media(prefers-reduced-motion:reduce){.nav-links::after,.subnav ul::after,.subnav{transition:opacity .3s ease}}
 /* Land section headings below the two fixed bars */
 section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw,7rem))}
-#builder,#summary,#pay,#review{scroll-margin-top:7.5rem}
+#builder,#cart,#summary,#pay,#review{scroll-margin-top:7.5rem}
 @media(min-width:921px) and (max-width:1100px){.nav-links{gap:1.1rem}.nav-links a{font-size:.72rem;letter-spacing:.09em}}
 .nav-links a{white-space:nowrap}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;width:44px;height:44px;position:relative;z-index:120}
@@ -191,7 +191,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .builder{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(1.5rem,3.2vw,2.4rem);box-shadow:0 18px 50px -30px rgba(34,41,58,.35)}
 .bstep{padding:1.4rem 0;border-bottom:1px dotted rgba(192,138,77,.45)}
 .bstep:first-child{padding-top:0}
-.bstep:last-of-type{border-bottom:none}
+.bstep:last-of-type,.bstep:has(+ .add-row){border-bottom:none}
 .bstep-h{display:flex;align-items:center;gap:.75rem;margin-bottom:.95rem}
 .bstep-h b{width:28px;height:28px;border-radius:50%;background:var(--btn);color:#fff;font-size:.8rem;display:grid;place-items:center;flex-shrink:0}
 .bstep-h span{font-size:.76rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
@@ -246,23 +246,36 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .summary h3{font-family:var(--display);font-weight:500;font-size:1.6rem;display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
 .summary h3 em{font-style:italic;color:var(--copper-bright)}
 .summary h3 small{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--glacier)}
-.lines{list-style:none;margin:1.1rem 0 0}
-.line{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:.8rem;align-items:center;padding:.85rem 0;border-bottom:1px solid rgba(169,192,216,.16)}
-.line-name{font-weight:600;line-height:1.3}
-.line-meta{display:block;font-size:.8rem;color:var(--glacier);font-weight:400;margin-top:.15rem}
-.line .stepper{background:rgba(10,20,36,.5);border-color:rgba(169,192,216,.3)}
-.line .stepper button{width:32px;height:32px;font-size:1rem;color:var(--copper-bright)}
-.line .stepper button:hover{background:rgba(217,169,106,.14)}
-.line .stepper input{width:2.2rem;font-size:.95rem;color:var(--snow)}
-.line-rm{background:none;border:0;color:var(--glacier);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.15rem;line-height:1}
-.line-rm:hover{background:rgba(192,57,43,.2);color:#ffb4a8}
-.empty{border:1px dashed rgba(169,192,216,.3);border-radius:12px;padding:1.4rem;text-align:center;color:var(--glacier);font-size:.95rem;margin-top:1.1rem}
-.empty em{font-family:var(--display);color:var(--cream);font-size:1.1rem;display:block;margin-bottom:.2rem}
-.totals{display:flex;flex-direction:column;gap:.35rem;margin:1.1rem 0 0;padding:1rem 0 0;border-top:1px solid rgba(217,169,106,.35)}
+/* The cart: under the flavor builder (left, light panel), where each added line appears and can be changed */
+.cart{margin-top:1.6rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.cart h3{font-family:var(--display);font-weight:500;font-size:1.55rem;display:flex;align-items:baseline;justify-content:space-between;gap:1rem;color:var(--ink)}
+.cart h3 em{font-style:italic;color:var(--accent-display)}
+.cart h3 small{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-text)}
+.lines{list-style:none;margin:.7rem 0 0}
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:.8rem;align-items:center;padding:.85rem 0;border-bottom:1px dotted rgba(192,138,77,.45)}
+.line:last-child{border-bottom:0}
+.line-name{font-weight:600;line-height:1.3;color:var(--ink)}
+.line-meta{display:block;font-size:.84rem;color:var(--ink-soft);font-weight:400;margin-top:.15rem}
+.line .stepper button{width:36px;height:36px;font-size:1.05rem}
+.line .stepper input{width:2.4rem;font-size:.98rem}
+.line-rm{background:none;border:0;color:var(--ink-soft);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.2rem;line-height:1}
+.line-rm:hover,.line-rm:focus-visible{background:rgba(192,57,43,.12);color:#b03a2e}
+.empty{border:1px dashed rgba(192,138,77,.5);border-radius:12px;padding:1.2rem;text-align:center;color:var(--ink-soft);font-size:.95rem;margin-top:.9rem}
+.empty em{font-family:var(--display);color:var(--ink);font-size:1.1rem;display:block;margin-bottom:.2rem}
+.totals{display:flex;flex-direction:column;gap:.35rem}
+.totals-empty{color:var(--glacier);font-size:.94rem}
+.sum-foot{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(217,169,106,.35)}
+.sum-foot .btn{width:100%;margin-top:1.1rem;padding:1.05rem 1.4rem}
+.sum-foot .btn svg{width:16px;height:16px;fill:currentColor}
+/* Wide screens: the total and button stay pinned to the bottom of the screen while the details scroll by */
+@media(min-width:961px){.sum-foot{position:sticky;bottom:0;z-index:2;background:var(--midnight);padding-bottom:1.1rem;box-shadow:0 -22px 26px -20px rgba(10,20,36,.95)}}
 .totals div{display:flex;justify-content:space-between;align-items:baseline;color:var(--glacier);font-size:.94rem}
 .totals strong{font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--snow)}
 .totals .est{font-size:.78rem;color:#7d93ad}
-.details{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.details{margin-top:1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+/* City, State, ZIP on one row; the state is fixed (all deliveries are in Washington) */
+.field-row{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,.9fr);gap:.9rem}
+@media(max-width:420px){.field-row{grid-template-columns:1fr 1fr}.field-row .field:first-child{grid-column:1/-1}}
 @media(max-width:520px){.details{grid-template-columns:1fr}}
 .details legend{grid-column:1/-1;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--copper-bright);margin-bottom:.2rem}
 .field{display:flex;flex-direction:column;gap:.3rem}
@@ -273,10 +286,9 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 .field input[type=date]{color-scheme:dark}
 .field textarea{resize:vertical;min-height:84px}
 .field input:user-invalid{border-color:#e07a68}
+.field input[readonly]{background:rgba(169,192,216,.08);border-color:rgba(169,192,216,.18);color:var(--glacier);cursor:not-allowed}
 .hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none}
-.checkout{margin-top:1.4rem}
-.checkout .btn{width:100%;padding:1.05rem 1.4rem}
-.checkout .btn svg{width:16px;height:16px;fill:currentColor}
+.checkout{margin-top:.4rem}
 .checkout-note{display:flex;gap:.55rem;align-items:flex-start;font-size:.84rem;color:#8da3bd;margin-top:.8rem;line-height:1.5}
 .checkout-note svg{width:15px;height:15px;flex-shrink:0;margin-top:.15rem;fill:var(--copper-bright)}
 .form-msg{display:none;margin-top:1rem;padding:1rem 1.1rem;border-radius:10px;font-size:.94rem}
@@ -382,7 +394,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
     <li><a href="#order">Build your order</a></li>
     <li><a href="#delivery">Delivery &amp; questions</a></li>
   </ul>
-  <a class="subnav-order" id="subnavOrder" href="#summary" hidden></a>
+  <a class="subnav-order" id="subnavOrder" href="#cart" hidden></a>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -515,6 +527,13 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <button class="btn" type="button" id="addBtn">Add to order</button>
           <p class="add-msg" id="addMsg" role="status" aria-live="polite"></p>
         </div>
+
+        <!-- The cart: every flavor added above, editable here -->
+        <div class="cart" id="cart">
+          <h3><span>Your <em>order</em></span><small id="sumCount">0 items</small></h3>
+          <ul class="lines" id="lines"></ul>
+          <div class="empty" id="empty"><em>Nothing in the freezer yet.</em>Add a flavor above to get started.</div>
+        </div>
       </div>
 
       <!-- While paying: a read-only review of the order takes the builder's place (filled in by fillReview) -->
@@ -529,19 +548,11 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
         <p class="review-edit-row">Need to change something? <button type="button" class="review-edit" id="reviewEdit">Edit your order</button></p>
       </div>
 
-      <!-- Summary / checkout -->
+      <!-- Checkout column: the total, business and delivery details, then payment (opens in #pay below) -->
       <form class="summary" id="summary" novalidate>
-        <h3><span>Your <em>order</em></span><small id="sumCount">0 items</small></h3>
-        <ul class="lines" id="lines"></ul>
-        <div class="empty" id="empty"><em>Nothing in the freezer yet.</em>Add a flavor on the left to get started.</div>
-        <div class="totals" id="totals" hidden>
-          <div><span>Total volume</span><strong id="totGal">0 gal</strong></div>
-          <div id="subRow" hidden><span>Estimated subtotal</span><strong id="totPrice"></strong></div>
-          <div id="estRow" hidden><span class="est">Any delivery charge is confirmed with your order.</span></div>
-        </div>
-
+        <h3><span>Delivery <em>details</em></span></h3>
         <fieldset class="details" style="border:0">
-          <legend>Business details</legend>
+          <legend class="sr-only">Business and delivery details</legend>
           <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field full"><label for="d-biz">Business name</label><input id="d-biz" name="business" autocomplete="organization" required></div>
           <div class="field"><label for="d-name">Contact name</label><input id="d-name" name="name" autocomplete="name" required></div>
@@ -549,13 +560,25 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <div class="field"><label for="d-email">Email</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="d-date">Preferred delivery</label><input id="d-date" name="delivery_date" type="date"></div>
           <div class="field full" id="addrField"><label for="d-addr">Delivery address</label><input id="d-addr" name="address" autocomplete="address-line1" placeholder="Street and number, suite" required></div>
-          <div class="field"><label for="d-city">City</label><input id="d-city" name="city" autocomplete="address-level2" required></div>
-          <div class="field"><label for="d-zip">ZIP</label><input id="d-zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="\d{5}(-\d{4})?" title="5-digit ZIP code" required></div>
+          <div class="field-row">
+            <div class="field"><label for="d-city">City</label><input id="d-city" name="city" autocomplete="address-level2" required></div>
+            <div class="field"><label for="d-state">State</label><input id="d-state" value="Washington" readonly aria-readonly="true" tabindex="-1" title="We deliver in Washington only"></div>
+            <div class="field"><label for="d-zip">ZIP</label><input id="d-zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="\d{5}(-\d{4})?" title="5-digit ZIP code" required></div>
+          </div>
           <div class="field full"><label for="d-notes">Notes</label><textarea id="d-notes" name="notes" placeholder="Receiving hours, dock access, standing order&hellip;"></textarea></div>
         </fieldset>
 
-        <div class="checkout">
+        <!-- The total and the checkout button: on wide screens this stays in view at the bottom while you scroll -->
+        <div class="sum-foot">
+          <p class="totals-empty" id="totalsEmpty">Your total shows here as you add flavors.</p>
+          <div class="totals" id="totals" hidden>
+            <div><span>Total volume</span><strong id="totGal">0 gal</strong></div>
+            <div id="subRow" hidden><span>Estimated subtotal</span><strong id="totPrice"></strong></div>
+            <div id="estRow" hidden><span class="est">Any delivery charge is confirmed with your order.</span></div>
+          </div>
           <button class="btn" type="submit" id="checkoutBtn">Continue to secure checkout</button>
+        </div>
+        <div class="checkout">
           <p class="checkout-note" id="checkoutNote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.4 15.6L6.2 12.2l1.4-1.4 3 3 6.8-6.8 1.4 1.4-8.2 8.2z"/></svg><span>Payment is handled securely by Stripe.</span></p>
           <div class="form-msg" id="formMsg" role="alert"></div>
         </div>
@@ -631,7 +654,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
 
 <div class="obar" id="obar" aria-hidden="true">
   <span>Your order &middot; <strong id="obarText">0 gal</strong></span>
-  <a class="btn" href="#summary" tabindex="-1">Review</a>
+  <a class="btn" href="#summary" tabindex="-1">Checkout</a>
 </div>
 
 <script>
@@ -1011,6 +1034,7 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
     var n = cart.length;
     $("empty").hidden = n > 0;
     $("totals").hidden = n === 0;
+    $("totalsEmpty").hidden = n > 0;
     $("sumCount").textContent = n + (n === 1 ? " item" : " items");
     var vol = volumeText(cart);
     priced = priced && n > 0;
