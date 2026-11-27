@@ -112,8 +112,9 @@ async function checkout(request, env, ctx, origin) {
 
   const cat = await loadCatalog(env, ctx, origin);
   const byKey = new Map(cat.products.map((p) => [p.key, p]));
-  const qtyByPrice = new Map();
+  const qtyByPrice = new Map();   // add-ons (surcharges) only, by price
   const add = (priceId, qty) => qtyByPrice.set(priceId, (qtyByPrice.get(priceId) || 0) + qty);
+  const cartLines = [];           // one Stripe line item per cart line (see the line_items note below)
   const summary = [];
 
   for (const line of lines) {
@@ -121,8 +122,8 @@ async function checkout(request, env, ctx, origin) {
     if (!product) throw new ShopError("Something in your cart is no longer available. Please refresh the page.", 409);
     const qty = Number(line.qty);
     if (!Number.isInteger(qty) || qty < 1 || qty > SHOP.maxQty) throw new ShopError(`Quantities must be from 1 to ${SHOP.maxQty}.`);
-    const { text, addons } = readOptions(line.options, line.custom === true);
-    add(product.priceId, qty);
+    const { text, addons, values } = readOptions(line.options, line.custom === true);
+    cartLines.push({ product, qty, text, values });
     for (const addonKey of addons) {
       const extra = byKey.get(addonKey.replace("{product}", product.key));
       if (!extra) throw new ShopError("Part of this order can't be priced online. Please contact us to order it.", 409);
@@ -154,7 +155,30 @@ async function checkout(request, env, ctx, origin) {
   const returnTo = `${origin}${SHOP.successPath}?session_id={CHECKOUT_SESSION_ID}`;
   const params = {
     mode: "payment",
-    line_items: [...qtyByPrice].map(([price, quantity]) => ({ price, quantity, ...taxLine })),
+    // One line per cart line, named by flavor ("Madagascar Vanilla — 1.5 gallon tub", base underneath), so Stripe's
+    // payment form, receipts and the Dashboard show what was ordered and how many. The amount is the size's current
+    // catalog price, looked up here on the server, so a buyer still can't change a price. Stripe makes a hidden
+    // product for each inline line; they don't appear in the product catalog (checked Nov 27, 2026).
+    line_items: [
+      ...cartLines.map(({ product, qty, text, values }) => ({
+        quantity: qty,
+        price_data: {
+          currency: SHOP.currency,
+          unit_amount: product.amount,
+          ...(product.tax_behavior ? { tax_behavior: product.tax_behavior } : {}),
+          product_data: {
+            name: truncate(values.flavor ? `${values.flavor} — ${product.name}` : `${product.name}${text ? " — " + text : ""}`, 250),
+            ...(values.flavor && values.base ? { description: values.base } : {}),
+            metadata: {
+              size_key: product.key, size_price: product.priceId,
+              ...(product.productId ? { size_product: product.productId } : {}),
+            },
+          },
+        },
+        ...taxLine,
+      })),
+      ...[...qtyByPrice].map(([price, quantity]) => ({ price, quantity, ...taxLine })),
+    ],
     ...(embedded
       ? { ui_mode: embeddedMode, return_url: returnTo }
       : { success_url: returnTo, cancel_url: `${origin}${SHOP.cancelPath}` }),
@@ -233,6 +257,7 @@ function readOptions(raw, customFlag) {
   const given = raw && typeof raw === "object" ? raw : {};
   const parts = [];
   const addons = [];
+  const values = {};
   for (const [name, def] of Object.entries(SHOP.options)) {
     let value = clean(given[name], def.maxLength || 80);
     const label = (def.label || name).toLowerCase();
@@ -251,8 +276,9 @@ function readOptions(raw, customFlag) {
     }
     if (def.addons && def.addons[value]) addons.push(def.addons[value]);
     parts.push(custom ? `${value} (custom)` : value);
+    values[name] = custom ? `${value} (custom)` : value;
   }
-  return { text: parts.join(", "), addons };
+  return { text: parts.join(", "), addons, values };
 }
 
 function readDetails(raw) {
@@ -354,7 +380,7 @@ async function fetchCatalog(env, mode) {
     if (seen.has(key)) { console.warn(`shop: two products use the key "${key}"; keeping the first`); continue; }
     seen.add(key);
     items.push({
-      key, priceId: price.id, name: p.name, description: p.description || "", images: p.images || [],
+      key, priceId: price.id, productId: p.id, name: p.name, description: p.description || "", images: p.images || [],
       unit_label: p.unit_label || "", amount: price.unit_amount, tax_behavior: price.tax_behavior,
       category: md.category || "", group: md.group || "", badge: md.badge || "", sort: Number(md.sort) || 0,
     });

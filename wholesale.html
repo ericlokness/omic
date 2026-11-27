@@ -562,7 +562,7 @@ section[id]{scroll-margin-top:calc(var(--bars-h,110px) + 20px - clamp(4.5rem,9vw
           <div class="field full" id="addrField"><label for="d-addr">Delivery address</label><input id="d-addr" name="address" autocomplete="address-line1" placeholder="Street and number, suite" required></div>
           <div class="field-row">
             <div class="field"><label for="d-city">City</label><input id="d-city" name="city" autocomplete="address-level2" required></div>
-            <div class="field"><label for="d-state">State</label><input id="d-state" value="Washington" readonly aria-readonly="true" tabindex="-1" title="We deliver in Washington only"></div>
+            <div class="field"><label for="d-state">State</label><input id="d-state" value="WA" readonly aria-readonly="true" tabindex="-1" title="We deliver in Washington only" aria-label="State: Washington"></div>
             <div class="field"><label for="d-zip">ZIP</label><input id="d-zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="\d{5}(-\d{4})?" title="5-digit ZIP code" required></div>
           </div>
           <div class="field full"><label for="d-notes">Notes</label><textarea id="d-notes" name="notes" placeholder="Receiving hours, dock access, standing order&hellip;"></textarea></div>
