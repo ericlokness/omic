@@ -1184,7 +1184,7 @@ var FLAVORS = {"icList":["Almond Roca Butter Crunch","Amaretto","Amaretto Bordea
       });
       var details = {
         business: v("d-biz"), contact: v("d-name"), phone: v("d-phone"), email: v("d-email"),
-        delivery_date: v("d-date") || "Next available", address: v("d-addr"), notes: v("d-notes")
+        delivery_date: v("d-date") || "Next available", address: v("d-addr"), notes: v("d-notes") || "None"   // always sent: the Stripe order-email workflow reads it
       };
       btn.disabled = true; btn.textContent = "Opening secure checkout…";
       fetch("/api/checkout", {
